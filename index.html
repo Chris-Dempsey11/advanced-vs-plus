@@ -884,6 +884,13 @@
       <div class="calc-sub">Enter your monthly GMV to see how much the lower Shopify Payments rate saves you annually on Plus vs Advanced.</div>
       <div class="calc-inputs">
         <div class="calc-field">
+          <label>Country / Rate Region</label>
+          <select id="calc-country" onchange="calcSavings()">
+            <option value="us">🇺🇸 United States (USD)</option>
+            <option value="ca">🇨🇦 Canada (CAD)</option>
+          </select>
+        </div>
+        <div class="calc-field">
           <label>Monthly Online GMV ($)</label>
           <input type="text" id="calc-online-gmv" placeholder="e.g. 500,000" oninput="calcSavings()">
         </div>
@@ -914,7 +921,7 @@
           <div class="calc-result-val save" id="calc-saving-mo">—</div>
         </div>
       </div>
-      <p class="rate-note" style="margin-top:18px;">Calculator uses standard consumer card rates: CAD 2.4% (Adv) vs 2.15% (Plus) / USD 2.5% (Adv) vs 2.25% (Plus). In-person uses Canada rates (1.7% vs 1.6%). Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.</p>
+      <p class="rate-note" style="margin-top:18px;" id="calc-rate-note">Calculator uses US standard consumer card rates: 2.5% (Adv) vs 2.25% (Plus). In-person uses 2.5% (Adv) vs 2.25% (Plus) for US, and 1.7% (Adv) vs 1.6% (Plus) for Canada. Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.</p>
     </div>
   </div>
 
@@ -2147,20 +2154,36 @@ function fmtCurrency(n) {
   return '$' + n.toFixed(0);
 }
 function calcSavings() {
+  const country   = document.getElementById('calc-country').value;
   const online    = parseGmv('calc-online-gmv');
   const inperson  = parseGmv('calc-inperson-gmv');
   const thirdparty = parseGmv('calc-thirdparty-gmv');
 
+  // Rates by country
+  const rates = {
+    us: { advOnline: 0.025, plusOnline: 0.0225, advInperson: 0.025, plusInperson: 0.0225 },
+    ca: { advOnline: 0.024, plusOnline: 0.0215, advInperson: 0.017, plusInperson: 0.016  }
+  };
+  const r = rates[country];
+
   // Monthly fees
-  const advMo  = online * 0.024 + inperson * 0.017 + thirdparty * 0.005;
-  const plusMo = online * 0.0215 + inperson * 0.016 + thirdparty * 0.002;
+  const advMo  = online * r.advOnline  + inperson * r.advInperson  + thirdparty * 0.005;
+  const plusMo = online * r.plusOnline + inperson * r.plusInperson + thirdparty * 0.002;
   const saveMo = advMo - plusMo;
 
-  const fmt = v => (online + inperson + thirdparty) === 0 ? '—' : fmtCurrency(v);
-  document.getElementById('calc-adv-total').textContent    = (online + inperson + thirdparty) ? fmtCurrency(advMo * 12)  : '—';
-  document.getElementById('calc-plus-total').textContent   = (online + inperson + thirdparty) ? fmtCurrency(plusMo * 12) : '—';
-  document.getElementById('calc-saving').textContent       = (online + inperson + thirdparty) ? fmtCurrency(saveMo * 12) : '—';
-  document.getElementById('calc-saving-mo').textContent    = (online + inperson + thirdparty) ? fmtCurrency(saveMo)      : '—';
+  const hasGmv = (online + inperson + thirdparty) > 0;
+  document.getElementById('calc-adv-total').textContent    = hasGmv ? fmtCurrency(advMo * 12)  : '—';
+  document.getElementById('calc-plus-total').textContent   = hasGmv ? fmtCurrency(plusMo * 12) : '—';
+  document.getElementById('calc-saving').textContent       = hasGmv ? fmtCurrency(saveMo * 12) : '—';
+  document.getElementById('calc-saving-mo').textContent    = hasGmv ? fmtCurrency(saveMo)      : '—';
+
+  // Update rate note
+  const note = document.getElementById('calc-rate-note');
+  if (country === 'us') {
+    note.textContent = 'Calculator uses US standard consumer card rates: 2.5% (Adv) vs 2.25% (Plus) for both online and in-person. Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.';
+  } else {
+    note.textContent = 'Calculator uses Canada online credit card rates: 2.4% (Adv) vs 2.15% (Plus). In-person: 1.7% (Adv) vs 1.6% (Plus). Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.';
+  }
 }
 
 // ═══════════════ PLUS EXCLUSIVES HUB ═══════════════
