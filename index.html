@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopify Advanced vs Plus — Full Comparison</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3250;
+    --adv: #ffc857;
+    --adv-dim: rgba(255,200,87,.12);
+    --plus: #6c63ff;
+    --plus-dim: rgba(108,99,255,.12);
+    --plus-light: #a8a3ff;
+    --accent2: #00d4aa;
+    --danger: #ff5f6d;
+    --ok: #2ecc71;
+    --text: #e8eaf6;
+    --muted: #8892b0;
+    --card-radius: 14px;
+    --font: 'Inter', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; padding: 0 0 80px; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #1a1d27 0%, #0f1117 65%);
+    border-bottom: 1px solid var(--border);
+    padding: 44px 40px 0;
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,99,255,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -40px; left: 80px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,200,87,.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-eyebrow {
+    font-size: .7rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow-adv {
+    background: var(--adv-dim); border: 1px solid rgba(255,200,87,.3);
+    color: var(--adv); padding: 3px 12px; border-radius: 20px; font-size: .68rem; font-weight: 800;
+  }
+  .eyebrow-plus {
+    background: var(--plus-dim); border: 1px solid rgba(108,99,255,.3);
+    color: var(--plus-light); padding: 3px 12px; border-radius: 20px; font-size: .68rem; font-weight: 800;
+  }
+  .header-inner h1 {
+    font-size: 2.6rem; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--adv) 0%, #fff 40%, var(--plus-light) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-inner p { color: var(--muted); font-size: .93rem; max-width: 560px; line-height: 1.6; margin-bottom: 28px; }
+
+  /* ── TABS ── */
+  .tab-bar { max-width: 1100px; margin: 0 auto; display: flex; }
+  .tab-btn {
+    padding: 14px 26px; font-size: .85rem; font-weight: 700; color: var(--muted);
+    background: none; border: none; border-bottom: 3px solid transparent;
+    cursor: pointer; transition: color .15s, border-color .15s; white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--plus); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION ── */
+  .section { max-width: 1100px; margin: 36px auto 0; padding: 0 40px; }
+  .section-label {
+    font-size: .7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content: ''; display: block; height: 1px; flex: 1; background: var(--border); }
+
+  /* ── STAT CARDS ── */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 14px; }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 20px 22px;
+    position: relative; overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .stat-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+  .stat-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; }
+  .stat-card.adv::after  { background: var(--adv); }
+  .stat-card.plus::after { background: var(--plus); }
+  .stat-card.teal::after { background: var(--accent2); }
+  .stat-card.red::after  { background: var(--danger); }
+  .stat-card .s-label { font-size: .7rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .6px; }
+  .stat-card .s-value { font-size: 1.75rem; font-weight: 800; margin-top: 8px; letter-spacing: -1px; }
+  .stat-card .s-value.adv  { color: var(--adv); }
+  .stat-card .s-value.plus { color: var(--plus-light); }
+  .stat-card .s-value.teal { color: var(--accent2); }
+  .stat-card .s-sub { font-size: .78rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  /* ── HERO COMPARE ── */
+  .hero-compare {
+    display: grid; grid-template-columns: 1fr 60px 1fr;
+    border: 1px solid var(--border); border-radius: var(--card-radius); overflow: hidden;
+  }
+  .hc-col { padding: 28px 30px 26px; background: var(--surface); }
+  .hc-col.plus-col { background: rgba(108,99,255,.04); }
+  .hc-plan-tag {
+    display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .8px;
+    text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 8px;
+  }
+  .hc-plan-tag.adv  { background: var(--adv-dim); border: 1px solid rgba(255,200,87,.3); color: var(--adv); }
+  .hc-plan-tag.plus { background: var(--plus-dim); border: 1px solid rgba(108,99,255,.3); color: var(--plus-light); }
+  .hc-name { font-size: 1.6rem; font-weight: 800; margin-bottom: 18px; }
+  .hc-name.adv  { color: var(--adv); }
+  .hc-name.plus { color: var(--plus-light); }
+  .hc-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .hc-list li { font-size: .83rem; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.45; }
+  .hc-list li .ci { flex-shrink: 0; margin-top: 1px; font-size: .85rem; }
+  .hc-list li.upgrade { color: var(--text); }
+  .hc-list li.upgrade .ci { color: var(--accent2); }
+  .hc-divider {
+    background: var(--surface2); border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; font-weight: 700; color: var(--muted); text-transform: uppercase;
+    letter-spacing: 2px; writing-mode: vertical-rl;
+  }
+
+  /* ── DIFF TABLE ── */
+  .table-wrap { border: 1px solid var(--border); border-radius: var(--card-radius); overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .87rem; }
+  thead { background: var(--surface2); }
+  thead th { padding: 12px 20px; font-size: .71rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; text-align: left; }
+  thead th.adv-col  { color: var(--adv); text-align: center; min-width: 130px; }
+  thead th.plus-col { color: var(--plus-light); text-align: center; min-width: 130px; }
+  tbody tr { border-bottom: 1px solid var(--border); background: var(--surface); transition: background .15s; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr.cat-row { background: var(--surface2); }
+  tbody tr.cat-row td { padding: 8px 20px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); }
+  td { padding: 13px 20px; vertical-align: middle; }
+  td.center { text-align: center; }
+  .feature-name { font-weight: 500; color: var(--text); }
+
+  .check { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(46,204,113,.15); color: var(--ok); }
+  .cross { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,95,109,.1); color: var(--danger); font-size: .85rem; }
+  .val-tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .78rem; font-weight: 700; white-space: nowrap; }
+  .val-num      { background: rgba(255,200,87,.12); color: var(--adv); border: 1px solid rgba(255,200,87,.25); }
+  .val-unlimited{ background: rgba(108,99,255,.14); color: var(--plus-light); border: 1px solid rgba(108,99,255,.3); }
+  .upgrade-tag  { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 20px; font-size: .66rem; font-weight: 700; background: rgba(0,212,170,.1); color: var(--accent2); border: 1px solid rgba(0,212,170,.25); }
+
+  /* ── IMPLICATION CARDS ── */
+  .impl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 16px; }
+  .impl-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 24px 26px;
+    position: relative; overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .impl-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+  .impl-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px; }
+  .impl-card.plus::before { background: var(--plus); }
+  .impl-card.adv::before  { background: var(--adv); }
+  .impl-card.both::before { background: linear-gradient(180deg, var(--adv), var(--plus)); }
+  .impl-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+  .impl-title { font-size: .95rem; font-weight: 800; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .impl-plan-tag { font-size: .66rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: .4px; }
+  .impl-plan-tag.plus { background: var(--plus-dim); color: var(--plus-light); border: 1px solid rgba(108,99,255,.3); }
+  .impl-plan-tag.adv  { background: var(--adv-dim); color: var(--adv); border: 1px solid rgba(255,200,87,.3); }
+  .impl-plan-tag.both { background: rgba(0,212,170,.1); color: var(--accent2); border: 1px solid rgba(0,212,170,.25); }
+  .impl-body { font-size: .84rem; color: var(--muted); line-height: 1.65; }
+  .impl-body strong { color: var(--text); font-weight: 600; }
+  .impl-implication { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: .8rem; color: var(--muted); line-height: 1.55; }
+  .impl-implication strong { color: var(--accent2); font-weight: 600; }
+  .impl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .impl-tag { font-size: .68rem; font-weight: 600; padding: 2px 9px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); }
+
+  /* ── LEGAL TABLE ── */
+  .legal-table { width: 100%; border-collapse: collapse; font-size: .87rem; }
+  .legal-table thead { background: var(--surface2); }
+  .legal-table thead th { padding: 12px 20px; font-size: .71rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  .legal-table thead th:first-child { color: var(--muted); min-width: 150px; text-align: left; }
+  .legal-table thead th.adv-col  { color: var(--adv); min-width: 280px; text-align: left; }
+  .legal-table thead th.plus-col { color: var(--plus-light); min-width: 280px; text-align: left; }
+  .legal-table tbody tr { border-bottom: 1px solid var(--border); background: var(--surface); transition: background .15s; }
+  .legal-table tbody tr:hover { background: var(--surface2); }
+  .legal-table tbody tr:last-child { border-bottom: none; }
+  .legal-table td { padding: 14px 20px; vertical-align: top; line-height: 1.6; font-size: .84rem; }
+  .legal-table td:first-child { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); white-space: nowrap; }
+  .legal-table td.adv-cell  { color: var(--muted); border-left: 2px solid rgba(255,200,87,.2); }
+  .legal-table td.plus-cell { color: var(--muted); border-left: 2px solid rgba(108,99,255,.2); }
+  .legal-table td.adv-cell strong  { color: var(--adv); }
+  .legal-table td.plus-cell strong { color: var(--plus-light); }
+  .verdict {
+    margin-top: 16px; padding: 18px 22px;
+    background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent2);
+    border-radius: var(--card-radius); font-size: .86rem; color: var(--muted); line-height: 1.65;
+  }
+  .verdict strong { color: var(--text); }
+
+  /* ── SUPPORT COMPARE ── */
+  .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .support-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 26px 28px;
+  }
+  .support-card.plus-card { background: rgba(108,99,255,.04); border-color: rgba(108,99,255,.3); }
+  .support-plan-tag { display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px; }
+  .support-plan-tag.adv  { background: var(--adv-dim); border: 1px solid rgba(255,200,87,.3); color: var(--adv); }
+  .support-plan-tag.plus { background: var(--plus-dim); border: 1px solid rgba(108,99,255,.3); color: var(--plus-light); }
+  .support-name { font-size: 1.2rem; font-weight: 800; margin-bottom: 18px; }
+  .support-name.adv  { color: var(--adv); }
+  .support-name.plus { color: var(--plus-light); }
+  .support-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .support-list li { font-size: .84rem; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+  .support-list li .si { flex-shrink: 0; font-size: .85rem; margin-top: 1px; }
+  .support-list li.have { color: var(--text); }
+  .support-list li.have .si { color: var(--ok); }
+  .support-list li.missing { color: var(--muted); }
+  .support-list li.missing .si { color: var(--danger); }
+
+  /* ── PAYMENTS RATES ── */
+  .rates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .rate-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 26px 28px;
+    position: relative; overflow: hidden;
+  }
+  .rate-card.plus-card { background: rgba(108,99,255,.04); border-color: rgba(108,99,255,.3); }
+  .rate-card-tag { display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px; }
+  .rate-card-tag.adv  { background: var(--adv-dim); border: 1px solid rgba(255,200,87,.3); color: var(--adv); }
+  .rate-card-tag.plus { background: var(--plus-dim); border: 1px solid rgba(108,99,255,.3); color: var(--plus-light); }
+  .rate-card-name { font-size: 1.2rem; font-weight: 800; margin-bottom: 18px; }
+  .rate-card-name.adv  { color: var(--adv); }
+  .rate-card-name.plus { color: var(--plus-light); }
+  .rate-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: .85rem; }
+  .rate-row:last-child { border-bottom: none; }
+  .rate-label { color: var(--muted); }
+  .rate-val { font-weight: 700; font-size: .95rem; }
+  .rate-val.adv  { color: var(--adv); }
+  .rate-val.plus { color: var(--plus-light); }
+  .rate-val.better { color: var(--ok); }
+  .rate-table { width: 100%; border-collapse: collapse; font-size: .87rem; }
+  .rate-table thead { background: var(--surface2); }
+  .rate-table thead th { padding: 12px 20px; font-size: .71rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+  .rate-table thead th.adv-col  { color: var(--adv); text-align: center; }
+  .rate-table thead th.plus-col { color: var(--plus-light); text-align: center; }
+  .rate-table thead th.save-col { color: var(--ok); text-align: center; }
+  .rate-table tbody tr { border-bottom: 1px solid var(--border); background: var(--surface); transition: background .15s; }
+  .rate-table tbody tr:hover { background: var(--surface2); }
+  .rate-table tbody tr:last-child { border-bottom: none; }
+  .rate-table td { padding: 13px 20px; vertical-align: middle; }
+  .rate-table td.center { text-align: center; font-weight: 600; }
+  .rate-table td.adv-rate  { text-align: center; color: var(--adv); font-weight: 700; }
+  .rate-table td.plus-rate { text-align: center; color: var(--plus-light); font-weight: 700; }
+  .rate-table td.save-rate { text-align: center; color: var(--ok); font-weight: 700; }
+  .rate-note { font-size: .78rem; color: var(--muted); margin-top: 10px; line-height: 1.55; }
+  .savings-calc {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+    padding: 28px 32px;
+  }
+  .calc-title { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .calc-sub { font-size: .82rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+  .calc-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-bottom: 24px; }
+  .calc-field label { display: block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 7px; }
+  .calc-field input, .calc-field select {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: .9rem; font-family: var(--font);
+    outline: none; transition: border-color .15s;
+  }
+  .calc-field input:focus, .calc-field select:focus { border-color: var(--plus); }
+  .calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 12px; }
+  .calc-result-card {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 20px; text-align: center;
+  }
+  .calc-result-card.highlight { border-color: rgba(46,204,113,.4); background: rgba(46,204,113,.06); }
+  .calc-result-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 8px; }
+  .calc-result-val { font-size: 1.5rem; font-weight: 800; }
+  .calc-result-val.adv  { color: var(--adv); }
+  .calc-result-val.plus { color: var(--plus-light); }
+  .calc-result-val.save { color: var(--ok); }
+
+  /* ── PLUS EXCLUSIVES HUB ── */
+  .excl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 16px; }
+  .excl-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+    padding: 28px 26px; cursor: pointer; position: relative; overflow: hidden;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .excl-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,.45); border-color: rgba(108,99,255,.45); }
+  .excl-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--plus); border-radius: 3px 3px 0 0; }
+  .excl-card-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+  .excl-card-title { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .excl-card-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+  .excl-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .excl-card-tag { font-size: .67rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; background: var(--plus-dim); border: 1px solid rgba(108,99,255,.25); color: var(--plus-light); }
+  .excl-card-cta { font-size: .78rem; font-weight: 700; color: var(--plus-light); display: flex; align-items: center; gap: 5px; }
+  .excl-card-cta::after { content: '→'; transition: transform .15s; }
+  .excl-card:hover .excl-card-cta::after { transform: translateX(4px); }
+  .excl-sub { display: none; }
+  .excl-sub.active { display: block; }
+  .excl-back {
+    display: inline-flex; align-items: center; gap: 8px; margin: 28px 40px 0;
+    padding: 9px 18px; border-radius: 30px; font-size: .82rem; font-weight: 700;
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+    cursor: pointer; transition: border-color .15s, color .15s; font-family: var(--font);
+  }
+  .excl-back:hover { border-color: var(--plus); color: var(--plus-light); }
+  .excl-hub { display: block; }
+  .excl-hub.hidden { display: none; }
+
+  /* ── ASK CHRIS BUTTON & MODAL ── */
+  .ask-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 30px; font-size: .82rem; font-weight: 700;
+    background: var(--plus-dim); border: 1px solid rgba(108,99,255,.4); color: var(--plus-light);
+    cursor: pointer; transition: background .15s, border-color .15s, transform .15s;
+    white-space: nowrap; font-family: var(--font);
+  }
+  .ask-btn:hover { background: rgba(108,99,255,.22); border-color: rgba(108,99,255,.7); transform: translateY(-1px); }
+  .ask-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65);
+    z-index: 200; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 36px 40px; width: 100%; max-width: 520px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.6); animation: fadeUp .25s ease both;
+  }
+  .modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+  .modal-title { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+  .modal-close { background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; line-height: 1; padding: 0; }
+  .modal-close:hover { color: var(--text); }
+  .modal-sub { font-size: .82rem; color: var(--muted); margin-bottom: 24px; line-height: 1.55; }
+  .modal-sub a { color: var(--plus-light); text-decoration: none; }
+  .modal-field { margin-bottom: 16px; }
+  .modal-field label { display: block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 7px; }
+  .modal-field input, .modal-field textarea {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: .88rem; font-family: var(--font);
+    outline: none; transition: border-color .15s; resize: vertical;
+  }
+  .modal-field input:focus, .modal-field textarea:focus { border-color: var(--plus); }
+  .modal-field textarea { min-height: 110px; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+  .modal-cancel { padding: 10px 20px; border-radius: 8px; font-size: .85rem; font-weight: 700; background: none; border: 1px solid var(--border); color: var(--muted); cursor: pointer; font-family: var(--font); }
+  .modal-cancel:hover { border-color: var(--text); color: var(--text); }
+  .modal-send { padding: 10px 24px; border-radius: 8px; font-size: .85rem; font-weight: 700; background: var(--plus); border: none; color: #fff; cursor: pointer; font-family: var(--font); transition: background .15s; }
+  .modal-send:hover { background: #5850e6; }
+
+  /* ── TOAST ── */
+  .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--plus); color: #fff; padding: 11px 22px; border-radius: 30px; font-weight: 700; font-size: .88rem; transition: transform .3s cubic-bezier(.34,1.56,.64,1); z-index: 100; pointer-events: none; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── FOOTER ── */
+  footer { max-width: 1100px; margin: 52px auto 0; padding: 0 40px; border-top: 1px solid var(--border); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .footer-brand { font-size: .95rem; font-weight: 800; color: var(--plus-light); }
+  .footer-text { font-size: .74rem; color: var(--muted); line-height: 1.5; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  .a1 { animation: fadeUp .4s ease .05s both; }
+  .a2 { animation: fadeUp .4s ease .12s both; }
+  .a3 { animation: fadeUp .4s ease .18s both; }
+
+  @media (max-width: 700px) {
+    header, .section { padding-left: 20px; padding-right: 20px; }
+    .header-inner h1 { font-size: 1.8rem; }
+    .hero-compare { grid-template-columns: 1fr; }
+    .hc-divider { writing-mode: horizontal-tb; padding: 12px 20px; border-left: none; border-right: none; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .support-grid { grid-template-columns: 1fr; }
+    .tab-btn { padding: 12px 14px; font-size: .78rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div class="header-eyebrow">
+          <span class="eyebrow-adv">Advanced</span>
+          <span style="color:var(--border)">vs</span>
+          <span class="eyebrow-plus">Plus</span>
+        </div>
+        <h1>Full Plan Comparison</h1>
+        <p>Every difference between Shopify Advanced and Shopify Plus — features, payments, legal protections, support, and what it means for your business.</p>
+      </div>
+      <button class="ask-btn" onclick="openAskModal()" style="margin-top:14px; flex-shrink:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Ask Chris a Question
+      </button>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+    <button class="tab-btn" onclick="switchTab('features',this)">Feature Differences</button>
+    <button class="tab-btn" onclick="switchTab('implications',this)">Business Implications</button>
+    <button class="tab-btn" onclick="switchTab('legal',this)">Legal &amp; Commercial</button>
+    <button class="tab-btn" onclick="switchTab('support',this)">Support</button>
+    <button class="tab-btn" onclick="switchTab('payments',this)">Payments Rates</button>
+    <button class="tab-btn" onclick="switchTab('exclusives',this)">Plus Exclusives</button>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════
+     TAB 1 · OVERVIEW
+══════════════════════════════════ -->
+<div id="panel-overview" class="tab-panel active">
+
+  <div class="section a1">
+    <div class="stat-row">
+      <div class="stat-card adv">
+        <div class="s-label">Shared Features</div>
+        <div class="s-value adv">18</div>
+        <div class="s-sub">identical on both plans</div>
+      </div>
+      <div class="stat-card plus">
+        <div class="s-label">Plus-Only Upgrades</div>
+        <div class="s-value plus">7</div>
+        <div class="s-sub">features not available on Advanced</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="s-label">Legal Protections</div>
+        <div class="s-value teal">6</div>
+        <div class="s-sub">contractual areas where Plus differs</div>
+      </div>
+      <div class="stat-card red">
+        <div class="s-label">Support Gap</div>
+        <div class="s-value" style="color:var(--danger)">Critical</div>
+        <div class="s-sub">Advanced has no phone or 24/7 access</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">At a Glance</div>
+    <div class="hero-compare">
+      <div class="hc-col">
+        <span class="hc-plan-tag adv">Advanced</span>
+        <div class="hc-name adv">Advanced</div>
+        <ul class="hc-list">
+          <li><span class="ci" style="color:var(--ok)">✓</span>All Companies features</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>Quantity rules &amp; price breaks</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>Net terms, ACH, vaulted cards, payment reminders</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>Full checkout &amp; order workflow (Draft, PO, Reorder)</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>Contextual Checkout &amp; Storefront (via Markets)</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>Trade theme &amp; quick order list</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>Flow automation (B2B objects)</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>3 B2B Catalogs (via Markets only)</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>Up to 15 staff accounts</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No deposit requirements</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No partial payments</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No direct catalog assignment</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No payment requests per fulfillment</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No checkout extensibility</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>Standard support only, no phone</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>One-sided ToS, no liability cap</li>
+        </ul>
+      </div>
+      <div class="hc-divider">vs</div>
+      <div class="hc-col plus-col">
+        <span class="hc-plan-tag plus">Plus</span>
+        <div class="hc-name plus">Plus</div>
+        <ul class="hc-list">
+          <li><span class="ci" style="color:var(--muted)">✦</span>Everything in Advanced, plus:</li>
+          <li class="upgrade"><span class="ci">+</span>Unlimited B2B Catalogs</li>
+          <li class="upgrade"><span class="ci">+</span>Direct catalog assignment to companies &amp; locations</li>
+          <li class="upgrade"><span class="ci">+</span>Deposit requirements (companies &amp; draft orders)</li>
+          <li class="upgrade"><span class="ci">+</span>Partial payments</li>
+          <li class="upgrade"><span class="ci">+</span>Payment requests per fulfillment</li>
+          <li class="upgrade"><span class="ci">+</span>Unlimited staff accounts</li>
+          <li class="upgrade"><span class="ci">+</span>Checkout Extensibility (UI Extensions &amp; Functions)</li>
+          <li class="upgrade"><span class="ci">+</span>Customer Account Extensions</li>
+          <li class="upgrade"><span class="ci">+</span>9 Expansion Stores</li>
+          <li class="upgrade"><span class="ci">+</span>24/7 priority support + phone support</li>
+          <li class="upgrade"><span class="ci">+</span>Dedicated Merchant Success Manager</li>
+          <li class="upgrade"><span class="ci">+</span>Mutual indemnification + liability cap</li>
+          <li class="upgrade"><span class="ci">+</span>Full confidentiality obligations</li>
+          <li class="upgrade"><span class="ci">+</span>Scoped, time-limited IP license</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB 2 · FEATURE DIFFERENCES
+══════════════════════════════════ -->
+<div id="panel-features" class="tab-panel">
+
+  <div class="section a1">
+    <div class="section-label">Where Advanced &amp; Plus Differ <span id="diff-count" style="margin-left:6px;font-size:.72rem;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:2px 10px;color:var(--muted);font-weight:600;text-transform:none;letter-spacing:0"></span></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="min-width:260px">Feature</th>
+            <th>Category</th>
+            <th class="adv-col">Advanced</th>
+            <th class="plus-col">Plus</th>
+          </tr>
+        </thead>
+        <tbody id="diff-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section a2" style="margin-top:28px">
+    <div class="section-label">Full Feature Matrix</div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="filter-btn active" onclick="filterFull('all',this)">All Features</button>
+      <button class="filter-btn" onclick="filterFull('diff',this)">Differences Only</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="min-width:260px">Feature</th>
+            <th>Category</th>
+            <th class="adv-col">Advanced</th>
+            <th class="plus-col">Plus</th>
+          </tr>
+        </thead>
+        <tbody id="full-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB 3 · BUSINESS IMPLICATIONS
+══════════════════════════════════ -->
+<div id="panel-implications" class="tab-panel">
+
+  <div class="section a1">
+    <div class="stat-row">
+      <div class="stat-card adv">
+        <div class="s-label">Payment Features Missing</div>
+        <div class="s-value adv">4</div>
+        <div class="s-sub">Deposits, partials, per-fulfillment billing</div>
+      </div>
+      <div class="stat-card plus">
+        <div class="s-label">Catalog Ceiling</div>
+        <div class="s-value plus">3 → ∞</div>
+        <div class="s-sub">Advanced capped · Plus unlimited</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="s-label">Staff Accounts</div>
+        <div class="s-value teal">15 → ∞</div>
+        <div class="s-sub">Advanced capped · Plus unlimited</div>
+      </div>
+      <div class="stat-card red">
+        <div class="s-label">Checkout Customisation</div>
+        <div class="s-value" style="color:var(--danger)">Plus Only</div>
+        <div class="s-sub">UI Extensions &amp; Functions locked to Plus</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">Implications by Area</div>
+    <div class="impl-grid" id="impl-grid"></div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB 4 · LEGAL & COMMERCIAL
+══════════════════════════════════ -->
+<div id="panel-legal" class="tab-panel">
+
+  <div class="section a1">
+    <div class="stat-row">
+      <div class="stat-card adv">
+        <div class="s-label">Advanced Agreement</div>
+        <div class="s-value adv">ToS</div>
+        <div class="s-sub">Click-through, self-serve, unilateral changes</div>
+      </div>
+      <div class="stat-card plus">
+        <div class="s-label">Plus Agreement</div>
+        <div class="s-value plus">MSA</div>
+        <div class="s-sub">Negotiated, mutual, requires written consent to amend</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="s-label">Liability Cap</div>
+        <div class="s-value teal">12 Mo</div>
+        <div class="s-sub">Plus caps liability at 12 months platform fees paid</div>
+      </div>
+      <div class="stat-card red">
+        <div class="s-label">Indemnification</div>
+        <div class="s-value" style="color:var(--danger)">One-way</div>
+        <div class="s-sub">Advanced: customer only · Plus: mutual</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">Side-by-Side Legal Comparison</div>
+    <div class="table-wrap">
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th class="adv-col">Advanced (Self-Serve ToS)</th>
+            <th class="plus-col">Plus (Negotiated MSA)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Indemnification</td>
+            <td class="adv-cell"><strong>One-way.</strong> Customer indemnifies Shopify only. Shopify carries no indemnification obligations to the merchant.</td>
+            <td class="plus-cell"><strong>Mutual.</strong> Shopify indemnifies the merchant against IP infringement claims and DPA breaches. Risk shared equally.</td>
+          </tr>
+          <tr>
+            <td>Liability Cap</td>
+            <td class="adv-cell"><strong>Not specified.</strong> No contractual ceiling on Shopify's liability — effectively uncapped under standard boilerplate.</td>
+            <td class="plus-cell"><strong>Capped at 12 months of Platform Fees paid.</strong> Merchant has a defined, predictable ceiling on recoverable damages.</td>
+          </tr>
+          <tr>
+            <td>Confidentiality</td>
+            <td class="adv-cell"><strong>None.</strong> No confidentiality provisions. Business data shared with Shopify carries no contractual protection.</td>
+            <td class="plus-cell"><strong>Full mutual obligations.</strong> Both parties are bound by confidentiality, with injunctive relief available as a remedy for breach.</td>
+          </tr>
+          <tr>
+            <td>IP License to Shopify</td>
+            <td class="adv-cell"><strong>Broad, open-ended grant.</strong> Merchant grants Shopify a wide IP license with no defined end date or scope restriction.</td>
+            <td class="plus-cell"><strong>Scoped and time-limited.</strong> License is restricted to the duration of the Term and solely to provide the Services.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict">
+      <strong>Bottom line:</strong> Advanced is a <strong>click-through, self-serve agreement</strong> — protections are one-sided in Shopify's favour. Plus is a <strong>negotiated commercial contract</strong> with mutual indemnification, a defined liability cap, confidentiality obligations, and joint control over amendments. For any merchant with legal, procurement, or compliance involvement in the purchase decision, the Plus MSA is a materially different document from what they'd be signing on Advanced.
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB 5 · SUPPORT
+══════════════════════════════════ -->
+<div id="panel-support" class="tab-panel">
+
+  <div class="section a1">
+    <div class="section-label">Support Model Comparison</div>
+    <div class="support-grid">
+      <div class="support-card">
+        <span class="support-plan-tag adv">Advanced</span>
+        <div class="support-name adv">Standard Support</div>
+        <ul class="support-list">
+          <li class="have"><span class="si">✓</span>Email support</li>
+          <li class="have"><span class="si">✓</span>Live chat support</li>
+          <li class="have"><span class="si">✓</span>Help centre &amp; community forums</li>
+          <li class="missing"><span class="si">✕</span>No Shopify Academy access</li>
+          <li class="missing"><span class="si">✕</span>No phone support</li>
+          <li class="missing"><span class="si">✕</span>No 24/7 priority access</li>
+          <li class="missing"><span class="si">✕</span>No dedicated account contact</li>
+          <li class="missing"><span class="si">✕</span>No Merchant Success Manager</li>
+          <li class="missing"><span class="si">✕</span>No dedicated launch engineer</li>
+        </ul>
+      </div>
+      <div class="support-card plus-card">
+        <span class="support-plan-tag plus">Plus</span>
+        <div class="support-name plus">Priority Support</div>
+        <ul class="support-list">
+          <li class="have"><span class="si">✓</span>Email support</li>
+          <li class="have"><span class="si">✓</span>Live chat support</li>
+          <li class="have"><span class="si">✓</span>Help centre &amp; community forums</li>
+          <li class="have"><span class="si">✓</span>Shopify Academy (self-serve learning)</li>
+          <li class="have"><span class="si">✓</span><strong>24/7 priority support</strong></li>
+          <li class="have"><span class="si">✓</span><strong>Phone support</strong></li>
+          <li class="have"><span class="si">✓</span><strong>Dedicated Merchant Success Manager</strong></li>
+          <li class="have"><span class="si">✓</span><strong>Dedicated launch engineer (onboarding)</strong></li>
+          <li class="have"><span class="si">✓</span>Faster response SLAs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">Why Support Tier Matters for B2B</div>
+    <div class="impl-grid">
+      <div class="impl-card plus">
+        <span class="impl-icon">🌙</span>
+        <div class="impl-title">24/7 Access <span class="impl-plan-tag plus">Plus</span></div>
+        <div class="impl-body">B2B operations don't stop at 5pm. When a buyer portal goes down at 11pm before a major order deadline, <strong>Advanced merchants wait until business hours</strong>. Plus merchants have immediate access to priority support around the clock.</div>
+        <div class="impl-implication"><strong>Sales angle:</strong> If B2B revenue is material to the business, downtime outside business hours is a real risk. The support tier is an operational decision, not just a feature checkbox.</div>
+      </div>
+      <div class="impl-card plus">
+        <span class="impl-icon">📞</span>
+        <div class="impl-title">Phone Support <span class="impl-plan-tag plus">Plus</span></div>
+        <div class="impl-body">Complex B2B issues — ERP sync failures, catalog misconfigurations, checkout errors for specific company accounts — are faster to resolve over a call than through a ticket. <strong>Phone access is exclusive to Plus.</strong></div>
+        <div class="impl-implication"><strong>Sales angle:</strong> Enterprise B2B buyers often ask about support SLAs during procurement. Advanced can't satisfy those questions.</div>
+      </div>
+      <div class="impl-card plus">
+        <span class="impl-icon">🤝</span>
+        <div class="impl-title">Merchant Success Manager <span class="impl-plan-tag plus">Plus</span></div>
+        <div class="impl-body">Plus merchants get a dedicated MSM — a proactive account contact who understands your business, flags relevant features, and helps you get more out of the platform over time. <strong>Advanced is entirely self-serve post-launch.</strong></div>
+        <div class="impl-implication"><strong>Sales angle:</strong> For merchants growing their B2B channel, an MSM compounds in value. They help you avoid mistakes that cost more than the plan difference.</div>
+      </div>
+      <div class="impl-card plus">
+        <span class="impl-icon">🚀</span>
+        <div class="impl-title">Launch Engineer <span class="impl-plan-tag plus">Plus</span></div>
+        <div class="impl-body">During onboarding, Plus merchants work with a dedicated launch engineer to configure the platform correctly from day one — particularly valuable for complex B2B setups with custom pricing, integrations, and portals. <strong>Advanced merchants rely on their agency or internal team.</strong></div>
+        <div class="impl-implication"><strong>Sales angle:</strong> A bad launch configuration is expensive to fix later. The launch engineer de-risks the go-live for merchants with complex requirements.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB 6 · PAYMENTS RATES
+══════════════════════════════════ -->
+<div id="panel-payments" class="tab-panel">
+
+  <div class="section a1">
+    <div class="section-label">Plan Overview — Shopify Payments Rates</div>
+    <div class="stat-row">
+      <div class="stat-card adv">
+        <div class="s-label">Advanced Online (CAD &amp; USD)</div>
+        <div class="s-value" style="color:var(--adv)">2.4%</div>
+        <div class="s-sub">+ 30¢ per transaction</div>
+      </div>
+      <div class="stat-card plus">
+        <div class="s-label">Plus Online (CAD &amp; USD)</div>
+        <div class="s-value" style="color:var(--plus-light)">2.15%</div>
+        <div class="s-sub">+ 30¢ per transaction</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="s-label">Online Rate Saving</div>
+        <div class="s-value" style="color:var(--accent2)">0.25%</div>
+        <div class="s-sub">Same saving in both CAD &amp; USD</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="s-label">US BNPL Saving</div>
+        <div class="s-value" style="color:var(--accent2)">0.9%</div>
+        <div class="s-sub">Shop Pay Installments: 5.9% (Adv) vs 5.0% (Plus)</div>
+      </div>
+      <div class="stat-card plus">
+        <div class="s-label">Third-Party Fee</div>
+        <div class="s-value" style="color:var(--plus-light)">0.2%</div>
+        <div class="s-sub">Plus vs 0.5% Advanced (if not using Shopify Payments)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">🇨🇦 Canada — Side-by-Side Rate Breakdown</div>
+    <div class="rates-grid">
+      <div class="rate-card">
+        <span class="rate-card-tag adv">Advanced</span>
+        <div class="rate-card-name adv">Standard Rates (CAD)</div>
+        <div class="rate-row"><span class="rate-label">Online credit card</span><span class="rate-val adv">2.4% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">In-person</span><span class="rate-val adv">1.7%</span></div>
+        <div class="rate-row"><span class="rate-label">American Express online</span><span class="rate-val adv">2.4% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.5%</span></div>
+        <div class="rate-row"><span class="rate-label">Currency conversion</span><span class="rate-val adv">1.5%</span></div>
+      </div>
+      <div class="rate-card plus-card">
+        <span class="rate-card-tag plus">Plus</span>
+        <div class="rate-card-name plus">Negotiated Rates (CAD)</div>
+        <div class="rate-row"><span class="rate-label">Online credit card</span><span class="rate-val plus">2.15% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">In-person</span><span class="rate-val plus">1.6%</span></div>
+        <div class="rate-row"><span class="rate-label">American Express online</span><span class="rate-val plus">2.15% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val plus">0.2%</span></div>
+        <div class="rate-row"><span class="rate-label">Currency conversion</span><span class="rate-val plus">1.5%</span></div>
+      </div>
+    </div>
+    <p class="rate-note" style="margin-top:14px;">* Canada published rates. Plus rates are starting points — high-volume merchants may negotiate further reductions. Shopify Payments must be enabled to avoid third-party gateway fees.</p>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">🇨🇦 Canada — Rate Comparison Table</div>
+    <div class="table-wrap">
+      <table class="rate-table">
+        <thead>
+          <tr>
+            <th>Transaction Type</th>
+            <th class="adv-col">Advanced</th>
+            <th class="plus-col">Plus</th>
+            <th class="save-col">Saving on Plus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Online credit card</td>
+            <td class="adv-rate">2.4% + 30¢</td>
+            <td class="plus-rate">2.15% + 30¢</td>
+            <td class="save-rate">0.25%</td>
+          </tr>
+          <tr>
+            <td>In-person</td>
+            <td class="adv-rate">1.7%</td>
+            <td class="plus-rate">1.6%</td>
+            <td class="save-rate">0.1%</td>
+          </tr>
+          <tr>
+            <td>Third-party payment gateway fee</td>
+            <td class="adv-rate">0.5%</td>
+            <td class="plus-rate">0.2%</td>
+            <td class="save-rate">0.3%</td>
+          </tr>
+          <tr>
+            <td>Currency conversion</td>
+            <td class="adv-rate">1.5%</td>
+            <td class="plus-rate">1.5%</td>
+            <td class="save-rate">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">🇺🇸 United States — Side-by-Side Rate Breakdown</div>
+    <div class="rates-grid">
+      <div class="rate-card">
+        <span class="rate-card-tag adv">Advanced</span>
+        <div class="rate-card-name adv">Standard Rates (USD)</div>
+        <div class="rate-row"><span class="rate-label">Standard consumer card</span><span class="rate-val adv">2.5% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">International cards</span><span class="rate-val adv">3.5% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Premium commercial &amp; Amex</span><span class="rate-val adv">3.1% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Shop Pay Installments (BNPL)</span><span class="rate-val adv">5.9% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.5%</span></div>
+      </div>
+      <div class="rate-card plus-card">
+        <span class="rate-card-tag plus">Plus</span>
+        <div class="rate-card-name plus">Negotiated Rates (USD)</div>
+        <div class="rate-row"><span class="rate-label">Standard consumer card</span><span class="rate-val plus">2.25% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">International cards</span><span class="rate-val plus">3.25% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Premium commercial &amp; Amex</span><span class="rate-val plus">2.95% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Shop Pay Installments (BNPL)</span><span class="rate-val plus">5.0% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val plus">0.2%</span></div>
+      </div>
+    </div>
+    <p class="rate-note" style="margin-top:14px;">* United States published rates. Plus rates are starting points and may be negotiated further at high volume. Shopify Payments must be enabled to avoid third-party gateway fees.</p>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">🇺🇸 United States — Rate Comparison Table</div>
+    <div class="table-wrap">
+      <table class="rate-table">
+        <thead>
+          <tr>
+            <th>Transaction Type</th>
+            <th class="adv-col">Advanced</th>
+            <th class="plus-col">Plus</th>
+            <th class="save-col">Saving on Plus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Standard consumer card</td>
+            <td class="adv-rate">2.5% + 30¢</td>
+            <td class="plus-rate">2.25% + 30¢</td>
+            <td class="save-rate">0.25%</td>
+          </tr>
+          <tr>
+            <td>International cards</td>
+            <td class="adv-rate">3.5% + 30¢</td>
+            <td class="plus-rate">3.25% + 30¢</td>
+            <td class="save-rate">0.25%</td>
+          </tr>
+          <tr>
+            <td>Premium commercial &amp; Amex</td>
+            <td class="adv-rate">3.1% + 30¢</td>
+            <td class="plus-rate">2.95% + 30¢</td>
+            <td class="save-rate">0.15%</td>
+          </tr>
+          <tr>
+            <td>Shop Pay Installments (BNPL)</td>
+            <td class="adv-rate">5.9% + 30¢</td>
+            <td class="plus-rate">5.0% + 30¢</td>
+            <td class="save-rate">0.9%</td>
+          </tr>
+          <tr>
+            <td>Third-party payment gateway fee</td>
+            <td class="adv-rate">0.5%</td>
+            <td class="plus-rate">0.2%</td>
+            <td class="save-rate">0.3%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rate-note" style="margin-top:10px;">Note: The largest US rate saving is on Shop Pay Installments — 0.9% reduction on Plus. Merchants with high BNPL adoption see the most material impact from upgrading.</p>
+  </div>
+
+  <div class="section a3">
+    <div class="section-label">Rate Savings Calculator</div>
+    <div class="savings-calc">
+      <div class="calc-title">Estimate Your Annual Savings on Plus</div>
+      <div class="calc-sub">Enter your monthly GMV to see how much the lower Shopify Payments rate saves you annually on Plus vs Advanced.</div>
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label>Monthly Online GMV ($)</label>
+          <input type="text" id="calc-online-gmv" placeholder="e.g. 500,000" oninput="calcSavings()">
+        </div>
+        <div class="calc-field">
+          <label>Monthly In-Person GMV ($)</label>
+          <input type="text" id="calc-inperson-gmv" placeholder="e.g. 50,000" oninput="calcSavings()">
+        </div>
+        <div class="calc-field">
+          <label>Monthly Third-Party GMV ($)</label>
+          <input type="text" id="calc-thirdparty-gmv" placeholder="e.g. 0" oninput="calcSavings()">
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="calc-result-card">
+          <div class="calc-result-label">Advanced Annual Fees</div>
+          <div class="calc-result-val adv" id="calc-adv-total">—</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-label">Plus Annual Fees</div>
+          <div class="calc-result-val plus" id="calc-plus-total">—</div>
+        </div>
+        <div class="calc-result-card highlight">
+          <div class="calc-result-label">Annual Rate Saving</div>
+          <div class="calc-result-val save" id="calc-saving">—</div>
+        </div>
+        <div class="calc-result-card highlight">
+          <div class="calc-result-label">Monthly Rate Saving</div>
+          <div class="calc-result-val save" id="calc-saving-mo">—</div>
+        </div>
+      </div>
+      <p class="rate-note" style="margin-top:18px;">Calculator uses standard consumer card rates: CAD 2.4% (Adv) vs 2.15% (Plus) / USD 2.5% (Adv) vs 2.25% (Plus). In-person uses Canada rates (1.7% vs 1.6%). Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.</p>
+    </div>
+  </div>
+
+  <div class="section a3">
+    <div class="section-label">Why Rates Matter for B2B Merchants</div>
+    <div class="impl-grid">
+      <div class="impl-card plus">
+        <span class="impl-icon">💳</span>
+        <div class="impl-title">0.25% Online Rate Reduction <span class="impl-plan-tag plus">Plus</span></div>
+        <div class="impl-body">On <strong>$1M/month in online GMV</strong>, the 0.25% rate difference saves <strong>$2,500/month — $30,000/year</strong>. For merchants processing $500K+/month, the rate saving alone can offset a significant portion of the Plus platform fee.</div>
+        <div class="impl-implication"><strong>Sales angle:</strong> Run the calculator with the merchant's actual GMV. For many mid-market merchants, the rate saving partially or fully funds the upgrade.</div>
+      </div>
+      <div class="impl-card plus">
+        <span class="impl-icon">🔌</span>
+        <div class="impl-title">Third-Party Gateway Fee Cut 60% <span class="impl-plan-tag plus">Plus</span></div>
+        <div class="impl-body">Merchants using a third-party payment provider (e.g. Stripe, Braintree, PayPal) pay <strong>0.5% on Advanced vs 0.2% on Plus</strong>. On $500K/month, that's $1,500/month saved — <strong>$18,000/year</strong> — just from the gateway fee reduction.</div>
+        <div class="impl-implication"><strong>Sales angle:</strong> Merchants who can't switch to Shopify Payments (regulated industries, existing contracts) still benefit materially from the lower third-party rate on Plus.</div>
+      </div>
+      <div class="impl-card adv">
+        <span class="impl-icon">⚠️</span>
+        <div class="impl-title">Advanced Rate Risk at Scale <span class="impl-plan-tag adv">Advanced</span></div>
+        <div class="impl-body">The 0.25% rate gap is invisible at low GMV but compounds quickly. A B2B merchant growing from $300K to $1M+/month is leaving <strong>thousands of dollars per month on the table</strong> by staying on Advanced past the crossover point.</div>
+        <div class="impl-implication"><strong>Sales angle:</strong> Calculate the rate saving crossover point for this merchant. Often it's lower than they expect — as little as $300K–$500K/month depending on their channel mix.</div>
+      </div>
+      <div class="impl-card plus">
+        <span class="impl-icon">📊</span>
+        <div class="impl-title">B2B Checkout Volume Amplifies the Gap <span class="impl-plan-tag plus">Plus</span></div>
+        <div class="impl-body">B2B orders tend to be larger per transaction. A merchant processing 200 B2B orders/month at $2,500 AOV = $500K/month. At 0.25% saving, that's <strong>$1,250/month</strong> saved — with no change to operations.</div>
+        <div class="impl-implication"><strong>Sales angle:</strong> High AOV B2B sellers see the rate impact more acutely per transaction. Use AOV × order volume to make the number concrete in discovery.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB 7 · PLUS EXCLUSIVES
+══════════════════════════════════ -->
+<div id="panel-exclusives" class="tab-panel">
+
+  <!-- HUB: feature card grid -->
+  <div id="excl-hub" class="excl-hub">
+    <div class="section a1">
+      <div class="section-label">Plus-Exclusive Features &amp; Products</div>
+      <div class="excl-grid">
+
+        <div class="excl-card" onclick="openExcl('audiences')">
+          <span class="excl-card-icon">🎯</span>
+          <div class="excl-card-title">Shopify Audiences</div>
+          <div class="excl-card-desc">Generate high-converting ad audiences from Shopify's commerce graph — across Meta, Google, TikTok, Pinterest, Snapchat and Criteo.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Free</span>
+            <span class="excl-card-tag">6+ Platforms</span>
+            <span class="excl-card-tag">Privacy-Safe</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
+        <!-- Placeholder cards — expand as needed -->
+        <div class="excl-card" onclick="openExcl('checkout')">
+          <span class="excl-card-icon">🏗️</span>
+          <div class="excl-card-title">Checkout Extensibility</div>
+          <div class="excl-card-desc">UI Extensions and Functions to build fully custom checkout flows, upsells, cross-sells, and post-purchase pages.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">UI Extensions</span>
+            <span class="excl-card-tag">Functions</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
+        <div class="excl-card" onclick="openExcl('expansion')">
+          <span class="excl-card-icon">🌐</span>
+          <div class="excl-card-title">Expansion Stores</div>
+          <div class="excl-card-desc">Up to 9 additional storefronts under a single Plus contract — for international markets, B2B portals, brand segmentation, and dev/staging environments.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">9 Stores</span>
+            <span class="excl-card-tag">Staging & Dev</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
+        <div class="excl-card" onclick="openExcl('accountext')">
+          <span class="excl-card-icon">👤</span>
+          <div class="excl-card-title">Customer Account Extensions</div>
+          <div class="excl-card-desc">Build a fully branded self-serve portal — loyalty, order management, B2B company tools, and custom modules — all inside the logged-in account experience.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">B2B Critical</span>
+            <span class="excl-card-tag">Self-Serve</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
+
+        <div class="excl-card" onclick="openExcl('catalogs')">
+          <span class="excl-card-icon">📋</span>
+          <div class="excl-card-title">Unlimited B2B Catalogs</div>
+          <div class="excl-card-desc">Remove the 3-catalog limit, assign pricing directly to any company or location, and unlock Functions + enhanced API limits for complex integrations.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">Unlimited</span>
+            <span class="excl-card-tag">API Enhanced</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
+        <div class="excl-card" onclick="openExcl('functions')">
+          <span class="excl-card-icon">⚙️</span>
+          <div class="excl-card-title">Functions & Custom Apps</div>
+          <div class="excl-card-desc">Build proprietary IP directly into Shopify — custom logic, private apps, and bespoke commerce experiences that no competitor can replicate.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">Custom Apps</span>
+            <span class="excl-card-tag">Private IP</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-VIEW: Shopify Audiences -->
+  <div id="excl-audiences" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">What is Shopify Audiences?</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Shopify Audiences is a Plus-exclusive app</strong> that uses Shopify's unique commerce data — aggregated across millions of buyers — to generate high-converting ad audiences for your paid campaigns. It helps you find buyers who are most likely to purchase your products, reducing your cost per acquisition and improving ROAS across every major ad platform.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Availability</div>
+          <div class="s-value" style="color:var(--plus-light);">Plus Only</div>
+          <div class="s-sub">Not available on Advanced or any lower plan</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Cost</div>
+          <div class="s-value" style="color:var(--accent2);">Free</div>
+          <div class="s-sub">Included with Shopify Plus — no additional fee</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Ad Platforms</div>
+          <div class="s-value" style="color:var(--plus-light);">6+</div>
+          <div class="s-sub">Meta, Google, Pinterest, TikTok, Snapchat, Criteo</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Data Model</div>
+          <div class="s-value" style="color:var(--accent2);">Privacy-Safe</div>
+          <div class="s-sub">Aggregated &amp; hashed — no raw customer data shared</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Supported Ad Platforms</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Platform</th><th>Use Case</th><th>Audience Types</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Meta (Facebook &amp; Instagram)</strong></td><td>Prospecting &amp; retargeting</td><td>Custom audiences, lookalikes</td></tr>
+            <tr><td><strong>Google</strong></td><td>Search, Shopping, Display, YouTube</td><td>Customer match lists</td></tr>
+            <tr><td><strong>TikTok</strong></td><td>Prospecting</td><td>Custom audiences</td></tr>
+            <tr><td><strong>Pinterest</strong></td><td>Prospecting &amp; retargeting</td><td>Customer list audiences</td></tr>
+            <tr><td><strong>Snapchat</strong></td><td>Prospecting</td><td>Custom audiences</td></tr>
+            <tr><td><strong>Criteo</strong></td><td>Retargeting &amp; prospecting</td><td>Commerce audience segments</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Core Benefits</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🎯</span>
+          <div class="impl-title">High-Intent Buyer Targeting <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Shopify Audiences generates lists of buyers who have shown <strong>purchase intent signals across Shopify's entire merchant network</strong> — not just your own store. This means your ads reach people who are actively in a buying mindset for products like yours, not just people who match demographic criteria.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Third-party data deprecation (cookie death, iOS 14+) has made traditional audience targeting less effective. Shopify Audiences replaces that signal with first-party commerce intent data at scale.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📉</span>
+          <div class="impl-title">Lower Cost Per Acquisition <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">By targeting buyers with higher purchase intent, Shopify Audiences <strong>reduces wasted ad spend on low-intent audiences</strong>. Merchants report meaningful reductions in CPA across Meta and Google campaigns compared to standard interest or demographic targeting.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> For merchants spending $10K+/month on paid ads, even a 10–20% CPA reduction compounds quickly. The saving can offset the cost of Plus within the first few months.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔄</span>
+          <div class="impl-title">Prospecting &amp; Retargeting <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Audiences covers both acquisition and retention use cases. <strong>Prospecting lists</strong> find new buyers who look like your best customers. <strong>Retargeting lists</strong> re-engage visitors and past purchasers across platforms — all powered by Shopify's commerce graph rather than pixel-based tracking.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Pixel-based retargeting has degraded since iOS 14. Shopify Audiences gives merchants a first-party alternative that doesn't depend on browser cookies or app tracking permissions.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔒</span>
+          <div class="impl-title">Privacy-Safe by Design <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Shopify Audiences uses <strong>aggregated, hashed, and encrypted data</strong> — no raw customer PII is ever shared with ad platforms. The model is built on aggregate purchase signals, not individual tracking. It's designed to be compliant with GDPR, CCPA, and Apple's ATT framework.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Privacy regulations are tightening globally. Audiences gives merchants a compliant, durable targeting solution that doesn't create legal or reputational risk.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📊</span>
+          <div class="impl-title">Benchmark Reporting <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Shopify Audiences includes <strong>performance benchmarking</strong> — showing how your ad performance compares against similar merchants on Shopify. This gives marketing teams a clear view of where they're over- or under-performing relative to industry baselines.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Most merchants have no external reference point for their ad performance. Benchmarks help justify budget decisions and surface optimisation opportunities that wouldn't otherwise be visible.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">⚡</span>
+          <div class="impl-title">Network Effects at Scale <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">The more merchants use Shopify Audiences, the more powerful the signal becomes. <strong>Shopify processes billions of transactions</strong> — this commerce graph is the underlying data asset that makes Audiences uniquely effective. No third-party tool or agency can replicate this signal.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> This is a genuine moat. Meta and Google audiences rely on behavioural signals that have been degraded by privacy changes. Shopify's purchase-intent data is more durable and more specific.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔌</span>
+          <div class="impl-title">Native Platform Integration <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Audiences syncs directly from the Shopify admin — <strong>no CSV exports, no manual uploads, no third-party integrations required</strong>. Audience lists refresh automatically and sync to connected ad platforms on a set cadence, keeping targeting fresh without operational overhead.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> For lean marketing teams, the automation eliminates a recurring manual task and ensures audiences don't go stale — a common failure mode with manual list management.</div>
+        </div>
+        <div class="impl-card adv">
+          <span class="impl-icon">⚠️</span>
+          <div class="impl-title">Not Available on Advanced <span class="impl-plan-tag adv">Advanced</span></div>
+          <div class="impl-body">Advanced merchants <strong>cannot access Shopify Audiences</strong>. They rely on platform-native audiences (Meta's interest targeting, Google's in-market segments), pixel-based retargeting, or third-party tools like Klaviyo or AdRoll. None of these have access to Shopify's purchase-intent graph.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> For any merchant with meaningful paid ad spend, this is a tangible competitive disadvantage. The targeting gap is real and measurable — especially post-iOS 14.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — Audiences Capability</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Shopify Audiences app access</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Purchase-intent audience generation</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Meta (Facebook &amp; Instagram) sync</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Google Ads sync</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>TikTok, Pinterest, Snapchat, Criteo sync</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Automatic audience refresh</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Ad performance benchmarking</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Privacy-safe, cookieless targeting</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Platform-native audience targeting</td><td class="center" style="color:var(--adv); font-weight:700;">✓ (limited)</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Pixel-based retargeting</td><td class="center" style="color:var(--adv); font-weight:700;">✓ (degraded)</td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-VIEW: Expansion Stores -->
+  <div id="excl-expansion" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">What are Expansion Stores?</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Expansion Stores are additional Shopify storefronts included with every Plus plan</strong> — up to 9, all under a single contract and billing relationship. Each expansion store is a fully independent Shopify environment with its own products, themes, domains, apps, staff, and settings, while sharing the same Plus subscription. Advanced merchants get one store, full stop.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Total Stores on Plus</div>
+          <div class="s-value" style="color:var(--plus-light);">10</div>
+          <div class="s-sub">1 primary + 9 expansion stores included</div>
+        </div>
+        <div class="stat-card adv">
+          <div class="s-label">Total Stores on Advanced</div>
+          <div class="s-value" style="color:var(--adv);">1</div>
+          <div class="s-sub">No expansion stores — one storefront only</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Additional Cost</div>
+          <div class="s-value" style="color:var(--accent2);">$0</div>
+          <div class="s-sub">All 9 expansion stores included in Plus pricing</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Independence</div>
+          <div class="s-value" style="color:var(--plus-light);">Full</div>
+          <div class="s-sub">Own domain, theme, products, apps, staff per store</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Use Cases</div>
+      <div class="impl-grid">
+
+        <div class="impl-card plus">
+          <span class="impl-icon">🌍</span>
+          <div class="impl-title">International Markets <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Run a fully localised storefront per region — <strong>separate domain, currency, language, product catalogue, pricing, and tax rules</strong> for each market. Unlike Shopify Markets (which adapts one store), expansion stores give you complete independence: different themes, different product ranges, different fulfilment logic per region.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Merchants entering markets with distinct compliance requirements (EU, AU, UK post-Brexit) often need true store separation, not just localisation overlays. Expansion stores deliver that without additional platform cost.</div>
+        </div>
+
+        <div class="impl-card plus">
+          <span class="impl-icon">🏭</span>
+          <div class="impl-title">Dedicated B2B Portal <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Run a <strong>separate B2B storefront</strong> entirely isolated from your DTC store — different branding, pricing structure, checkout flow, and customer accounts. B2B buyers get a tailored experience without any risk of DTC pricing or content bleeding through. No hacks, no conditional display logic, no shared cart contamination.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> The cleanest way to run parallel DTC and B2B channels on Shopify. One contract, one bill, two completely independent commerce environments.</div>
+        </div>
+
+        <div class="impl-card plus">
+          <span class="impl-icon">🏷️</span>
+          <div class="impl-title">Multi-Brand Architecture <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Businesses managing multiple brands can give <strong>each brand its own storefront</strong> — independent identity, separate product catalogue, dedicated team access, and distinct analytics. No bleed between brands, no shared customer pools, no compromised brand integrity from running everything on one store.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Growing consumer businesses acquiring or launching new brands often hit this wall on Advanced — the only solution is a second Shopify subscription. Plus includes it.</div>
+        </div>
+
+        <div class="impl-card plus">
+          <span class="impl-icon">🧪</span>
+          <div class="impl-title">Development & Staging Environments <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Use expansion stores as <strong>dedicated development and staging environments</strong> — mirror your production store's theme, app configuration, and checkout logic in a sandboxed environment before pushing changes live. Test new theme builds, Checkout Extensions, third-party integrations, and app configurations with zero risk to production traffic or live orders.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Advanced merchants have no equivalent — they either test in production (risky) or pay for a second Shopify subscription to stage changes. Plus gives you staging as a built-in capability.</div>
+        </div>
+
+        <div class="impl-card plus">
+          <span class="impl-icon">🔗</span>
+          <div class="impl-title">Integration & ERP Testing <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">For merchants running complex integrations — ERP syncs, OMS, PIM, 3PL, or custom middleware — <strong>a dedicated integration test store</strong> lets your technical team validate data flows, webhook behaviour, order routing logic, and API edge cases without touching live data. Run full end-to-end integration tests in a production-equivalent environment.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Enterprise merchants with Netsuite, SAP, Dynamics, or custom ERP integrations need this. A failed sync in production can mean missed orders, incorrect inventory, or broken fulfilment. The test store is insurance.</div>
+        </div>
+
+        <div class="impl-card plus">
+          <span class="impl-icon">🚀</span>
+          <div class="impl-title">New Market Launch Staging <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Before launching into a new market, <strong>build and validate the full storefront experience</strong> in an expansion store — localised content, payment methods, shipping zones, tax configuration, and checkout flow — without any customer-facing exposure. Hand over a fully configured store to the go-live team rather than building in production.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Rushed market launches are one of the most common causes of go-live issues. A pre-configured expansion store de-risks the launch and shortens time to revenue in the new market.</div>
+        </div>
+
+        <div class="impl-card plus">
+          <span class="impl-icon">🎨</span>
+          <div class="impl-title">Theme Development & A/B Testing <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Use an expansion store as a <strong>dedicated theme development environment</strong> — build and iterate on a new storefront design with real products and real checkout flows, without risking the live site. Validate conversion impact before cutting over. Also supports headless commerce prototyping using Shopify's Storefront API.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Theme migrations are high-risk on Advanced — any mistake is immediately customer-facing. An expansion store gives agencies and in-house teams a safe, production-equivalent canvas.</div>
+        </div>
+
+        <div class="impl-card plus">
+          <span class="impl-icon">📦</span>
+          <div class="impl-title">Wholesale & Distributor Portals <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Create <strong>dedicated portals for specific wholesale tiers, distributors, or channel partners</strong> — each with its own product catalogue, pricing, and ordering experience. Different distributors can have completely separate stores with no visibility into each other's pricing or product access.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Channel conflict is a real concern for merchants with diverse distribution. Expansion stores provide clean separation — no risk of a direct buyer seeing wholesale pricing or a distributor accessing retail products.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — Expansion Store Capability</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Number of storefronts included</td><td class="center" style="color:var(--adv);font-weight:700;">1</td><td class="center" style="color:var(--plus-light);font-weight:700;">10 (1 + 9)</td></tr>
+            <tr><td>Dedicated B2B storefront</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Multi-brand storefronts</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>International market stores</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Development / staging environment</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Integration & ERP test store</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Theme development environment</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Wholesale / distributor portals</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Independent apps per store</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Independent staff access per store</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Additional cost per store</td><td class="center" style="color:var(--muted);">N/A</td><td class="center" style="color:var(--ok);font-weight:700;">$0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUB-VIEW: Checkout Extensibility -->
+  <div id="excl-checkout" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">What is Checkout Extensibility?</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Checkout Extensibility is a Plus-exclusive capability</strong> that lets merchants fully customise the Shopify checkout using two building blocks: <strong>UI Extensions</strong> (visual components injected into checkout pages) and <strong>Functions</strong> (server-side logic that runs during the checkout process). Together they give merchants complete control over the highest-intent moment in the buyer journey — something Advanced merchants cannot access.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Availability</div>
+          <div class="s-value" style="color:var(--plus-light);">Plus Only</div>
+          <div class="s-sub">Advanced is locked to Shopify's standard checkout</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Extension Points</div>
+          <div class="s-value" style="color:var(--accent2);">10+</div>
+          <div class="s-sub">Cart, information, shipping, payment, thank you, order status</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Building Blocks</div>
+          <div class="s-value" style="color:var(--plus-light);">2</div>
+          <div class="s-sub">UI Extensions (visual) + Functions (logic)</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">App Store</div>
+          <div class="s-value" style="color:var(--accent2);">1000+</div>
+          <div class="s-sub">Apps with checkout extensions available in the Shopify App Store</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">UI Extensions — What You Can Build</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🛒</span>
+          <div class="impl-title">Pre-Payment Upsells <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Inject <strong>product upsell offers directly into the checkout</strong> — before the buyer completes payment. One-click add to order, no re-entering payment details. Target by cart contents, order value, customer segment, or product type. Common placements: after cart summary, on the payment page, or between shipping and payment steps.</div>
+          <div class="impl-implication"><strong>Revenue impact:</strong> Checkout upsells convert at 3–5x the rate of post-purchase popups because the buyer is already in purchasing mode with payment details entered. This is the highest-leverage upsell placement available.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔁</span>
+          <div class="impl-title">Cross-Sell Recommendations <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Display <strong>complementary product recommendations</strong> at checkout — accessories, consumables, warranties, or bundles. Powered by your own logic or third-party recommendation engines. Shown at the cart or payment step when buyer intent is highest.</div>
+          <div class="impl-implication"><strong>Revenue impact:</strong> Cross-sells at checkout increase average order value without increasing customer acquisition cost — the same buyer spends more in a single session.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🎁</span>
+          <div class="impl-title">Post-Purchase Upsell Pages <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Add a <strong>post-purchase page between "Place Order" and the order confirmation</strong> — a dedicated upsell moment after payment is captured but before the thank you page. Buyers can add to their order without re-entering payment details. The most frictionless upsell point in ecommerce.</div>
+          <div class="impl-implication"><strong>Revenue impact:</strong> Post-purchase upsells have zero risk — the primary order is already confirmed. Any uptake is incremental revenue with no conversion rate impact on the core sale.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📝</span>
+          <div class="impl-title">Custom Fields & Order Notes <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Add <strong>custom input fields to checkout</strong> — gift messages, delivery instructions, engraving text, PO numbers, installation dates, or any business-specific data. Fields are saved to order metafields and flow through to your OMS, ERP, or fulfilment system automatically.</div>
+          <div class="impl-implication"><strong>Ops impact:</strong> For B2B merchants, capturing PO numbers and delivery notes at checkout eliminates manual follow-up and reduces fulfilment errors. For DTC, gift messaging and personalisation at checkout increases perceived value.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">✅</span>
+          <div class="impl-title">Custom Consent & Compliance UI <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Inject <strong>custom consent checkboxes, age verification prompts, regulatory disclosures, and terms acceptance</strong> directly into checkout. Required for age-restricted products, regulated industries, subscription terms, or markets with specific consent requirements (GDPR, CCPA).</div>
+          <div class="impl-implication"><strong>Compliance impact:</strong> Without this, merchants bolt on consent via popups or pre-checkout pages — weaker UX and weaker legal defensibility. Native checkout consent is cleaner and more auditable.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🏷️</span>
+          <div class="impl-title">Dynamic Banners & Promotions <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Display <strong>contextual banners at checkout</strong> — free shipping thresholds, loyalty points earned on this order, limited-time discount countdowns, or bundle incentives. Banners update dynamically based on cart contents and order value.</div>
+          <div class="impl-implication"><strong>Conversion impact:</strong> Checkout abandonment often happens when buyers second-guess the value. Dynamic incentive banners at the payment step reduce that hesitation and can lift completion rates measurably.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🤝</span>
+          <div class="impl-title">Loyalty & Rewards Integration <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Surface <strong>loyalty point balances, reward redemption, and tier status directly inside checkout</strong> — no redirect, no external widget. Buyers see their points, choose how to apply them, and complete the order in one flow. Integrates with Smile, LoyaltyLion, Yotpo, and other major loyalty platforms.</div>
+          <div class="impl-implication"><strong>Retention impact:</strong> Loyalty redemption at checkout increases repeat purchase rates. Surfacing points earned on the current order reinforces the loyalty loop at the moment of transaction.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔒</span>
+          <div class="impl-title">B2B Approval & Validation UI <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">For B2B checkout flows, inject <strong>approval workflows, purchase order entry, credit limit validation, and buyer authorisation</strong> directly into checkout. Display company-specific messaging, payment terms, and account information — all scoped to the logged-in company account.</div>
+          <div class="impl-implication"><strong>B2B impact:</strong> Enterprise B2B buyers often have procurement processes that don't fit a standard DTC checkout. Extensibility lets the checkout meet those requirements rather than forcing buyers into workarounds.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Functions — What You Can Customise</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">💸</span>
+          <div class="impl-title">Custom Discount Logic <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Build <strong>fully custom discount rules that run server-side</strong> — beyond what Shopify's native discount engine supports. Volume-based discounts, tiered pricing at checkout, bundle discounts, customer-segment pricing, B2B account-level discounts, and complex conditional promotions. All execute as Functions without exposing logic to the client.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Merchants with complex pricing rules often rely on third-party apps or pre-checkout manipulation. Functions replace those hacks with native, performant, secure logic that runs inside Shopify's checkout.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🚚</span>
+          <div class="impl-title">Custom Shipping Logic <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Override Shopify's shipping rate calculation with <strong>fully custom delivery logic</strong> — hide, rename, reorder, or inject shipping methods based on cart contents, customer tags, delivery address, order value, or B2B company. Enforce carrier rules, restrict dangerous goods shipping, or offer LTL freight options for large B2B orders.</div>
+          <div class="impl-implication"><strong>Ops impact:</strong> Shipping rules on Advanced are static. Functions let merchants express complex carrier logic (DG restrictions, B2B freight, regional carriers) in code that runs natively at checkout — no third-party rate calculation app needed.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">💳</span>
+          <div class="impl-title">Custom Payment Customisation <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Hide, reorder, or rename payment methods</strong> based on cart contents, customer type, order value, or geography. Show net terms payment only to B2B accounts. Hide BNPL for orders under a threshold. Restrict payment methods by product type (e.g. no PayPal for age-restricted items). Display methods in a custom priority order.</div>
+          <div class="impl-implication"><strong>B2B impact:</strong> Surfacing the right payment method to the right buyer at the right time reduces friction and increases conversion. Hiding irrelevant methods (e.g. consumer BNPL for a $50K B2B order) reduces confusion.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">✔️</span>
+          <div class="impl-title">Custom Cart & Checkout Validation <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Run <strong>server-side validation rules before an order can be placed</strong> — enforce minimum order quantities, B2B purchase limits, product compatibility checks, inventory holds, or regulatory compliance rules. If the cart fails validation, the buyer sees a clear error and cannot proceed until the issue is resolved.</div>
+          <div class="impl-implication"><strong>B2B impact:</strong> Prevents invalid orders from entering fulfilment — a major source of manual work and customer service overhead for wholesale merchants with complex ordering rules.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — Checkout Extensibility</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Checkout UI customisation</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Pre-payment upsells &amp; cross-sells</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Post-purchase upsell page</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom checkout fields</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom consent &amp; compliance UI</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Loyalty &amp; rewards at checkout</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>B2B approval &amp; validation UI</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom discount logic (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom shipping logic (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom payment customisation (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Server-side cart validation (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Standard Shopify checkout</td><td class="center" style="color:var(--adv);font-weight:700;">✓ only</td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> On Advanced, <strong>the checkout is Shopify's — not yours</strong>. You can change colours and a logo. On Plus, you own the entire checkout experience — every step, every piece of logic, every revenue opportunity. For merchants serious about conversion optimisation, B2B workflows, or compliance, this gap is one of the most consequential differences between the two plans.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUB-VIEW: Unlimited B2B Catalogs -->
+  <div id="excl-catalogs" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">What are B2B Catalogs on Plus?</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Shopify Plus removes every limit on B2B catalog architecture.</strong> Advanced merchants are capped at 3 catalogs, all routed through Markets — a hard ceiling that breaks down quickly when managing multiple buyer tiers, regional pricing, channel partners, or complex discount structures. Plus unlocks unlimited catalogs with direct company and location assignment, combined with Functions for server-side pricing logic and enhanced API rate limits for ERP and PIM integrations at enterprise scale.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card adv">
+          <div class="s-label">Catalogs on Advanced</div>
+          <div class="s-value" style="color:var(--adv);">3</div>
+          <div class="s-sub">Via Markets only — no direct assignment</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Catalogs on Plus</div>
+          <div class="s-value" style="color:var(--plus-light);">Unlimited</div>
+          <div class="s-sub">Direct assignment to any company or location</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">API Rate Limit (Plus)</div>
+          <div class="s-value" style="color:var(--accent2);">4×</div>
+          <div class="s-sub">4x higher REST & GraphQL limits vs standard plans</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Assignment Model</div>
+          <div class="s-value" style="color:var(--plus-light);">Direct</div>
+          <div class="s-sub">Assign catalogs to companies, locations, or markets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Core Catalog Benefits</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">♾️</span>
+          <div class="impl-title">No Catalog Ceiling <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Advanced caps you at <strong>3 B2B catalogs</strong> — 3 buyer tiers, 3 pricing structures, 3 everything. Plus removes that ceiling entirely. Run <strong>hundreds of catalogs</strong> if your buyer relationships require it — each with its own product set, pricing, currency, and discount structure.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> The 3-catalog limit on Advanced isn't a minor inconvenience — it's a structural constraint that forces merchants to compromise their pricing architecture. Any merchant with more than 3 distinct buyer segments is building workarounds from day one.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🏢</span>
+          <div class="impl-title">Direct Company Assignment <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">On Advanced, catalogs must be routed through Markets — an indirect path that limits flexibility and adds operational complexity. <strong>Plus enables direct catalog assignment to any company or company location</strong>, no Markets detour required. Assign a unique catalog directly to a single buyer account with one action.</div>
+          <div class="impl-implication"><strong>Ops impact:</strong> Direct assignment dramatically reduces the steps required to manage bespoke pricing relationships. Account managers can update a buyer's catalog in seconds rather than navigating through Markets configuration.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📍</span>
+          <div class="impl-title">Location-Level Pricing <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Assign <strong>different catalogs to different locations within the same company</strong> — a distributor's warehouse in Toronto gets one price list, their Vancouver location gets another. Regional pricing, currency differences, and location-specific product availability all handled natively without custom app logic.</div>
+          <div class="impl-implication"><strong>B2B impact:</strong> Enterprise B2B buyers with multiple buying locations often have location-specific pricing agreements. Handling this on Advanced requires significant workarounds. On Plus, it's native configuration.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">💰</span>
+          <div class="impl-title">Percentage & Fixed Price Rules <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Each catalog supports <strong>percentage-based discounts off the base price or fully fixed price overrides</strong> per variant. Set a wholesale tier at 40% off retail, a VIP account at a specific fixed price per SKU, and a distributor at a negotiated margin — all independently, all at scale across thousands of variants.</div>
+          <div class="impl-implication"><strong>Pricing flexibility:</strong> Most B2B pricing relationships are a mix of margin-based and negotiated fixed prices. Native support for both models means no pricing logic needs to live outside Shopify.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📦</span>
+          <div class="impl-title">Catalog-Level Product Visibility <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Each catalog controls <strong>which products are visible to that buyer</strong> — not just the price. Show a distributor only the SKUs they're contracted for. Hide discontinued products from certain accounts. Give a key account early access to a new product line before it's live for other buyers.</div>
+          <div class="impl-implication"><strong>Channel management:</strong> Product visibility control per buyer eliminates one of the biggest channel conflict risks in B2B — buyer A seeing buyer B's contracted SKUs or prices.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔄</span>
+          <div class="impl-title">Bulk Catalog Management via API <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">With Plus's <strong>enhanced API rate limits</strong>, managing catalogs at scale becomes operationally viable. Bulk-create or update hundreds of catalogs programmatically via the GraphQL Admin API — sync pricing from your ERP or PIM without hitting rate limit ceilings that would block a standard plan integration.</div>
+          <div class="impl-implication"><strong>Integration impact:</strong> A distributor with 500 buyer accounts, each with unique pricing, cannot manage catalogs manually. API-driven catalog management is the only scalable path — and it requires Plus API limits to be reliable.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Functions — Advanced Pricing Logic</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">⚙️</span>
+          <div class="impl-title">Volume-Based Pricing at Checkout <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Catalogs define base B2B prices — Functions extend that with <strong>dynamic volume pricing logic that runs server-side at checkout</strong>. Buy 10 units at $50, buy 50 at $44, buy 100+ at $38. Pricing tiers calculate automatically based on the actual quantity in the cart, applied on top of catalog base prices without manual discount codes.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Quantity price breaks are already available on both Advanced and Plus — but Functions let you layer complex conditional volume logic on top of catalog pricing that goes far beyond what the native quantity rules support.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🧮</span>
+          <div class="impl-title">Cross-SKU Bundle & Mix-Match Pricing <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Functions enable <strong>cross-product bundle pricing logic</strong> — buy any combination of SKUs from a product family and qualify for a bundle discount. Mix-and-match promotions, category-level quantity thresholds, and tiered spend unlocks all execute as server-side Functions rather than fragile client-side cart scripts.</div>
+          <div class="impl-implication"><strong>B2B use case:</strong> Distributors often have "buy any 24 units from this category at $X each" type agreements. Native Shopify can't express this without Functions — it requires either a custom app or a compromised pricing model.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🏷️</span>
+          <div class="impl-title">Account-Specific Discount Stacking <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Layer <strong>catalog pricing + promotion discounts + loyalty credits</strong> in a controlled, predictable way using Functions to enforce stacking rules. Prevent unintended discount combinations, cap discount depth per order, or apply account-level overrides on top of catalog prices — all validated server-side before the order is placed.</div>
+          <div class="impl-implication"><strong>Margin protection:</strong> Uncontrolled discount stacking is a common margin leak in B2B. Functions give finance and ops teams programmable guardrails that enforce pricing policy without relying on buyer honesty or manual order review.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔐</span>
+          <div class="impl-title">Catalog Validation at Checkout <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Use checkout validation Functions to <strong>verify that a buyer's cart contents and pricing match their assigned catalog</strong> before the order is placed. Catch pricing anomalies, detect products outside the buyer's contracted range, or enforce minimum order values per catalog — all server-side, before fulfilment is triggered.</div>
+          <div class="impl-implication"><strong>Ops impact:</strong> Invalid B2B orders that slip through to fulfilment are expensive to reverse. Catalog validation at checkout prevents them from being placed in the first place.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Enhanced API Limits — Why They Matter for Catalog Integrations</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🚀</span>
+          <div class="impl-title">4× Higher API Rate Limits <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Shopify Plus grants <strong>4x the REST and GraphQL API rate limits</strong> compared to standard plans. For catalog integrations, this is the difference between a sync that completes in minutes and one that throttles for hours. Bulk catalog creation, price updates, product visibility changes, and company assignments all consume API calls — at scale, limits matter.</div>
+          <div class="impl-implication"><strong>Integration impact:</strong> A merchant with 300 buyer accounts, 1,000 SKUs, and weekly price updates will hit standard API limits within minutes. Plus limits make the same sync run without throttling or failure.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔗</span>
+          <div class="impl-title">ERP & PIM Price Sync at Scale <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Connect your ERP (NetSuite, SAP, Dynamics, Cin7) or PIM (Akeneo, Contentful, inRiver) to <strong>push pricing changes directly to Shopify catalogs via the GraphQL Admin API</strong>. With Plus rate limits, a nightly sync of thousands of price records completes reliably — no queue backups, no partial updates, no stale pricing reaching buyers.</div>
+          <div class="impl-implication"><strong>Enterprise requirement:</strong> Mid-market and enterprise B2B merchants do not manage pricing in Shopify — it lives in the ERP. The integration must be reliable and fast. Standard plan API limits make this unreliable at volume. Plus makes it dependable.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📡</span>
+          <div class="impl-title">Real-Time Catalog Webhooks <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Shopify's <strong>catalog and company webhooks</strong> fire on price list changes, company assignments, and product availability updates — giving downstream systems (OMS, ERP, data warehouse) real-time visibility into catalog state. Combined with Plus API limits, you can handle high-frequency catalog events without dropping events or falling behind.</div>
+          <div class="impl-implication"><strong>Data integrity:</strong> Webhooks ensure your ERP and order management system stay in sync with Shopify catalog state in real time — reducing the risk of orders being placed at stale prices or against incorrect product availability.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🧩</span>
+          <div class="impl-title">GraphQL Bulk Operations <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Shopify's <strong>GraphQL Bulk Operations API</strong> allows asynchronous processing of massive catalog mutations — create or update tens of thousands of price list entries in a single job rather than looping through individual API calls. Plus merchants can run multiple bulk operations concurrently without hitting limits that block standard plan integrations.</div>
+          <div class="impl-implication"><strong>Implementation efficiency:</strong> Initial catalog imports for large B2B catalogues (10K+ SKUs × multiple price lists) are only feasible with Bulk Operations. Standard plan limits make full imports unreliable — Plus makes them routine.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — B2B Catalog Capability</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Number of B2B catalogs</td><td class="center" style="color:var(--adv);font-weight:700;">3</td><td class="center" style="color:var(--plus-light);font-weight:700;">Unlimited</td></tr>
+            <tr><td>Direct company assignment</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Direct location assignment</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Via Markets routing (only option on Adv)</td><td class="center" style="color:var(--adv);font-weight:700;">Required</td><td class="center" style="color:var(--plus-light);font-weight:700;">Optional</td></tr>
+            <tr><td>Percentage-based pricing rules</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Fixed price overrides per variant</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Per-catalog product visibility control</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Volume pricing via Functions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Bundle &amp; mix-match pricing (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Discount stacking rules (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Checkout catalog validation (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Enhanced API rate limits (4×)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>ERP/PIM price sync at scale</td><td class="center" style="color:var(--adv);font-weight:700;">Limited</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>GraphQL Bulk Operations for catalogs</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Real-time catalog webhooks</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> Advanced gives you a foundation — 3 catalogs, basic pricing rules, and standard API access. <strong>Plus gives you an architecture</strong> — unlimited catalogs with direct assignment, server-side pricing logic via Functions, and the API throughput to sync it all reliably with your ERP or PIM. For any B2B merchant managing more than 3 buyer segments or processing more than a few hundred catalog records, Advanced is a constraint. Plus is a platform.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- SUB-VIEW: Customer Account Extensions -->
+  <div id="excl-accountext" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">What are Customer Account Extensions?</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Customer Account Extensions is a Plus-exclusive capability</strong> that lets merchants build fully custom experiences inside the logged-in customer and company account portal. On Advanced, the account page is entirely static — Shopify controls the layout and content, and merchants cannot modify it. On Plus, you own the account experience: inject custom UI components, third-party integrations, B2B tools, and self-serve workflows directly into the portal your buyers use every day.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card adv">
+          <div class="s-label">Account Page on Advanced</div>
+          <div class="s-value" style="color:var(--adv);">Static</div>
+          <div class="s-sub">No customisation — Shopify controls the layout entirely</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Account Page on Plus</div>
+          <div class="s-value" style="color:var(--plus-light);">Extensible</div>
+          <div class="s-sub">Full custom UI via Extensions — inject anything</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">B2B Portal Access</div>
+          <div class="s-value" style="color:var(--accent2);">Native</div>
+          <div class="s-sub">Company account tools surfaced in the same portal</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">App Ecosystem</div>
+          <div class="s-value" style="color:var(--plus-light);">Growing</div>
+          <div class="s-sub">Loyalty, returns, subscriptions & more via App Store</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">What You Can Build — DTC & B2C</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🎁</span>
+          <div class="impl-title">Loyalty & Rewards Dashboard <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Surface a <strong>fully branded loyalty dashboard</strong> inside the account page — points balance, tier status, rewards available to redeem, referral links, and earning history. Integrates natively with Smile, LoyaltyLion, Yotpo, and other loyalty platforms. Buyers stay in your portal to manage their relationship with your brand rather than switching to a third-party app.</div>
+          <div class="impl-implication"><strong>Retention impact:</strong> Loyalty programmes drive repeat purchase — but only if buyers can see and engage with their status. A buried link to an external app breaks the loop. Native in-account loyalty surface keeps buyers engaged every time they log in.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📦</span>
+          <div class="impl-title">Enhanced Order Management <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Go beyond Shopify's default order history list. Inject <strong>custom order tracking widgets, shipment status, carrier updates, and delivery ETAs</strong> directly into the account order page. Add one-click reorder, order modification windows, and split-shipment visibility — all in the context of the order the buyer is looking at.</div>
+          <div class="impl-implication"><strong>Support deflection:</strong> "Where is my order?" is the most common customer service query. Surfacing rich tracking and shipment data natively in the account page reduces inbound support volume materially.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔄</span>
+          <div class="impl-title">Returns & Exchanges Portal <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Embed a <strong>self-serve returns and exchange flow</strong> directly into the account page. Buyers initiate returns, select reasons, print labels, and track refund status without contacting support. Integrates with Loop Returns, AfterShip Returns, and other returns platforms — all surfaced in your branded account environment.</div>
+          <div class="impl-implication"><strong>CX impact:</strong> A frictionless returns experience is one of the strongest drivers of repeat purchase. Buyers who can self-serve returns trust the brand more — and the operational cost of self-serve vs agent-handled returns is significant.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔁</span>
+          <div class="impl-title">Subscription Management <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Give subscribers <strong>full control over their subscriptions inside the account portal</strong> — skip a delivery, swap a product, change frequency, pause, or cancel. Integrates with Recharge, Skio, Stay.ai, and other subscription platforms. No redirecting buyers to a separate portal — it lives in your account page.</div>
+          <div class="impl-implication"><strong>Churn reduction:</strong> Subscription cancellations often happen when buyers can't easily manage their plan. A native management UI removes that friction — and surfacing "skip" and "pause" options reduces hard cancels significantly.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">💳</span>
+          <div class="impl-title">Saved Payment & Address Management <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Extend the default payment and address management with <strong>custom UI for vaulted cards, preferred payment methods, B2B payment terms, and delivery address books</strong>. For subscriptions, show which card is attached to which subscription. For B2B, surface net terms and payment method options scoped to the company account.</div>
+          <div class="impl-implication"><strong>Ops impact:</strong> Buyers who can self-manage payment methods and addresses require less inbound support for routine account maintenance — reducing CS volume on non-revenue-generating queries.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🌟</span>
+          <div class="impl-title">Branded Content & Personalisation <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Inject <strong>personalised banners, product recommendations, and exclusive content</strong> into the account page based on customer tags, purchase history, loyalty tier, or segment. Show a VIP customer different content than a first-time buyer. Promote loyalty-gated products, early access offers, or member-only collections directly in the account context.</div>
+          <div class="impl-implication"><strong>Revenue impact:</strong> The account page is one of the most visited authenticated pages on a store — and one of the least utilised for revenue. Personalised product recommendations and exclusive offers turn a static utility page into a retention and revenue surface.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">What You Can Build — B2B Critical</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🏢</span>
+          <div class="impl-title">Company Account Dashboard <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Surface a <strong>company-level account view</strong> — total spend, open orders, outstanding invoices, net terms balance, and credit limit — directly in the account portal. Procurement managers and buyers at enterprise accounts expect a view of their full account relationship, not just their individual order history.</div>
+          <div class="impl-implication"><strong>B2B critical:</strong> On Advanced, the account page shows only the logged-in user's orders. There is no company-level view. This is a fundamental gap for any B2B merchant whose buyers operate as part of an organisation rather than as individual consumers.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">👥</span>
+          <div class="impl-title">Multi-User & Buyer Management <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Let company admins <strong>manage their own buyer accounts</strong> from within the portal — invite new buyers, set permission levels (admin vs ordering only), deactivate users, and view activity per buyer. Eliminates the need to contact your team to add or remove company staff from the portal.</div>
+          <div class="impl-implication"><strong>Self-serve ops:</strong> For enterprise accounts with high staff turnover or distributed buying teams, this is the difference between a manageable onboarding process and a constant stream of account management requests hitting your CS team.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📄</span>
+          <div class="impl-title">Invoice & Payment History <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Surface a <strong>full invoicing and payment history view</strong> — open invoices, overdue amounts, payment due dates, and historical receipts. Buyers can download invoices directly from the portal and see net terms balance at a glance. Integrates with your ERP or accounts payable system to show real-time financial status per company account.</div>
+          <div class="impl-implication"><strong>AR impact:</strong> B2B payments are slower when buyers can't easily find their invoices. A self-serve invoice portal reduces payment chasing, improves AR cycle time, and eliminates "can you resend that invoice?" support requests.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📋</span>
+          <div class="impl-title">Quick Order & Reorder Lists <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Beyond the standard quick order list, inject <strong>custom reorder tools</strong> — saved order templates, favourite SKU lists, and one-click repeat order from any past order. B2B buyers often place the same or similar orders on a recurring basis. A frictionless reorder experience in the account portal reduces the time from intent to placed order.</div>
+          <div class="impl-implication"><strong>AOV & frequency:</strong> Repeat orders are the highest-margin B2B transactions — no sales effort, no negotiation. Making reordering frictionless directly increases order frequency and reduces the risk of buyers defaulting to a competitor for convenience.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔔</span>
+          <div class="impl-title">Custom Notifications & Alerts <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Inject <strong>account-level notification preferences and alert management</strong> — let buyers configure which communications they receive, set re-order reminders for consumable products, and view notification history. B2B buyers managing large accounts need control over communication volume without relying on your marketing team to adjust list preferences.</div>
+          <div class="impl-implication"><strong>Engagement quality:</strong> Letting buyers self-manage communication preferences reduces unsubscribes on critical transactional emails. Buyers who configure their own alerts are more engaged and less likely to opt out of all communications.</div>
+        </div>
+        <div class="impl-card adv">
+          <span class="impl-icon">⚠️</span>
+          <div class="impl-title">The Advanced Gap — Static & Unbranded <span class="impl-plan-tag adv">Advanced</span></div>
+          <div class="impl-body">On Advanced, the account page is <strong>entirely outside merchant control</strong>. It shows order history, saved addresses, and a logout button — nothing more. No loyalty, no B2B company view, no invoice management, no custom branding, no self-serve tools. Every gap is filled by either directing buyers to a third-party portal or fielding CS requests manually.</div>
+          <div class="impl-implication"><strong>Sales angle:</strong> Enterprise B2B buyers evaluate suppliers on the quality of their self-serve tools. A generic Shopify account page signals a consumer-grade platform. A custom, branded portal signals a partner who has invested in the buyer's experience.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — Account Experience Capability</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Custom UI in account portal</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Loyalty &amp; rewards dashboard</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Native returns &amp; exchange portal</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Subscription management</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Personalised content &amp; recommendations</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Rich order tracking &amp; shipment detail</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Company account dashboard (B2B)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Multi-user buyer management (B2B)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Invoice &amp; payment history (B2B)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Quick order &amp; reorder lists (B2B)</td><td class="center" style="color:var(--adv);font-weight:700;">Basic</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom notification preferences</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Branded account experience</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> On Advanced, <strong>the account page is Shopify's — not yours</strong>. It's a utility, not a destination. On Plus, it becomes a <strong>self-serve portal that serves both retention and operational efficiency</strong>. For B2B merchants, a branded company account portal is not a nice-to-have — it's the primary interface through which enterprise buyers manage their relationship with your business. Advanced cannot deliver that. Plus can.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- SUB-VIEW: Functions & Custom Apps -->
+  <div id="excl-functions" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">Functions & Custom Apps — The Plus IP Advantage</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Shopify Plus unlocks the ability to build proprietary commerce logic directly into the platform.</strong> Shopify Functions let you replace core platform behaviour — discounts, shipping, payments, cart validation — with your own server-side code. Custom and private apps let you build bespoke experiences that live inside your Shopify admin, are invisible to competitors, and cannot be replicated by merchants on any other plan. This is the foundation for building real IP on top of Shopify.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Functions Access</div>
+          <div class="s-value" style="color:var(--plus-light);">Full</div>
+          <div class="s-sub">Deploy custom server-side logic across checkout, cart & discounts</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Private Apps</div>
+          <div class="s-value" style="color:var(--accent2);">Unlimited</div>
+          <div class="s-sub">Build and install apps visible only to your store</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">API Rate Limits</div>
+          <div class="s-value" style="color:var(--plus-light);">4×</div>
+          <div class="s-sub">Higher throughput for complex integrations & custom apps</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Deployment</div>
+          <div class="s-value" style="color:var(--accent2);">Native</div>
+          <div class="s-sub">Logic runs inside Shopify — no external servers required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Shopify Functions — Build Your Own Commerce Logic</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">💸</span>
+          <div class="impl-title">Custom Discount Functions <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Replace Shopify's native discount engine with <strong>fully custom server-side discount logic</strong>. Volume tiers, bundle pricing, customer-segment discounts, B2B account pricing, tiered spend unlocks, mix-and-match promotions — all expressed as code running natively inside Shopify's checkout. No third-party app, no client-side cart manipulation, no performance trade-off.</div>
+          <div class="impl-implication"><strong>IP value:</strong> Merchants who build sophisticated discount logic as Functions own that logic. It's not off-the-shelf — it's bespoke pricing infrastructure that directly reflects their commercial model and cannot be replicated by a competitor installing the same app.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🚚</span>
+          <div class="impl-title">Custom Shipping Functions <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Build <strong>delivery logic that goes beyond Shopify's native shipping rules</strong> — dynamically hide, rename, reorder, or inject shipping methods based on cart contents, customer type, order value, delivery address, product flags, or B2B company. Handle dangerous goods restrictions, LTL freight for large B2B orders, and carrier-specific rules in code.</div>
+          <div class="impl-implication"><strong>Ops differentiation:</strong> Merchants with complex fulfilment — multi-carrier, DG restrictions, B2B freight — cannot express that logic on Advanced. On Plus, the shipping experience is as custom as your fulfilment operation.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">💳</span>
+          <div class="impl-title">Custom Payment Functions <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Programmatically control which payment methods appear</strong>, in what order, and for which buyers. Show net terms only to verified B2B accounts. Hide BNPL for orders over a threshold. Restrict payment methods by product category, geography, or customer tag. Surface the right payment experience for each buyer segment without manual configuration.</div>
+          <div class="impl-implication"><strong>Conversion impact:</strong> Showing an irrelevant payment method (consumer BNPL to a procurement manager placing a $40K order) adds friction and signals the platform doesn't understand the buyer. Functions make the payment step contextually intelligent.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">✔️</span>
+          <div class="impl-title">Cart & Order Validation Functions <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Run <strong>custom validation logic server-side before an order can be placed</strong>. Enforce minimum order quantities, maximum purchase limits, product compatibility rules, B2B purchase authorisation, inventory holds, or regulatory compliance checks. If the order fails validation, the buyer sees a clear, custom error message — the order cannot proceed until resolved.</div>
+          <div class="impl-implication"><strong>Operational integrity:</strong> Invalid orders that reach fulfilment are expensive. Functions enforce business rules at the source — preventing exceptions before they become customer service incidents or fulfilment failures.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Custom & Private Apps — Build Proprietary IP</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🔒</span>
+          <div class="impl-title">Private Apps Visible Only to Your Store <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Plus merchants can build and install <strong>private apps that live exclusively in their Shopify admin</strong> — not listed in the App Store, not available to any other merchant. Your custom logic, your custom UI, your custom integrations — all running inside Shopify as if they were native features. Competitors cannot access, inspect, or replicate them.</div>
+          <div class="impl-implication"><strong>IP advantage:</strong> A well-built private app is a competitive moat. Custom B2B buyer tools, proprietary pricing engines, bespoke fulfilment workflows — these are capabilities your competitors on standard plans simply cannot have.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🛠️</span>
+          <div class="impl-title">Custom Admin Extensions <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Build <strong>custom UI panels directly into the Shopify admin</strong> — on order pages, product pages, customer profiles, or company accounts. Show ERP data in context, inject fulfilment tools, surface custom notes or approval workflows. Your ops team works in Shopify without switching tabs to external systems.</div>
+          <div class="impl-implication"><strong>Ops efficiency:</strong> Reducing tab-switching and context-switching for operations and CS teams has measurable productivity impact. Custom admin extensions bring the data and tools to where the work happens — inside Shopify.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🔗</span>
+          <div class="impl-title">Proprietary ERP & Middleware Integrations <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Build <strong>bespoke integration middleware</strong> that handles the exact data flows, transformation logic, and sync cadence your ERP requires — without compromising on a generic connector. Custom apps act as the integration layer, consuming Shopify's enhanced Plus API limits to sync orders, inventory, pricing, and customer data at the volume and speed an enterprise operation demands.</div>
+          <div class="impl-implication"><strong>Enterprise readiness:</strong> Off-the-shelf ERP connectors make compromises. A custom integration built as a private app makes none — it's built to your exact data model, your exact sync requirements, your exact error handling.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🎨</span>
+          <div class="impl-title">Bespoke Buyer-Facing Tools <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Inject <strong>entirely custom buyer-facing tools into your storefront or account portal</strong> — product configurators, custom quoting tools, guided selling experiences, B2B onboarding flows, or industry-specific ordering interfaces. These live inside your Shopify store as custom extensions, giving buyers an experience no off-the-shelf theme or app can replicate.</div>
+          <div class="impl-implication"><strong>Differentiation:</strong> For merchants in specialised verticals — industrial equipment, custom manufacturing, professional services — the ability to build bespoke ordering tools on Shopify turns the platform into a custom commerce system rather than a generic ecommerce store.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📊</span>
+          <div class="impl-title">Custom Reporting & Data Apps <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Build <strong>custom reporting dashboards and data export apps</strong> that pull exactly the data your business needs — in the format your BI tools, finance team, or ERP expects. Surface custom KPIs in the Shopify admin, automate data exports on custom schedules, or build live dashboards that aggregate Shopify data with external sources.</div>
+          <div class="impl-implication"><strong>Decision-making:</strong> Generic Shopify analytics answer generic questions. Custom reporting apps answer the specific questions your business actually runs on — and surface them where decisions get made.</div>
+        </div>
+        <div class="impl-card adv">
+          <span class="impl-icon">⚠️</span>
+          <div class="impl-title">Advanced Has No Equivalent <span class="impl-plan-tag adv">Advanced</span></div>
+          <div class="impl-body">Advanced merchants are limited to <strong>public apps from the App Store</strong> — the same tools every other Shopify merchant has access to. They cannot deploy Functions, cannot install private apps, and cannot build custom admin extensions. Every "customisation" is constrained to what a public app allows — with the same limitations, the same pricing, and the same capabilities as any other merchant using that app.</div>
+          <div class="impl-implication"><strong>Strategic impact:</strong> When every merchant uses the same tools in the same way, there is no IP. Technology becomes a commodity. Plus lets merchants build above the platform — creating capabilities that are genuinely proprietary and defensible.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — Functions & Custom App Capability</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Shopify Functions (discount, shipping, payment, validation)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Private / custom apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom admin UI extensions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Proprietary checkout logic</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Bespoke buyer-facing tools</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom ERP/middleware integration apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom reporting &amp; data apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Enhanced API rate limits (4×)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>App Store public apps</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Logic runs inside Shopify (no external server)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> Advanced gives you access to what everyone else has — the App Store. <strong>Plus gives you the ability to build what no one else has.</strong> Functions and custom apps are how merchants move from using Shopify to owning their commerce stack. Every piece of proprietary logic — every bespoke buyer tool, every custom integration, every unique checkout experience — is IP that lives on your Plus plan and cannot be commoditised by a competitor installing the same app.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ASK CHRIS MODAL -->
+<div class="modal-overlay" id="askModal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Ask Chris a Question</div>
+      <button class="modal-close" onclick="closeAskModal()">✕</button>
+    </div>
+    <p class="modal-sub">Have a question about Advanced vs Plus for your business? Send it directly to <a href="mailto:chris.dempsey@shopify.com">chris.dempsey@shopify.com</a>.</p>
+    <div class="modal-field">
+      <label>Your Name</label>
+      <input type="text" id="ask-name" placeholder="e.g. Jane Smith">
+    </div>
+    <div class="modal-field">
+      <label>Your Question</label>
+      <textarea id="ask-question" placeholder="e.g. We're processing around $600K/month — at what point does upgrading to Plus make financial sense for us?"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeAskModal()">Cancel</button>
+      <button class="modal-send" onclick="sendQuestion()">Open in Email →</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">Shopify</div>
+  <div class="footer-text">Advanced vs Plus Comparison · <span id="nowDate"></span> · Feature availability based on current Shopify plan documentation. Contact your Shopify account team to confirm pricing and contract terms for your specific situation.</div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════ DATA ═══════════════
+const features = [
+  { cat:'Companies',         name:'Companies',                                             adv:'yes', plus:'yes' },
+  { cat:'Companies',         name:'Company locations',                                     adv:'yes', plus:'yes' },
+  { cat:'Companies',         name:'Location-level permissions (admin/ordering only)',       adv:'yes', plus:'yes' },
+  { cat:'Pricing',           name:'B2B Catalogs (assignable to B2B markets)',               adv:'3',   plus:'unlimited' },
+  { cat:'Pricing',           name:'B2B Catalogs (direct assignment to companies & locations)', adv:'no', plus:'yes' },
+  { cat:'Pricing',           name:'Quantity rules (min, max, increment)',                   adv:'yes', plus:'yes' },
+  { cat:'Pricing',           name:'Quantity price breaks',                                  adv:'yes', plus:'yes' },
+  { cat:'Payments',          name:'Net terms',                                              adv:'yes', plus:'yes' },
+  { cat:'Payments',          name:'Payment reminders',                                      adv:'yes', plus:'yes' },
+  { cat:'Payments',          name:'ACH (U.S. only)',                                        adv:'yes', plus:'yes' },
+  { cat:'Payments',          name:'Vaulted credit cards',                                   adv:'yes', plus:'yes' },
+  { cat:'Payments',          name:'Deposit requirements (companies)',                       adv:'no',  plus:'yes' },
+  { cat:'Payments',          name:'Deposit requirements (draft orders)',                    adv:'no',  plus:'yes' },
+  { cat:'Payments',          name:'Partial payments',                                       adv:'no',  plus:'yes' },
+  { cat:'Payments',          name:'Payment requests per fulfillment',                       adv:'no',  plus:'yes' },
+  { cat:'Checkout & Orders', name:'Draft → Invoice',                                        adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'Checkout → Draft',                                       adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'Easy reorders',                                          adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'PO numbers',                                             adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'Contextual Checkout (via Markets)',                      adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'Checkout Extensibility (UI Extensions & Functions)',     adv:'no',  plus:'yes' },
+  { cat:'Checkout & Orders', name:'Customer Account Extensions',                            adv:'no',  plus:'yes' },
+  { cat:'Sales Staff',       name:'Companies staff permissions',                            adv:'15',  plus:'unlimited' },
+  { cat:'Storefront',        name:'Trade theme',                                            adv:'yes', plus:'yes' },
+  { cat:'Storefront',        name:'Quick order list',                                       adv:'yes', plus:'yes' },
+  { cat:'Storefront',        name:'Contextual Storefront (via Markets)',                    adv:'yes', plus:'yes' },
+  { cat:'Complementary',     name:'Flow (using B2B objects)',                               adv:'yes', plus:'yes' },
+  { cat:'Complementary',     name:'Expansion Stores',                                       adv:'no',  plus:'9' },
+];
+
+const implications = [
+  {
+    type:'plus', icon:'💰', title:'Cash Flow Protection',
+    body:`On Advanced, there's no native way to require upfront deposits — merchants collect in full at checkout or on invoice. <strong>Plus unlocks deposit requirements at both the company level and on draft orders</strong>, protecting cash flow on large B2B orders. Partial payments reduce friction for buyers managing budget cycles.`,
+    implication:`If average B2B order value is high or buyers need phased payments, Advanced creates a gap that gets solved with expensive workarounds.`,
+    tags:['Deposit requirements','Partial payments']
+  },
+  {
+    type:'plus', icon:'📦', title:'Fulfillment-Based Billing',
+    body:`Advanced merchants must wait for full fulfillment before collecting payment on an order. <strong>Plus enables payment requests per fulfillment</strong>, so sellers can bill incrementally as shipments go out — essential for multi-line or batch-shipped orders.`,
+    implication:`Distributors and manufacturers shipping partial orders regularly will hit this wall on Advanced. It's one of the most common reasons B2B merchants outgrow the plan.`,
+    tags:['Payment requests per fulfillment']
+  },
+  {
+    type:'plus', icon:'🗂️', title:'Catalog Architecture at Scale',
+    body:`Advanced caps B2B catalogs at 3 and requires routing through Markets. <strong>Plus removes the catalog ceiling entirely and adds direct assignment</strong> to any company or location — no Markets detour. The difference between managing 3 customer segments and hundreds of bespoke pricing relationships.`,
+    implication:`Merchants with diverse buyer tiers, channel partners, or regional pricing will architect around the 3-catalog limit on Advanced — usually accepting a suboptimal setup.`,
+    tags:['Unlimited catalogs','Direct catalog assignment']
+  },
+  {
+    type:'plus', icon:'👥', title:'Sales Team Scale',
+    body:`Advanced allows up to <strong>15 staff accounts</strong> with company-level permissions. Plus is unlimited. For B2B operations with inside sales, account managers, and support staff all needing company access, 15 is a ceiling that arrives quickly as the team grows.`,
+    implication:`Growing teams will either upgrade to Plus or manage access outside the platform — the latter creates security and auditability risk.`,
+    tags:['Staff permissions']
+  },
+  {
+    type:'plus', icon:'🛒', title:'Checkout Customisation',
+    body:`<strong>Checkout Extensibility — UI Extensions and Functions — is exclusive to Plus.</strong> This unlocks custom checkout flows, B2B-specific validation logic, custom fields, upsells at checkout, and integration with third-party services at the payment step. Advanced merchants work with Shopify's standard checkout only.`,
+    implication:`For B2B merchants with complex ordering rules, approval workflows, or custom pricing logic at checkout, this is a hard technical ceiling on Advanced.`,
+    tags:['Checkout Extensibility','UI Extensions','Functions']
+  },
+  {
+    type:'both', icon:'🌐', title:'Contextual Commerce — Shared',
+    body:`Both Advanced and Plus unlock <strong>Contextual Checkout and Contextual Storefront via Markets</strong> — different experiences for B2B vs DTC buyers. Meaningful over Basic/Grow, but not a Plus differentiator.`,
+    implication:`Strong proof point when positioning Advanced over lower plans. Don't lean on it when positioning Plus — it's table stakes at Advanced too.`,
+    tags:['Contextual Checkout','Contextual Storefront']
+  },
+  {
+    type:'adv', icon:'🔒', title:'Static Account & Company Pages',
+    body:`On Advanced, the customer account page and company account portal are <strong>fully static — no customisation is possible</strong>. Merchants cannot add custom fields, branded content, loyalty widgets, order tracking modules, or company-specific messaging. What Shopify ships is what buyers see.`,
+    implication:`For B2B merchants who use the account portal as a self-serve hub, this is a meaningful limitation. Buyers can't be given tailored experiences per company or segment. Plus unlocks Customer Account Extensions to build a fully branded, functional portal.`,
+    tags:['Customer Account Extensions','B2B Portal','Storefront']
+  },
+  {
+    type:'adv', icon:'🛒', title:'Locked Checkout — No Cross-Sell, Upsell or Post-Purchase',
+    body:`Advanced merchants are locked to Shopify's standard checkout. There is <strong>no ability to inject upsell offers, cross-sell recommendations, custom fields, or post-purchase pages</strong>. Plus unlocks Checkout Extensibility (UI Extensions and Functions), enabling fully customised checkout flows — including product upsells before payment, order bump cross-sells, and post-purchase upsell pages after the transaction completes.`,
+    implication:`Checkout is the highest-intent moment in a buyer's journey. On Advanced, that moment is fixed — Shopify controls the experience. On Plus, merchants own it. For merchants with strong AOV improvement opportunities or complex ordering logic, this gap directly impacts revenue per order.`,
+    tags:['Checkout Extensibility','UI Extensions','Functions','Upsell','Cross-sell']
+  },
+  {
+    type:'adv', icon:'⚠️', title:'Where Advanced Stalls',
+    body:`Advanced covers the fundamentals well but is missing the <strong>payment infrastructure for sophisticated B2B transactions</strong>. No deposits, no partial payments, no per-fulfillment billing, no direct catalog assignment, no checkout extensibility. Complexity gets managed through workarounds.`,
+    implication:`Advanced fits B2B merchants early in their wholesale journey. Once buyer relationships mature — complex pricing, phased payments, large orders — the gaps become friction.`,
+    tags:['Deposits','Partials','Extensibility','Catalogs']
+  },
+  {
+    type:'plus', icon:'🏗️', title:'Enterprise Buyer Readiness',
+    body:`Enterprise B2B buyers expect deposit flexibility, phased billing, bespoke pricing, checkout control, and account team access. <strong>Plus provides the full stack.</strong> This makes Plus the defensible choice when a merchant's buyer base includes large accounts with procurement requirements.`,
+    implication:`If a merchant is pitching large enterprise accounts as buyers, Advanced will create friction in the sales or onboarding process. Plus removes those friction points before they become blockers.`,
+    tags:['Deposits','Partials','Unlimited catalogs','Unlimited staff','Extensibility']
+  },
+];
+
+// ═══════════════ HELPERS ═══════════════
+function rv(v) {
+  if (v === 'yes')      return `<span class="check">✓</span>`;
+  if (v === 'no')       return `<span class="cross">✕</span>`;
+  if (v === 'unlimited')return `<span class="val-tag val-unlimited">Unlimited</span>`;
+  if (!isNaN(v))        return `<span class="val-tag val-num">${v}</span>`;
+  return v;
+}
+
+function isDiff(f) { return f.adv !== f.plus; }
+
+// ═══════════════ FEATURE TABLES ═══════════════
+function buildDiffTable() {
+  const diffs = features.filter(isDiff);
+  document.getElementById('diff-count').textContent = diffs.length + ' differences';
+  const cats = [...new Set(diffs.map(f => f.cat))];
+  document.getElementById('diff-tbody').innerHTML = cats.map(cat => {
+    const rows = diffs.filter(f => f.cat === cat);
+    return `<tr class="cat-row"><td colspan="4">${cat}</td></tr>` +
+      rows.map(f => `
+        <tr>
+          <td class="feature-name">${f.name}</td>
+          <td><span style="font-size:.74rem;color:var(--muted)">${f.cat}</span></td>
+          <td class="center">${rv(f.adv)}</td>
+          <td class="center">${rv(f.plus)} <span class="upgrade-tag">↑ Plus</span></td>
+        </tr>`).join('');
+  }).join('');
+}
+
+let fullFilter = 'all';
+function renderFullTable() {
+  const list = fullFilter === 'diff' ? features.filter(isDiff) : features;
+  const cats = [...new Set(list.map(f => f.cat))];
+  document.getElementById('full-tbody').innerHTML = cats.map(cat => {
+    const rows = list.filter(f => f.cat === cat);
+    return `<tr class="cat-row"><td colspan="4">${cat}</td></tr>` +
+      rows.map(f => `
+        <tr${isDiff(f) ? ' style="background:rgba(108,99,255,.03)"' : ''}>
+          <td class="feature-name">${f.name}${isDiff(f)?'<span class="upgrade-tag" style="margin-left:8px">Diff</span>':''}</td>
+          <td><span style="font-size:.74rem;color:var(--muted)">${f.cat}</span></td>
+          <td class="center">${rv(f.adv)}</td>
+          <td class="center">${rv(f.plus)}</td>
+        </tr>`).join('');
+  }).join('');
+}
+
+function filterFull(f, btn) {
+  fullFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFullTable();
+}
+
+// ═══════════════ IMPLICATIONS ═══════════════
+function buildImplications() {
+  const map = { adv:'adv', plus:'plus', both:'both' };
+  const planTag = { adv:'<span class="impl-plan-tag adv">Advanced Gap</span>', plus:'<span class="impl-plan-tag plus">Plus Advantage</span>', both:'<span class="impl-plan-tag both">Both Plans</span>' };
+  document.getElementById('impl-grid').innerHTML = implications.map(i => `
+    <div class="impl-card ${map[i.type]}">
+      <span class="impl-icon">${i.icon}</span>
+      <div class="impl-title">${i.title} ${planTag[i.type]}</div>
+      <div class="impl-body">${i.body}</div>
+      <div class="impl-implication"><strong>Sales angle:</strong> ${i.implication}</div>
+      <div class="impl-tags">${i.tags.map(t=>`<span class="impl-tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+// ═══════════════ FILTER BUTTONS ═══════════════
+// (inline styles used above for the filter buttons in tab 2 — add shared style)
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.style.cssText = 'cursor:pointer;padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);transition:all .15s;';
+  });
+});
+
+// ═══════════════ TABS ═══════════════
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  // Reset exclusives hub whenever leaving/entering that tab
+  if (id !== 'exclusives') closeExcl();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ═══════════════ PAYMENTS CALCULATOR ═══════════════
+function parseGmv(id) {
+  const raw = document.getElementById(id).value.replace(/[^0-9.]/g, '');
+  return parseFloat(raw) || 0;
+}
+function fmtCurrency(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+  if (n >= 1000) return '$' + Math.round(n).toLocaleString('en-US');
+  return '$' + n.toFixed(0);
+}
+function calcSavings() {
+  const online    = parseGmv('calc-online-gmv');
+  const inperson  = parseGmv('calc-inperson-gmv');
+  const thirdparty = parseGmv('calc-thirdparty-gmv');
+
+  // Monthly fees
+  const advMo  = online * 0.024 + inperson * 0.017 + thirdparty * 0.005;
+  const plusMo = online * 0.0215 + inperson * 0.016 + thirdparty * 0.002;
+  const saveMo = advMo - plusMo;
+
+  const fmt = v => (online + inperson + thirdparty) === 0 ? '—' : fmtCurrency(v);
+  document.getElementById('calc-adv-total').textContent    = (online + inperson + thirdparty) ? fmtCurrency(advMo * 12)  : '—';
+  document.getElementById('calc-plus-total').textContent   = (online + inperson + thirdparty) ? fmtCurrency(plusMo * 12) : '—';
+  document.getElementById('calc-saving').textContent       = (online + inperson + thirdparty) ? fmtCurrency(saveMo * 12) : '—';
+  document.getElementById('calc-saving-mo').textContent    = (online + inperson + thirdparty) ? fmtCurrency(saveMo)      : '—';
+}
+
+// ═══════════════ PLUS EXCLUSIVES HUB ═══════════════
+function openExcl(id) {
+  document.getElementById('excl-hub').classList.add('hidden');
+  document.querySelectorAll('.excl-sub').forEach(el => el.classList.remove('active'));
+  document.getElementById('excl-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function closeExcl() {
+  document.querySelectorAll('.excl-sub').forEach(el => el.classList.remove('active'));
+  document.getElementById('excl-hub').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════ ASK CHRIS MODAL ═══════════════
+function openAskModal() {
+  document.getElementById('askModal').classList.add('open');
+  setTimeout(() => document.getElementById('ask-name').focus(), 50);
+}
+function closeAskModal() {
+  document.getElementById('askModal').classList.remove('open');
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('askModal')) closeAskModal();
+}
+function sendQuestion() {
+  const name = document.getElementById('ask-name').value.trim();
+  const question = document.getElementById('ask-question').value.trim();
+  if (!question) { document.getElementById('ask-question').focus(); return; }
+  const subject = encodeURIComponent('Question about Shopify Advanced vs Plus');
+  const body = encodeURIComponent(
+    (name ? 'Hi Chris,\n\nMy name is ' + name + '.\n\n' : 'Hi Chris,\n\n') +
+    question + '\n\nThanks'
+  );
+  window.location.href = `mailto:chris.dempsey@shopify.com?subject=${subject}&body=${body}`;
+  closeAskModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAskModal(); });
+
+// ═══════════════ INIT ═══════════════
+document.getElementById('nowDate').textContent = new Date().toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+buildDiffTable();
+renderFullTable();
+buildImplications();
+</script>
+</body>
+</html>
