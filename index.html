@@ -735,35 +735,79 @@
 ══════════════════════════════════ -->
 <div id="panel-payments" class="tab-panel">
 
-  <div class="section a1">
-    <div class="section-label">Plan Overview — Shopify Payments Rates</div>
-    <div class="stat-row">
-      <div class="stat-card adv">
-        <div class="s-label">Advanced Online (CAD &amp; USD)</div>
-        <div class="s-value" style="color:var(--adv)">2.4%</div>
-        <div class="s-sub">+ 30¢ per transaction</div>
+
+  <div class="section a2">
+    <div class="section-label">🇺🇸 United States — Side-by-Side Rate Breakdown</div>
+    <div class="rates-grid">
+      <div class="rate-card">
+        <span class="rate-card-tag adv">Advanced</span>
+        <div class="rate-card-name adv">Standard Rates (USD)</div>
+        <div class="rate-row"><span class="rate-label">Standard consumer card</span><span class="rate-val adv">2.5% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">International cards</span><span class="rate-val adv">3.5% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Premium / Commercial &amp; Amex</span><span class="rate-val adv">3.1% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Shop Pay Installments (BNPL)</span><span class="rate-val adv">5.9% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.5%</span></div>
       </div>
-      <div class="stat-card plus">
-        <div class="s-label">Plus Online (CAD &amp; USD)</div>
-        <div class="s-value" style="color:var(--plus-light)">2.15%</div>
-        <div class="s-sub">+ 30¢ per transaction</div>
-      </div>
-      <div class="stat-card teal">
-        <div class="s-label">Online Rate Saving</div>
-        <div class="s-value" style="color:var(--accent2)">0.25%</div>
-        <div class="s-sub">Same saving in both CAD &amp; USD</div>
-      </div>
-      <div class="stat-card teal">
-        <div class="s-label">US BNPL Saving</div>
-        <div class="s-value" style="color:var(--accent2)">0.9%</div>
-        <div class="s-sub">Shop Pay Installments: 5.9% (Adv) vs 5.0% (Plus)</div>
-      </div>
-      <div class="stat-card plus">
-        <div class="s-label">Third-Party Fee</div>
-        <div class="s-value" style="color:var(--plus-light)">0.2%</div>
-        <div class="s-sub">Plus vs 0.5% Advanced (if not using Shopify Payments)</div>
+      <div class="rate-card plus-card">
+        <span class="rate-card-tag plus">Plus</span>
+        <div class="rate-card-name plus">Negotiated Rates (USD)</div>
+        <div class="rate-row"><span class="rate-label">Standard consumer card</span><span class="rate-val plus">2.25% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">International cards</span><span class="rate-val plus">3.25% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Premium / Commercial &amp; Amex</span><span class="rate-val plus">2.95% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Shop Pay Installments (BNPL)</span><span class="rate-val plus">5.0% + 30¢</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val plus">0.2%</span></div>
       </div>
     </div>
+    <p class="rate-note" style="margin-top:14px;">* United States published rates. Plus rates are starting points and may be negotiated further at high volume. Shopify Payments must be enabled to avoid third-party gateway fees.</p>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">🇺🇸 United States — Rate Comparison Table</div>
+    <div class="table-wrap">
+      <table class="rate-table">
+        <thead>
+          <tr>
+            <th>Transaction Type</th>
+            <th class="adv-col">Advanced</th>
+            <th class="plus-col">Plus</th>
+            <th class="save-col">Saving on Plus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Standard consumer card</td>
+            <td class="adv-rate">2.5% + 30¢</td>
+            <td class="plus-rate">2.25% + 30¢</td>
+            <td class="save-rate">0.25%</td>
+          </tr>
+          <tr>
+            <td>International cards</td>
+            <td class="adv-rate">3.5% + 30¢</td>
+            <td class="plus-rate">3.25% + 30¢</td>
+            <td class="save-rate">0.25%</td>
+          </tr>
+          <tr>
+            <td>Premium / Commercial &amp; Amex</td>
+            <td class="adv-rate">3.1% + 30¢</td>
+            <td class="plus-rate">2.95% + 30¢</td>
+            <td class="save-rate">0.15%</td>
+          </tr>
+          <tr>
+            <td>Shop Pay Installments (BNPL)</td>
+            <td class="adv-rate">5.9% + 30¢</td>
+            <td class="plus-rate">5.0% + 30¢</td>
+            <td class="save-rate">0.9%</td>
+          </tr>
+          <tr>
+            <td>Third-party payment gateway fee</td>
+            <td class="adv-rate">0.5%</td>
+            <td class="plus-rate">0.2%</td>
+            <td class="save-rate">0.3%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rate-note" style="margin-top:10px;">Note: The largest US rate saving is on Shop Pay Installments — 0.9% reduction on Plus. Merchants with high BNPL adoption see the most material impact from upgrading.</p>
   </div>
 
   <div class="section a2">
@@ -831,80 +875,6 @@
         </tbody>
       </table>
     </div>
-  </div>
-
-  <div class="section a2">
-    <div class="section-label">🇺🇸 United States — Side-by-Side Rate Breakdown</div>
-    <div class="rates-grid">
-      <div class="rate-card">
-        <span class="rate-card-tag adv">Advanced</span>
-        <div class="rate-card-name adv">Standard Rates (USD)</div>
-        <div class="rate-row"><span class="rate-label">Standard consumer card</span><span class="rate-val adv">2.5% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">International cards</span><span class="rate-val adv">3.5% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Premium commercial &amp; Amex</span><span class="rate-val adv">3.1% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Shop Pay Installments (BNPL)</span><span class="rate-val adv">5.9% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.5%</span></div>
-      </div>
-      <div class="rate-card plus-card">
-        <span class="rate-card-tag plus">Plus</span>
-        <div class="rate-card-name plus">Negotiated Rates (USD)</div>
-        <div class="rate-row"><span class="rate-label">Standard consumer card</span><span class="rate-val plus">2.25% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">International cards</span><span class="rate-val plus">3.25% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Premium commercial &amp; Amex</span><span class="rate-val plus">2.95% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Shop Pay Installments (BNPL)</span><span class="rate-val plus">5.0% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val plus">0.2%</span></div>
-      </div>
-    </div>
-    <p class="rate-note" style="margin-top:14px;">* United States published rates. Plus rates are starting points and may be negotiated further at high volume. Shopify Payments must be enabled to avoid third-party gateway fees.</p>
-  </div>
-
-  <div class="section a2">
-    <div class="section-label">🇺🇸 United States — Rate Comparison Table</div>
-    <div class="table-wrap">
-      <table class="rate-table">
-        <thead>
-          <tr>
-            <th>Transaction Type</th>
-            <th class="adv-col">Advanced</th>
-            <th class="plus-col">Plus</th>
-            <th class="save-col">Saving on Plus</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Standard consumer card</td>
-            <td class="adv-rate">2.5% + 30¢</td>
-            <td class="plus-rate">2.25% + 30¢</td>
-            <td class="save-rate">0.25%</td>
-          </tr>
-          <tr>
-            <td>International cards</td>
-            <td class="adv-rate">3.5% + 30¢</td>
-            <td class="plus-rate">3.25% + 30¢</td>
-            <td class="save-rate">0.25%</td>
-          </tr>
-          <tr>
-            <td>Premium commercial &amp; Amex</td>
-            <td class="adv-rate">3.1% + 30¢</td>
-            <td class="plus-rate">2.95% + 30¢</td>
-            <td class="save-rate">0.15%</td>
-          </tr>
-          <tr>
-            <td>Shop Pay Installments (BNPL)</td>
-            <td class="adv-rate">5.9% + 30¢</td>
-            <td class="plus-rate">5.0% + 30¢</td>
-            <td class="save-rate">0.9%</td>
-          </tr>
-          <tr>
-            <td>Third-party payment gateway fee</td>
-            <td class="adv-rate">0.5%</td>
-            <td class="plus-rate">0.2%</td>
-            <td class="save-rate">0.3%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="rate-note" style="margin-top:10px;">Note: The largest US rate saving is on Shop Pay Installments — 0.9% reduction on Plus. Merchants with high BNPL adoption see the most material impact from upgrading.</p>
   </div>
 
   <div class="section a3">
