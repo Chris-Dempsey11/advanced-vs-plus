@@ -159,30 +159,36 @@
   .upgrade-tag  { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 20px; font-size: .66rem; font-weight: 700; background: rgba(0,212,170,.1); color: var(--accent2); border: 1px solid rgba(0,212,170,.25); }
 
   /* ── IMPLICATION CARDS ── */
-  .impl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 16px; }
+  .impl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 16px; align-items: start; }
   .impl-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--card-radius); padding: 24px 26px;
     position: relative; overflow: hidden;
     transition: transform .2s, box-shadow .2s;
+    display: flex; flex-direction: column;
   }
   .impl-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
   .impl-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px; }
   .impl-card.plus::before { background: var(--plus); }
   .impl-card.adv::before  { background: var(--adv); }
   .impl-card.both::before { background: linear-gradient(180deg, var(--adv), var(--plus)); }
-  .impl-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
-  .impl-title { font-size: .95rem; font-weight: 800; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .impl-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; flex-shrink: 0; }
+  .impl-title { font-size: .95rem; font-weight: 800; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
   .impl-plan-tag { font-size: .66rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: .4px; }
   .impl-plan-tag.plus { background: var(--plus-dim); color: var(--plus-light); border: 1px solid rgba(108,99,255,.3); }
   .impl-plan-tag.adv  { background: var(--adv-dim); color: var(--adv); border: 1px solid rgba(255,200,87,.3); }
   .impl-plan-tag.both { background: rgba(0,212,170,.1); color: var(--accent2); border: 1px solid rgba(0,212,170,.25); }
+  .impl-content-wrap { overflow: hidden; transition: max-height .35s ease; }
+  .impl-content-wrap.collapsed { max-height: 120px; -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%); mask-image: linear-gradient(to bottom, black 60%, transparent 100%); }
+  .impl-content-wrap.expanded  { max-height: 2000px; -webkit-mask-image: none; mask-image: none; }
   .impl-body { font-size: .84rem; color: var(--muted); line-height: 1.65; }
   .impl-body strong { color: var(--text); font-weight: 600; }
   .impl-implication { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: .8rem; color: var(--muted); line-height: 1.55; }
   .impl-implication strong { color: var(--accent2); font-weight: 600; }
-  .impl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .impl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; flex-shrink: 0; }
   .impl-tag { font-size: .68rem; font-weight: 600; padding: 2px 9px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); }
+  .impl-expand-btn { margin-top: 12px; background: none; border: 1px solid var(--border); color: var(--plus-light); font-size: .75rem; font-weight: 700; padding: 5px 14px; border-radius: 20px; cursor: pointer; align-self: flex-start; transition: background .15s, border-color .15s; flex-shrink: 0; }
+  .impl-expand-btn:hover { background: var(--plus-dim); border-color: rgba(108,99,255,.4); }
 
   /* ── LEGAL TABLE ── */
   .legal-table { width: 100%; border-collapse: collapse; font-size: .87rem; }
@@ -2578,10 +2584,43 @@ function buildImplications() {
     <div class="impl-card ${map[i.type]}">
       <span class="impl-icon">${i.icon}</span>
       <div class="impl-title">${i.title} ${planTag[i.type]}</div>
-      <div class="impl-body">${i.body}</div>
-      <div class="impl-implication"><strong>Business Impact:</strong> ${i.implication}</div>
+      <div class="impl-content-wrap collapsed">
+        <div class="impl-body">${i.body}</div>
+        <div class="impl-implication"><strong>Business Impact:</strong> ${i.implication}</div>
+      </div>
       <div class="impl-tags">${i.tags.map(t=>`<span class="impl-tag">${t}</span>`).join('')}</div>
     </div>`).join('');
+  initExpandBtns();
+}
+
+// ═══════════════ EXPAND / COLLAPSE CARDS ═══════════════
+function initExpandBtns() {
+  document.querySelectorAll('.impl-content-wrap').forEach(wrap => {
+    // Remove any previously injected button (e.g. after rebuild)
+    const prev = wrap.parentElement.querySelector('.impl-expand-btn');
+    if (prev) prev.remove();
+
+    // Check if content actually overflows the collapsed height
+    wrap.classList.add('collapsed');
+    wrap.classList.remove('expanded');
+    const fullH = wrap.scrollHeight;
+    const threshold = 130; // px — matches collapsed max-height + some tolerance
+
+    if (fullH > threshold) {
+      const btn = document.createElement('button');
+      btn.className = 'impl-expand-btn';
+      btn.textContent = 'Show more';
+      btn.addEventListener('click', () => {
+        const expanded = wrap.classList.toggle('expanded');
+        wrap.classList.toggle('collapsed', !expanded);
+        btn.textContent = expanded ? 'Show less' : 'Show more';
+      });
+      // Insert button after the wrap, before impl-tags
+      const tags = wrap.parentElement.querySelector('.impl-tags');
+      if (tags) wrap.parentElement.insertBefore(btn, tags);
+      else wrap.parentElement.appendChild(btn);
+    }
+  });
 }
 
 // ═══════════════ FILTER BUTTONS ═══════════════
@@ -2590,6 +2629,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.style.cssText = 'cursor:pointer;padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);transition:all .15s;';
   });
+  // Wrap all static impl-card body+implication content
+  document.querySelectorAll('.impl-card').forEach(card => {
+    if (card.querySelector('.impl-content-wrap')) return; // already wrapped
+    const body = card.querySelector('.impl-body');
+    const impl = card.querySelector('.impl-implication');
+    if (!body) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'impl-content-wrap collapsed';
+    body.parentElement.insertBefore(wrap, body);
+    wrap.appendChild(body);
+    if (impl) wrap.appendChild(impl);
+  });
+  initExpandBtns();
 });
 
 // ═══════════════ TABS ═══════════════
