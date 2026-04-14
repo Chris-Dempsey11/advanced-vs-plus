@@ -380,13 +380,84 @@
   .a2 { animation: fadeUp .4s ease .12s both; }
   .a3 { animation: fadeUp .4s ease .18s both; }
 
-  @media (max-width: 700px) {
-    header, .section { padding-left: 20px; padding-right: 20px; }
-    .header-inner h1 { font-size: 1.8rem; }
+  /* ── RESPONSIVE — tablet ── */
+  @media (max-width: 900px) {
+    .impl-grid { grid-template-columns: 1fr 1fr; }
+    .excl-grid { grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); }
+    .stat-row  { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── RESPONSIVE — mobile ── */
+  @media (max-width: 680px) {
+    /* Layout */
+    header  { padding: 28px 16px 0; }
+    .section { padding: 0 16px; }
+    footer  { padding: 0 16px; padding-top: 20px; margin-top: 36px; flex-direction: column; align-items: flex-start; }
+
+    /* Header */
+    .header-inner h1 { font-size: 1.65rem; letter-spacing: -1px; margin-bottom: 10px; }
+    .header-inner p  { font-size: .85rem; margin-bottom: 20px; }
+    .header-eyebrow  { font-size: .65rem; }
+
+    /* Ask btn + theme toggle — stack neatly */
+    .ask-btn { font-size: .78rem; padding: 8px 14px; }
+    .theme-toggle { top: 10px; right: 10px; padding: 5px 10px 5px 8px; font-size: .7rem; }
+
+    /* Tab bar — horizontally scrollable, no wrap */
+    .tab-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-wrap: nowrap; }
+    .tab-bar::-webkit-scrollbar { display: none; }
+    .tab-btn { padding: 12px 14px; font-size: .76rem; white-space: nowrap; flex-shrink: 0; }
+
+    /* Stat cards */
+    .stat-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-card { padding: 14px 16px; }
+    .stat-card .s-value { font-size: 1.4rem; }
+
+    /* Hero compare — stack vertically */
     .hero-compare { grid-template-columns: 1fr; }
-    .hc-divider { writing-mode: horizontal-tb; padding: 12px 20px; border-left: none; border-right: none; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .support-grid { grid-template-columns: 1fr; }
-    .tab-btn { padding: 12px 14px; font-size: .78rem; }
+    .hc-divider {
+      writing-mode: horizontal-tb; padding: 10px 16px;
+      border-left: none; border-right: none;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .hc-col { padding: 20px 18px; }
+    .hc-name { font-size: 1.3rem; }
+
+    /* Tables — horizontally scrollable */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table, .rate-table { font-size: .8rem; min-width: 500px; }
+    td, th { padding: 10px 12px; }
+    thead th { font-size: .65rem; }
+
+    /* Implication cards — single column */
+    .impl-grid { grid-template-columns: 1fr; gap: 12px; }
+    .impl-card { padding: 18px 18px; }
+    .impl-title { font-size: .88rem; }
+    .impl-body  { font-size: .8rem; }
+
+    /* Support grid */
+    .support-grid { grid-template-columns: 1fr; gap: 12px; }
+
+    /* Calculator */
+    .calc-inputs { grid-template-columns: 1fr; gap: 12px; }
+
+    /* Plus Exclusives grid */
+    .excl-grid { grid-template-columns: 1fr; gap: 12px; }
+    .excl-card { padding: 20px 18px; }
+
+    /* Modal */
+    .modal { padding: 24px 18px; margin: 12px; width: calc(100% - 24px); max-width: none; }
+    .modal-actions { flex-direction: column-reverse; }
+    .modal-send, .modal-cancel { width: 100%; text-align: center; }
+
+    /* Section headings */
+    .section-label { font-size: .65rem; }
+  }
+
+  /* ── RESPONSIVE — small phones ── */
+  @media (max-width: 400px) {
+    .stat-row { grid-template-columns: 1fr; }
+    .header-inner h1 { font-size: 1.4rem; }
   }
 
   /* ── LIGHT MODE — Shopify brand palette ── */
