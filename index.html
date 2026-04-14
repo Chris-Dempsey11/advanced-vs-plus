@@ -2424,6 +2424,30 @@ const features = [
 
 const implications = [
   {
+    type:'plus', icon:'🏗️', title:'Enterprise Buyer Readiness',
+    body:`Enterprise B2B buyers expect deposit flexibility, phased billing, bespoke pricing, checkout control, and account team access. <strong>Plus provides the full stack.</strong> This makes Plus the defensible choice when a merchant's buyer base includes large accounts with procurement requirements.`,
+    implication:`If a merchant is pitching large enterprise accounts as buyers, Advanced will create friction in the sales or onboarding process. Plus removes those friction points before they become blockers.`,
+    tags:['Deposits','Partials','Unlimited catalogs','Unlimited staff','Extensibility']
+  },
+  {
+    type:'plus', icon:'🛒', title:'Checkout Customisation',
+    body:`<strong>Checkout Extensibility — UI Extensions and Functions — is exclusive to Plus.</strong> This unlocks custom checkout flows, B2B-specific validation logic, custom fields, upsells at checkout, and integration with third-party services at the payment step. Advanced merchants work with Shopify's standard checkout only.`,
+    implication:`For B2B merchants with complex ordering rules, approval workflows, or custom pricing logic at checkout, this is a hard technical ceiling on Advanced.`,
+    tags:['Checkout Extensibility','UI Extensions','Functions']
+  },
+  {
+    type:'plus', icon:'🗂️', title:'Catalog Architecture at Scale',
+    body:`Advanced caps B2B catalogs at 3 and requires routing through Markets. <strong>Plus removes the catalog ceiling entirely and adds direct assignment</strong> to any company or location — no Markets detour. The difference between managing 3 customer segments and hundreds of bespoke pricing relationships.`,
+    implication:`Merchants with diverse buyer tiers, channel partners, or regional pricing will architect around the 3-catalog limit on Advanced — usually accepting a suboptimal setup.`,
+    tags:['Unlimited catalogs','Direct catalog assignment']
+  },
+  {
+    type:'plus', icon:'👤', title:'Customer Account Extensibility',
+    body:`On Advanced, the customer account login page is <strong>fully static — merchants cannot customise, extend, or brand it in any way</strong>. Every buyer sees the same generic Shopify account interface regardless of who they are or what they need. Plus unlocks <strong>Customer Account Extensions</strong>, giving merchants the ability to build a fully branded, functional self-serve portal inside the logged-in account experience. This means custom modules for order history, reorder workflows, loyalty programme status, B2B company management, net-terms balance visibility, saved payment methods, custom branded content, and company-specific messaging — all within the account page, without any external portal or third-party login system.<br><br>For B2B specifically, the account portal is the primary interface through which buyers manage their relationship with the supplier. A well-built account portal <strong>dramatically increases buyer adoption of self-serve</strong> — buyers who can check order status, reorder past purchases, manage company users, and view outstanding invoices independently are buyers who don't need to call or email your team. This directly reduces inbound support volume and the operational cost per account. On Advanced, that portal is fixed and generic. On Plus, it becomes a competitive advantage.`,
+    implication:`Merchants relying on phone and email for routine account queries — order status, invoice lookups, reorders — are paying an operational cost that a well-built customer account portal eliminates. Every self-serve action a buyer takes is a support ticket that never gets raised. Plus pays for itself in reduced handling costs alone for mid-market B2B operations.`,
+    tags:['Customer Account Extensions','Self-Serve Portal','B2B Critical','Support Cost Reduction','Buyer Adoption']
+  },
+  {
     type:'plus', icon:'💰', title:'Cash Flow Protection',
     body:`On Advanced, there's no native way to require upfront deposits — merchants collect in full at checkout or on invoice. <strong>Plus unlocks deposit requirements at both the company level and on draft orders</strong>, protecting cash flow on large B2B orders. Partial payments reduce friction for buyers managing budget cycles.`,
     implication:`If average B2B order value is high or buyers need phased payments, Advanced creates a gap that gets solved with expensive workarounds.`,
@@ -2436,22 +2460,10 @@ const implications = [
     tags:['Payment requests per fulfillment']
   },
   {
-    type:'plus', icon:'🗂️', title:'Catalog Architecture at Scale',
-    body:`Advanced caps B2B catalogs at 3 and requires routing through Markets. <strong>Plus removes the catalog ceiling entirely and adds direct assignment</strong> to any company or location — no Markets detour. The difference between managing 3 customer segments and hundreds of bespoke pricing relationships.`,
-    implication:`Merchants with diverse buyer tiers, channel partners, or regional pricing will architect around the 3-catalog limit on Advanced — usually accepting a suboptimal setup.`,
-    tags:['Unlimited catalogs','Direct catalog assignment']
-  },
-  {
     type:'plus', icon:'👥', title:'Sales Team Scale',
     body:`Advanced allows up to <strong>15 staff accounts</strong> with company-level permissions. Plus is unlimited. For B2B operations with inside sales, account managers, and support staff all needing company access, 15 is a ceiling that arrives quickly as the team grows.`,
     implication:`Growing teams will either upgrade to Plus or manage access outside the platform — the latter creates security and auditability risk.`,
     tags:['Staff permissions']
-  },
-  {
-    type:'plus', icon:'🛒', title:'Checkout Customisation',
-    body:`<strong>Checkout Extensibility — UI Extensions and Functions — is exclusive to Plus.</strong> This unlocks custom checkout flows, B2B-specific validation logic, custom fields, upsells at checkout, and integration with third-party services at the payment step. Advanced merchants work with Shopify's standard checkout only.`,
-    implication:`For B2B merchants with complex ordering rules, approval workflows, or custom pricing logic at checkout, this is a hard technical ceiling on Advanced.`,
-    tags:['Checkout Extensibility','UI Extensions','Functions']
   },
   {
     type:'both', icon:'🌐', title:'Contextual Commerce — Shared',
@@ -2476,12 +2488,6 @@ const implications = [
     body:`Advanced covers the fundamentals well but is missing the <strong>payment infrastructure for sophisticated B2B transactions</strong>. No deposits, no partial payments, no per-fulfillment billing, no direct catalog assignment, no checkout extensibility. Complexity gets managed through workarounds.`,
     implication:`Advanced fits B2B merchants early in their wholesale journey. Once buyer relationships mature — complex pricing, phased payments, large orders — the gaps become friction.`,
     tags:['Deposits','Partials','Extensibility','Catalogs']
-  },
-  {
-    type:'plus', icon:'🏗️', title:'Enterprise Buyer Readiness',
-    body:`Enterprise B2B buyers expect deposit flexibility, phased billing, bespoke pricing, checkout control, and account team access. <strong>Plus provides the full stack.</strong> This makes Plus the defensible choice when a merchant's buyer base includes large accounts with procurement requirements.`,
-    implication:`If a merchant is pitching large enterprise accounts as buyers, Advanced will create friction in the sales or onboarding process. Plus removes those friction points before they become blockers.`,
-    tags:['Deposits','Partials','Unlimited catalogs','Unlimited staff','Extensibility']
   },
 ];
 
