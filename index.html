@@ -493,6 +493,7 @@
           <li class="upgrade"><span class="ci">+</span>Checkout Extensibility (UI Extensions &amp; Functions)</li>
           <li class="upgrade"><span class="ci">+</span>Customer Account Extensions</li>
           <li class="upgrade"><span class="ci">+</span>9 Expansion Stores</li>
+          <li class="upgrade"><span class="ci">+</span>Advanced security settings (org-wide 2FA, verified domains, SAML, SCIM, activity logs)</li>
           <li class="upgrade"><span class="ci">+</span>200 inventory locations (vs 10 on Advanced)</li>
           <li class="upgrade"><span class="ci">+</span>200 POS Pro locations included (saves $17,800+/mo vs Advanced)</li>
           <li class="upgrade"><span class="ci">+</span>24/7 priority support + phone support</li>
@@ -2440,6 +2441,11 @@ const features = [
   { cat:'Complementary',     name:'Expansion Stores',                                       adv:'no',  plus:'9' },
   { cat:'Operations',        name:'Inventory locations',                                    adv:'10',  plus:'200' },
   { cat:'Operations',        name:'POS Pro locations included',                             adv:'no',  plus:'200' },
+  { cat:'Security',          name:'Org-wide 2FA enforcement',                               adv:'no',  plus:'yes' },
+  { cat:'Security',          name:'Verified domains',                                       adv:'no',  plus:'yes' },
+  { cat:'Security',          name:'SAML single sign-on',                                    adv:'no',  plus:'yes' },
+  { cat:'Security',          name:'SCIM user provisioning',                                 adv:'no',  plus:'yes' },
+  { cat:'Security',          name:'User activity logs',                                     adv:'no',  plus:'yes' },
 ];
 
 const implications = [
@@ -2514,6 +2520,12 @@ const implications = [
     body:`Shopify POS Pro is <strong>$89 per location per month on Advanced</strong>. On Plus, <strong>200 POS Pro locations are included in the platform fee</strong>. For any merchant with physical retail — even a handful of locations — this changes the economics of Plus vs Advanced entirely. A merchant with 10 retail locations pays <strong>$890/month in POS Pro fees on Advanced</strong>. On Plus, those locations are included. At 20 locations: $1,780/month in savings. At 50 locations: $4,450/month. The POS Pro inclusion alone can offset a meaningful portion — or the entirety — of the Plus platform fee delta for merchants with an active retail footprint.`,
     implication:`If you have physical retail locations, the POS Pro inclusion on Plus is one of the most direct cost savings in the platform. At 10 locations, that's $890/month you're no longer paying — before counting any other Plus benefit. Run your location count against $89/month and compare it to the Plus fee delta. For many businesses with retail, Plus is the lower total cost option.`,
     tags:['POS Pro','Retail','Cost savings','Omnichannel']
+  },
+  {
+    type:'plus', icon:'🔒', title:'Advanced Security Settings',
+    body:`Advanced provides basic staff access controls, but no enterprise-grade identity management. <strong>Plus unlocks a full suite of advanced security settings</strong> — organisation-wide two-factor authentication enforcement so every staff account is protected without relying on individuals to opt in; verified domains to confirm that only users on your company's domain can access your Shopify organisation; SAML single sign-on to connect Shopify to your existing identity provider (Okta, Azure AD, Google Workspace) so staff log in once with corporate credentials; SCIM user provisioning to automatically create, update, and deactivate Shopify accounts when staff join or leave via your IdP; and user activity logs to see a full audit trail of who accessed what, when, and what actions they took.`,
+    implication:`If your team uses corporate SSO for other tools, having Shopify as a separate login outside your identity provider is an access control gap — departed employees may retain access longer than intended, and there's no centralised visibility. Plus closes that gap entirely. For any business with compliance obligations, a distributed team, or third-party access to the admin, these security controls aren't optional — they're foundational.`,
+    tags:['2FA Enforcement','SAML SSO','SCIM Provisioning','Verified Domains','Activity Logs','Compliance']
   },
   {
     type:'adv', icon:'⚠️', title:'Where Advanced Stalls',
