@@ -163,7 +163,7 @@
   .impl-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--card-radius); padding: 24px 26px;
-    position: relative; overflow: hidden;
+    position: relative; overflow: visible;
     transition: transform .2s, box-shadow .2s;
     display: flex; flex-direction: column;
   }
@@ -178,9 +178,9 @@
   .impl-plan-tag.plus { background: var(--plus-dim); color: var(--plus-light); border: 1px solid rgba(108,99,255,.3); }
   .impl-plan-tag.adv  { background: var(--adv-dim); color: var(--adv); border: 1px solid rgba(255,200,87,.3); }
   .impl-plan-tag.both { background: rgba(0,212,170,.1); color: var(--accent2); border: 1px solid rgba(0,212,170,.25); }
-  .impl-content-wrap { overflow: hidden; transition: max-height .35s ease; }
-  .impl-content-wrap.collapsed { max-height: 120px; -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%); mask-image: linear-gradient(to bottom, black 60%, transparent 100%); }
-  .impl-content-wrap.expanded  { max-height: 2000px; -webkit-mask-image: none; mask-image: none; }
+  .impl-content-wrap { overflow: hidden; transition: max-height .4s ease; }
+  .impl-content-wrap.collapsed { max-height: 112px; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
+  .impl-content-wrap.expanded  { max-height: 4000px; -webkit-mask-image: none; mask-image: none; }
   .impl-body { font-size: .84rem; color: var(--muted); line-height: 1.65; }
   .impl-body strong { color: var(--text); font-weight: 600; }
   .impl-implication { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: .8rem; color: var(--muted); line-height: 1.55; }
@@ -2584,62 +2584,61 @@ function buildImplications() {
     <div class="impl-card ${map[i.type]}">
       <span class="impl-icon">${i.icon}</span>
       <div class="impl-title">${i.title} ${planTag[i.type]}</div>
-      <div class="impl-content-wrap collapsed">
-        <div class="impl-body">${i.body}</div>
-        <div class="impl-implication"><strong>Business Impact:</strong> ${i.implication}</div>
-      </div>
+      <div class="impl-body">${i.body}</div>
+      <div class="impl-implication"><strong>Business Impact:</strong> ${i.implication}</div>
       <div class="impl-tags">${i.tags.map(t=>`<span class="impl-tag">${t}</span>`).join('')}</div>
     </div>`).join('');
   initExpandBtns();
 }
 
 // ═══════════════ EXPAND / COLLAPSE CARDS ═══════════════
+function attachExpandBtn(card) {
+  // Remove any stale button
+  card.querySelectorAll('.impl-expand-btn').forEach(b => b.remove());
+
+  const wrap = card.querySelector('.impl-content-wrap');
+  if (!wrap) return;
+
+  // Always start collapsed
+  wrap.classList.add('collapsed');
+  wrap.classList.remove('expanded');
+
+  const btn = document.createElement('button');
+  btn.className = 'impl-expand-btn';
+  btn.textContent = 'Show more';
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = wrap.classList.toggle('expanded');
+    wrap.classList.toggle('collapsed', !isExpanded);
+    btn.textContent = isExpanded ? 'Show less' : 'Show more';
+  });
+
+  const tags = card.querySelector('.impl-tags');
+  if (tags) card.insertBefore(btn, tags);
+  else card.appendChild(btn);
+}
+
 function initExpandBtns() {
-  document.querySelectorAll('.impl-content-wrap').forEach(wrap => {
-    // Remove any previously injected button (e.g. after rebuild)
-    const prev = wrap.parentElement.querySelector('.impl-expand-btn');
-    if (prev) prev.remove();
-
-    // Check if content actually overflows the collapsed height
-    wrap.classList.add('collapsed');
-    wrap.classList.remove('expanded');
-    const fullH = wrap.scrollHeight;
-    const threshold = 130; // px — matches collapsed max-height + some tolerance
-
-    if (fullH > threshold) {
-      const btn = document.createElement('button');
-      btn.className = 'impl-expand-btn';
-      btn.textContent = 'Show more';
-      btn.addEventListener('click', () => {
-        const expanded = wrap.classList.toggle('expanded');
-        wrap.classList.toggle('collapsed', !expanded);
-        btn.textContent = expanded ? 'Show less' : 'Show more';
-      });
-      // Insert button after the wrap, before impl-tags
-      const tags = wrap.parentElement.querySelector('.impl-tags');
-      if (tags) wrap.parentElement.insertBefore(btn, tags);
-      else wrap.parentElement.appendChild(btn);
+  document.querySelectorAll('.impl-card').forEach(card => {
+    // Wrap body+implication if not already wrapped
+    if (!card.querySelector('.impl-content-wrap')) {
+      const body = card.querySelector('.impl-body');
+      const impl = card.querySelector('.impl-implication');
+      if (!body) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'impl-content-wrap';
+      body.parentNode.insertBefore(wrap, body);
+      wrap.appendChild(body);
+      if (impl) wrap.appendChild(impl);
     }
+    attachExpandBtn(card);
   });
 }
 
 // ═══════════════ FILTER BUTTONS ═══════════════
-// (inline styles used above for the filter buttons in tab 2 — add shared style)
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.style.cssText = 'cursor:pointer;padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);transition:all .15s;';
-  });
-  // Wrap all static impl-card body+implication content
-  document.querySelectorAll('.impl-card').forEach(card => {
-    if (card.querySelector('.impl-content-wrap')) return; // already wrapped
-    const body = card.querySelector('.impl-body');
-    const impl = card.querySelector('.impl-implication');
-    if (!body) return;
-    const wrap = document.createElement('div');
-    wrap.className = 'impl-content-wrap collapsed';
-    body.parentElement.insertBefore(wrap, body);
-    wrap.appendChild(body);
-    if (impl) wrap.appendChild(impl);
   });
   initExpandBtns();
 });
