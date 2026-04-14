@@ -2404,7 +2404,7 @@
 
 <footer>
   <div class="footer-brand">Shopify</div>
-  <div class="footer-text">Advanced vs Plus Comparison · <span id="nowDate"></span> · Feature availability based on current Shopify plan documentation. Contact your Shopify account team to confirm pricing and contract terms for your specific situation.</div>
+  <div class="footer-text">Advanced vs Plus Comparison · Feature availability based on current Shopify plan documentation. Contact your Shopify account team to confirm pricing and contract terms for your specific situation.</div>
 </footer>
 <div class="toast" id="toast"></div>
 
@@ -2753,7 +2753,6 @@ function sendQuestion() {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAskModal(); });
 
 // ═══════════════ INIT ═══════════════
-document.getElementById('nowDate').textContent = new Date().toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
 buildDiffTable();
 renderFullTable();
 buildImplications();
