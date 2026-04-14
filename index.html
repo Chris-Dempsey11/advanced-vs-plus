@@ -390,33 +390,61 @@
   }
 
   /* ── LIGHT MODE ── */
+  /* ── LIGHT MODE — Shopify Polaris palette ── */
   html.light {
-    --bg: #f4f5f9;
-    --surface: #ffffff;
-    --surface2: #eaecf4;
-    --border: #d0d4e8;
-    --text: #1a1d2e;
-    --muted: #5a6080;
-    --plus-light: #5b52e8;
-    --adv-dim: rgba(180,130,0,.10);
-    --plus-dim: rgba(108,99,255,.10);
+    /* Backgrounds & surfaces */
+    --bg:       #f6f6f7;
+    --surface:  #ffffff;
+    --surface2: #f1f2f3;
+    --border:   #c9cccf;
+    /* Typography */
+    --text:     #202223;
+    --muted:    #6d7175;
+    /* Brand — Shopify green replaces the purple as the "upgrade" accent */
+    --plus:        #008060;
+    --plus-light:  #007050;
+    --plus-dim:    rgba(0,128,96,.09);
+    /* Advanced stays amber but darkened for contrast on white */
+    --adv:         #b06800;
+    --adv-dim:     rgba(176,104,0,.09);
+    /* Supporting palette */
+    --accent2:  #007050;
+    --ok:       #007050;
+    --danger:   #d72c0d;
   }
   html.light body { background: var(--bg); }
   html.light header {
-    background: linear-gradient(135deg, #eceef8 0%, #f4f5f9 65%);
+    background: linear-gradient(135deg, #f1f2f3 0%, #f6f6f7 65%);
+    border-bottom-color: #c9cccf;
   }
   html.light header::before {
-    background: radial-gradient(circle, rgba(108,99,255,.10) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,128,96,.08) 0%, transparent 70%);
   }
   html.light header::after {
-    background: radial-gradient(circle, rgba(180,130,0,.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(176,104,0,.07) 0%, transparent 70%);
   }
   html.light .header-inner h1 {
-    background: linear-gradient(90deg, #b07d00 0%, #333 40%, var(--plus-light) 100%);
+    background: linear-gradient(90deg, #b06800 0%, #202223 45%, #008060 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  html.light .stat-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.12); }
-  html.light .impl-card:hover  { box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+  html.light .tab-btn.active { border-bottom-color: #008060; color: #202223; }
+  html.light .eyebrow-adv { background: rgba(176,104,0,.09); border-color: rgba(176,104,0,.3); color: #b06800; }
+  html.light .eyebrow-plus { background: rgba(0,128,96,.09); border-color: rgba(0,128,96,.3); color: #007050; }
+  html.light .hc-plan-tag.plus { background: rgba(0,128,96,.09); border-color: rgba(0,128,96,.3); color: #007050; }
+  html.light .hc-name.plus { color: #007050; }
+  html.light .impl-plan-tag.plus { background: rgba(0,128,96,.09); color: #007050; border-color: rgba(0,128,96,.25); }
+  html.light .impl-implication strong { color: #007050; }
+  html.light .upgrade-tag { background: rgba(0,128,96,.09); color: #007050; border-color: rgba(0,128,96,.2); }
+  html.light .val-unlimited { background: rgba(0,128,96,.09); color: #007050; border-color: rgba(0,128,96,.25); }
+  html.light .impl-expand-btn { color: #007050; }
+  html.light .impl-expand-btn:hover { background: rgba(0,128,96,.09); border-color: rgba(0,128,96,.3); }
+  html.light .ask-btn { background: rgba(0,128,96,.09); border-color: rgba(0,128,96,.3); color: #007050; }
+  html.light .ask-btn:hover { background: rgba(0,128,96,.15); }
+  html.light .stat-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.10); }
+  html.light .impl-card:hover  { box-shadow: 0 12px 32px rgba(0,0,0,.10); }
+  html.light .check { background: rgba(0,128,96,.12); color: #007050; }
+  html.light thead th.plus-col { color: #007050; }
+  html.light .impl-card.plus::before { background: #008060; }
 
   /* ── THEME TOGGLE BUTTON ── */
   .theme-toggle {
