@@ -461,6 +461,7 @@
           <li><span class="ci" style="color:var(--ok)">✓</span>Flow automation (B2B objects)</li>
           <li><span class="ci" style="color:var(--ok)">✓</span>3 B2B Catalogs (via Markets only)</li>
           <li><span class="ci" style="color:var(--ok)">✓</span>Up to 15 staff accounts</li>
+          <li><span class="ci" style="color:var(--ok)">✓</span>10 inventory locations</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>No deposit requirements</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>No partial payments</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>No direct catalog assignment</li>
@@ -468,6 +469,7 @@
           <li><span class="ci" style="color:var(--danger)">✕</span>No checkout extensibility</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>Standard support only, no phone</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>One-sided ToS, no liability cap</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>POS Pro $89/location (not included)</li>
         </ul>
       </div>
       <div class="hc-divider">vs</div>
@@ -485,6 +487,8 @@
           <li class="upgrade"><span class="ci">+</span>Checkout Extensibility (UI Extensions &amp; Functions)</li>
           <li class="upgrade"><span class="ci">+</span>Customer Account Extensions</li>
           <li class="upgrade"><span class="ci">+</span>9 Expansion Stores</li>
+          <li class="upgrade"><span class="ci">+</span>200 inventory locations (vs 10 on Advanced)</li>
+          <li class="upgrade"><span class="ci">+</span>200 POS Pro locations included (saves $17,800+/mo vs Advanced)</li>
           <li class="upgrade"><span class="ci">+</span>24/7 priority support + phone support</li>
           <li class="upgrade"><span class="ci">+</span>Dedicated Merchant Success Manager</li>
           <li class="upgrade"><span class="ci">+</span>Mutual indemnification + liability cap</li>
@@ -570,6 +574,16 @@
         <div class="s-label">Checkout Customisation</div>
         <div class="s-value" style="color:var(--danger)">Plus Only</div>
         <div class="s-sub">UI Extensions &amp; Functions locked to Plus</div>
+      </div>
+      <div class="stat-card adv">
+        <div class="s-label">Inventory Locations</div>
+        <div class="s-value adv">10 → 200</div>
+        <div class="s-sub">Advanced capped at 10 · Plus up to 200</div>
+      </div>
+      <div class="stat-card plus">
+        <div class="s-label">POS Pro Included</div>
+        <div class="s-value plus">200</div>
+        <div class="s-sub">Plus includes 200 locations ($89/ea on Advanced)</div>
       </div>
     </div>
   </div>
@@ -2420,6 +2434,8 @@ const features = [
   { cat:'Storefront',        name:'Contextual Storefront (via Markets)',                    adv:'yes', plus:'yes' },
   { cat:'Complementary',     name:'Flow (using B2B objects)',                               adv:'yes', plus:'yes' },
   { cat:'Complementary',     name:'Expansion Stores',                                       adv:'no',  plus:'9' },
+  { cat:'Operations',        name:'Inventory locations',                                    adv:'10',  plus:'200' },
+  { cat:'Operations',        name:'POS Pro locations included',                             adv:'no',  plus:'200' },
 ];
 
 const implications = [
@@ -2482,6 +2498,18 @@ const implications = [
     body:`Advanced merchants are locked to Shopify's standard checkout. There is <strong>no ability to inject upsell offers, cross-sell recommendations, custom fields, or post-purchase pages</strong>. Plus unlocks Checkout Extensibility (UI Extensions and Functions), enabling fully customised checkout flows — including product upsells before payment, order bump cross-sells, and post-purchase upsell pages after the transaction completes.`,
     implication:`Checkout is the highest-intent moment in a buyer's journey. On Advanced, that moment is fixed — Shopify controls the experience. On Plus, merchants own it. For merchants with strong AOV improvement opportunities or complex ordering logic, this gap directly impacts revenue per order.`,
     tags:['Checkout Extensibility','UI Extensions','Functions','Upsell','Cross-sell']
+  },
+  {
+    type:'plus', icon:'📍', title:'Inventory Locations — 10 vs 200',
+    body:`Advanced caps inventory locations at <strong>10</strong>. Plus raises that ceiling to <strong>200</strong>. For multi-warehouse operations, omnichannel retailers, 3PL networks, or any merchant managing fulfilment across many physical or virtual locations, this gap is structural. At 10 locations, Advanced forces merchants to consolidate or approximate inventory logic — splitting stock across fewer nodes, losing granular pick-from-closest routing, and creating operational workarounds. At 200 locations, Plus supports the full scale of an enterprise omnichannel operation: regional warehouses, retail stores, pop-ups, 3PL partners, and virtual locations — all visible to the fulfilment engine simultaneously.`,
+    implication:`Any merchant with more than a handful of fulfilment points will hit the Advanced location ceiling as they scale. It's not a hypothetical limit — it's a hard operational constraint that forces infrastructure compromise at exactly the moment a business is growing.`,
+    tags:['Inventory locations','Omnichannel','Fulfilment','Operations']
+  },
+  {
+    type:'plus', icon:'🏪', title:'POS Pro — 200 Locations Included on Plus',
+    body:`Shopify POS Pro is <strong>$89 per location per month on Advanced</strong>. On Plus, <strong>200 POS Pro locations are included in the platform fee</strong>. For any merchant with physical retail — even a handful of locations — this changes the economics of Plus vs Advanced entirely. A merchant with 10 retail locations pays <strong>$890/month in POS Pro fees on Advanced</strong>. On Plus, those locations are included. At 20 locations: $1,780/month in savings. At 50 locations: $4,450/month. The POS Pro inclusion alone can offset a meaningful portion — or the entirety — of the Plus platform fee delta for merchants with an active retail footprint.`,
+    implication:`For any merchant with physical retail locations, the POS Pro inclusion on Plus is not a secondary feature — it's a direct cost line that should be modelled in every Advanced-to-Plus upgrade conversation. It often makes Plus the lower total cost option before any other Plus benefit is counted.`,
+    tags:['POS Pro','Retail','Cost savings','Omnichannel']
   },
   {
     type:'adv', icon:'⚠️', title:'Where Advanced Stalls',
