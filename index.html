@@ -759,7 +759,7 @@
         <div class="rate-row"><span class="rate-label">International cards</span><span class="rate-val adv">3.5% + 30¢</span></div>
         <div class="rate-row"><span class="rate-label">Premium / Commercial &amp; Amex</span><span class="rate-val adv">3.1% + 30¢</span></div>
         <div class="rate-row"><span class="rate-label">Shop Pay Installments (BNPL)</span><span class="rate-val adv">5.9% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.5%</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.6%</span></div>
       </div>
       <div class="rate-card plus-card">
         <span class="rate-card-tag plus">Plus</span>
@@ -813,9 +813,9 @@
           </tr>
           <tr>
             <td>Third-party payment gateway fee</td>
-            <td class="adv-rate">0.5%</td>
+            <td class="adv-rate">0.6%</td>
             <td class="plus-rate">0.2%</td>
-            <td class="save-rate">0.3%</td>
+            <td class="save-rate">0.4%</td>
           </tr>
         </tbody>
       </table>
@@ -832,8 +832,7 @@
         <div class="rate-row"><span class="rate-label">Online credit card</span><span class="rate-val adv">2.4% + 30¢</span></div>
         <div class="rate-row"><span class="rate-label">In-person</span><span class="rate-val adv">1.7%</span></div>
         <div class="rate-row"><span class="rate-label">American Express online</span><span class="rate-val adv">2.4% + 30¢</span></div>
-        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.5%</span></div>
-        <div class="rate-row"><span class="rate-label">Currency conversion</span><span class="rate-val adv">1.5%</span></div>
+        <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val adv">0.6%</span></div>
       </div>
       <div class="rate-card plus-card">
         <span class="rate-card-tag plus">Plus</span>
@@ -842,7 +841,6 @@
         <div class="rate-row"><span class="rate-label">In-person</span><span class="rate-val plus">1.6%</span></div>
         <div class="rate-row"><span class="rate-label">American Express online</span><span class="rate-val plus">2.15% + 30¢</span></div>
         <div class="rate-row"><span class="rate-label">Third-party payment gateway</span><span class="rate-val plus">0.2%</span></div>
-        <div class="rate-row"><span class="rate-label">Currency conversion</span><span class="rate-val plus">1.5%</span></div>
       </div>
     </div>
     <p class="rate-note" style="margin-top:14px;">* Canada published rates. Plus rates are starting points — high-volume merchants may negotiate further reductions. Shopify Payments must be enabled to avoid third-party gateway fees.</p>
@@ -875,9 +873,9 @@
           </tr>
           <tr>
             <td>Third-party payment gateway fee</td>
-            <td class="adv-rate">0.5%</td>
+            <td class="adv-rate">0.6%</td>
             <td class="plus-rate">0.2%</td>
-            <td class="save-rate">0.3%</td>
+            <td class="save-rate">0.4%</td>
           </tr>
         </tbody>
       </table>
@@ -928,7 +926,7 @@
           <div class="calc-result-val save" id="calc-saving-mo">—</div>
         </div>
       </div>
-      <p class="rate-note" style="margin-top:18px;" id="calc-rate-note">Calculator uses US standard consumer card rates: 2.5% (Adv) vs 2.25% (Plus). In-person uses 2.5% (Adv) vs 2.25% (Plus) for US, and 1.7% (Adv) vs 1.6% (Plus) for Canada. Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.</p>
+      <p class="rate-note" style="margin-top:18px;" id="calc-rate-note">Calculator uses US standard consumer card rates: 2.5% (Adv) vs 2.25% (Plus). In-person uses 2.5% (Adv) vs 2.25% (Plus) for US, and 1.7% (Adv) vs 1.6% (Plus) for Canada. Third-party uses 0.6% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.</p>
     </div>
   </div>
 
@@ -944,7 +942,7 @@
       <div class="impl-card plus">
         <span class="impl-icon">🔌</span>
         <div class="impl-title">Third-Party Gateway Fee Cut 60% <span class="impl-plan-tag plus">Plus</span></div>
-        <div class="impl-body">Merchants using a third-party payment provider (e.g. Stripe, Braintree, PayPal) pay <strong>0.5% on Advanced vs 0.2% on Plus</strong>. On $500K/month, that's $1,500/month saved — <strong>$18,000/year</strong> — just from the gateway fee reduction.</div>
+        <div class="impl-body">Merchants using a third-party payment provider (e.g. Stripe, Braintree, PayPal) pay <strong>0.6% on Advanced vs 0.2% on Plus</strong>. On $500K/month, that's $2,000/month saved — <strong>$24,000/year</strong> — just from the gateway fee reduction.</div>
         <div class="impl-implication"><strong>Sales angle:</strong> Merchants who can't switch to Shopify Payments (regulated industries, existing contracts) still benefit materially from the lower third-party rate on Plus.</div>
       </div>
       <div class="impl-card adv">
@@ -2634,7 +2632,7 @@ function calcSavings() {
   const r = rates[country];
 
   // Monthly fees
-  const advMo  = online * r.advOnline  + inperson * r.advInperson  + thirdparty * 0.005;
+  const advMo  = online * r.advOnline  + inperson * r.advInperson  + thirdparty * 0.006;
   const plusMo = online * r.plusOnline + inperson * r.plusInperson + thirdparty * 0.002;
   const saveMo = advMo - plusMo;
 
@@ -2647,9 +2645,9 @@ function calcSavings() {
   // Update rate note
   const note = document.getElementById('calc-rate-note');
   if (country === 'us') {
-    note.textContent = 'Calculator uses US standard consumer card rates: 2.5% (Adv) vs 2.25% (Plus) for both online and in-person. Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.';
+    note.textContent = 'Calculator uses US standard consumer card rates: 2.5% (Adv) vs 2.25% (Plus) for both online and in-person. Third-party uses 0.6% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.';
   } else {
-    note.textContent = 'Calculator uses Canada online credit card rates: 2.4% (Adv) vs 2.15% (Plus). In-person: 1.7% (Adv) vs 1.6% (Plus). Third-party uses 0.5% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.';
+    note.textContent = 'Calculator uses Canada online credit card rates: 2.4% (Adv) vs 2.15% (Plus). In-person: 1.7% (Adv) vs 1.6% (Plus). Third-party uses 0.6% vs 0.2%. Does not include the fixed 30¢ per-transaction component or fixed plan fees. For illustrative purposes only.';
   }
 }
 
