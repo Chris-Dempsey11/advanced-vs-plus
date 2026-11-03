@@ -703,8 +703,8 @@
       </div>
       <div class="stat-card plus">
         <div class="s-label">Plus-Only Upgrades</div>
-        <div class="s-value plus">7</div>
-        <div class="s-sub">features not available on Advanced</div>
+        <div class="s-value plus" id="plus-only-count">30+</div>
+        <div class="s-sub">documented platform differences where Plus comes out ahead</div>
       </div>
       <div class="stat-card teal">
         <div class="s-label">Legal Protections</div>
@@ -739,10 +739,15 @@
           <li><span class="ci" style="color:var(--danger)">✕</span>No partial payments</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>No direct catalog assignment</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>No payment requests per fulfillment</li>
-          <li><span class="ci" style="color:var(--danger)">✕</span>No checkout extensibility</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No UI extensions in checkout's information, shipping &amp; payment steps</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No custom apps with Shopify Functions</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>GraphQL Admin API capped at 200 points/sec</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No GiftCard, Multipass or User APIs</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>Card authorizations expire after 7 days</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>One legal entity per store for Shopify Payments</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>Standard support only, no phone</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>One-sided ToS, no liability cap</li>
-          <li><span class="ci" style="color:var(--danger)">✕</span>POS Pro $89/location (not included)</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>POS Pro $89/location/month (not included)</li>
         </ul>
       </div>
       <div class="hc-divider">vs</div>
@@ -757,12 +762,19 @@
           <li class="upgrade"><span class="ci">+</span>Partial payments</li>
           <li class="upgrade"><span class="ci">+</span>Payment requests per fulfillment</li>
           <li class="upgrade"><span class="ci">+</span>Unlimited staff accounts</li>
-          <li class="upgrade"><span class="ci">+</span>Checkout Extensibility (UI Extensions &amp; Functions)</li>
-          <li class="upgrade"><span class="ci">+</span>Customer Account Extensions</li>
+          <li class="upgrade"><span class="ci">+</span>Checkout UI extensions in information, shipping &amp; payment steps</li>
+          <li class="upgrade"><span class="ci">+</span>Checkout Branding API &amp; separate B2B / D2C checkout flows</li>
+          <li class="upgrade"><span class="ci">+</span>Custom apps with Shopify Functions (incl. Cart Transform line updates)</li>
+          <li class="upgrade"><span class="ci">+</span>5× GraphQL Admin API limit (1,000 vs 200 points/sec)</li>
+          <li class="upgrade"><span class="ci">+</span>Plus-only APIs: GiftCard, Multipass, User, publishablePublish/Unpublish</li>
+          <li class="upgrade"><span class="ci">+</span>Extended card authorization (up to 30 days)</li>
+          <li class="upgrade"><span class="ci">+</span>Multiple business entities in one store</li>
+          <li class="upgrade"><span class="ci">+</span>Combined Listings, Launchpad &amp; Shopify Audiences</li>
+          <li class="upgrade"><span class="ci">+</span>25 Hydrogen public storefronts, unlimited staging stores, Feature Test Drive</li>
           <li class="upgrade"><span class="ci">+</span>9 Expansion Stores</li>
           <li class="upgrade"><span class="ci">+</span>Advanced security settings (org-wide 2FA, verified domains, SAML, SCIM, activity logs)</li>
           <li class="upgrade"><span class="ci">+</span>200 inventory locations (vs 10 on Advanced)</li>
-          <li class="upgrade"><span class="ci">+</span>200 POS Pro locations included (saves $17,800+/mo vs Advanced)</li>
+          <li class="upgrade"><span class="ci">+</span>POS Pro: 20 locations included, fees waived up to 200 with Shopify Payments</li>
           <li class="upgrade"><span class="ci">+</span>24/7 priority support + phone support</li>
           <li class="upgrade"><span class="ci">+</span>Dedicated Merchant Success Manager</li>
           <li class="upgrade"><span class="ci">+</span>Mutual indemnification + liability cap</li>
@@ -847,7 +859,7 @@
       <div class="stat-card red">
         <div class="s-label">Checkout Customisation</div>
         <div class="s-value" style="color:var(--danger)">Plus Only</div>
-        <div class="s-sub">UI Extensions &amp; Functions locked to Plus</div>
+        <div class="s-sub">Info, shipping &amp; payment step extensions + custom Functions apps</div>
       </div>
       <div class="stat-card adv">
         <div class="s-label">Inventory Locations</div>
@@ -856,8 +868,8 @@
       </div>
       <div class="stat-card plus">
         <div class="s-label">POS Pro Included</div>
-        <div class="s-value plus">200</div>
-        <div class="s-sub">Plus includes 200 locations ($89/ea on Advanced)</div>
+        <div class="s-value plus">20 → 200</div>
+        <div class="s-sub">20 included; waived up to 200 with Shopify Payments ($89/location/mo on Advanced)</div>
       </div>
     </div>
   </div>
@@ -1264,7 +1276,7 @@
         <div class="excl-card" onclick="openExcl('checkout')">
           <span class="excl-card-icon">🏗️</span>
           <div class="excl-card-title">Checkout Extensibility</div>
-          <div class="excl-card-desc">UI Extensions and Functions to build fully custom checkout flows, upsells, cross-sells, and post-purchase pages.</div>
+          <div class="excl-card-desc">UI extensions inside the information, shipping and payment steps, the Checkout Branding API, separate B2B/D2C flows, and Checkout Blocks.</div>
           <div class="excl-card-tags">
             <span class="excl-card-tag">Plus Only</span>
             <span class="excl-card-tag">UI Extensions</span>
@@ -1285,18 +1297,41 @@
           <div class="excl-card-cta">Explore feature</div>
         </div>
 
-        <div class="excl-card" onclick="openExcl('accountext')">
-          <span class="excl-card-icon">👤</span>
-          <div class="excl-card-title">Customer Account Extensions</div>
-          <div class="excl-card-desc">Build a fully branded self-serve portal — loyalty, order management, B2B company tools, and custom modules — all inside the logged-in account experience.</div>
+        <div class="excl-card" onclick="openExcl('devplatform')">
+          <span class="excl-card-icon">🔌</span>
+          <div class="excl-card-title">Plus-Only APIs &amp; Developer Platform</div>
+          <div class="excl-card-desc">5× API throughput, GiftCard / Multipass / User APIs, Cart Transform line updates, Level 2 PII custom apps, 25 Hydrogen storefronts and unlimited staging stores.</div>
           <div class="excl-card-tags">
             <span class="excl-card-tag">Plus Only</span>
-            <span class="excl-card-tag">B2B Critical</span>
-            <span class="excl-card-tag">Self-Serve</span>
+            <span class="excl-card-tag">APIs</span>
+            <span class="excl-card-tag">Headless</span>
           </div>
           <div class="excl-card-cta">Explore feature</div>
         </div>
 
+        <div class="excl-card" onclick="openExcl('payments')">
+          <span class="excl-card-icon">🏛️</span>
+          <div class="excl-card-title">Extended Authorization &amp; Business Entities</div>
+          <div class="excl-card-desc">Hold card authorizations up to 30 days, and run multiple legal entities with their own Shopify Payments accounts from one store.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">Payments</span>
+            <span class="excl-card-tag">Finance</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
+        <div class="excl-card" onclick="openExcl('org')">
+          <span class="excl-card-icon">🏢</span>
+          <div class="excl-card-title">Organization Admin &amp; Operations</div>
+          <div class="excl-card-desc">Organization-level settings and cross-store analytics, email suppression, bot protection, 100 themes, 1 TB storage and Plus Certified App Partners.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">Multi-store</span>
+            <span class="excl-card-tag">Operations</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
 
         <div class="excl-card" onclick="openExcl('catalogs')">
           <span class="excl-card-icon">📋</span>
@@ -1313,10 +1348,10 @@
         <div class="excl-card" onclick="openExcl('functions')">
           <span class="excl-card-icon">⚙️</span>
           <div class="excl-card-title">Functions & Custom Apps</div>
-          <div class="excl-card-desc">Build proprietary IP directly into Shopify — custom logic, private apps, and bespoke commerce experiences that no competitor can replicate.</div>
+          <div class="excl-card-desc">Deploy your own custom apps with Shopify Functions — discount, shipping, payment, validation and cart transform logic that only your store runs.</div>
           <div class="excl-card-tags">
             <span class="excl-card-tag">Plus Only</span>
-            <span class="excl-card-tag">Custom Apps</span>
+            <span class="excl-card-tag">Custom Functions</span>
             <span class="excl-card-tag">Private IP</span>
           </div>
           <div class="excl-card-cta">Explore feature</div>
@@ -1325,7 +1360,7 @@
         <div class="excl-card" onclick="openExcl('combinedlistings')">
           <span class="excl-card-icon">🔗</span>
           <div class="excl-card-title">Shopify Combined Listings</div>
-          <div class="excl-card-desc">Merge multiple product variants into a single unified listing — ideal for size/colour-heavy catalogues where standard variant limits create friction.</div>
+          <div class="excl-card-desc">Group up to 60 separate products — each with its own images, URL handle and inventory — into one listing with a single option picker.</div>
           <div class="excl-card-tags">
             <span class="excl-card-tag">Plus Only</span>
             <span class="excl-card-tag">Catalogue</span>
@@ -1348,8 +1383,8 @@
 
         <div class="excl-card" onclick="openExcl('usergroups')">
           <span class="excl-card-icon">👥</span>
-          <div class="excl-card-title">Custom User Groups & Permissions</div>
-          <div class="excl-card-desc">Define granular staff roles with scoped permissions across your store — critical for B2B operations, large teams, and merchants with complex approval workflows.</div>
+          <div class="excl-card-title">User Groups, Unlimited Staff &amp; Org Security</div>
+          <div class="excl-card-desc">Unlimited staff, user groups for bulk permissions, custom organization roles, SAML SSO, SCIM provisioning and org-wide 2FA.</div>
           <div class="excl-card-tags">
             <span class="excl-card-tag">Plus Only</span>
             <span class="excl-card-tag">B2B Critical</span>
@@ -1627,9 +1662,9 @@
     <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
 
     <div class="section a1">
-      <div class="section-label">What is Checkout Extensibility?</div>
+      <div class="section-label">What is Checkout Extensibility on Plus?</div>
       <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
-        <strong style="color:var(--plus-light);">Checkout Extensibility is a Plus-exclusive capability</strong> that lets merchants fully customise the Shopify checkout using two building blocks: <strong>UI Extensions</strong> (visual components injected into checkout pages) and <strong>Functions</strong> (server-side logic that runs during the checkout process). Together they give merchants complete control over the highest-intent moment in the buyer journey — something Advanced merchants cannot access.
+        <strong style="color:var(--plus-light);">Every plan can brand checkout and extend the pages after purchase. Plus opens the checkout itself.</strong> On Advanced you can set logo, colours and fonts in the checkout editor and add app extensions to the Thank you, Order status and post-purchase pages. <strong>Only Plus can place UI extensions in the information, shipping and payment steps</strong>, style checkout programmatically with the <strong>Checkout Branding API</strong>, run <strong>separate B2B and D2C checkout flows</strong> in one store, use <strong>Checkout Blocks</strong>, and deploy <strong>custom apps with Shopify Functions</strong> to change checkout logic.
       </div>
     </div>
 
@@ -1637,137 +1672,157 @@
       <div class="section-label">At a Glance</div>
       <div class="stat-row">
         <div class="stat-card plus">
-          <div class="s-label">Availability</div>
+          <div class="s-label">Checkout Steps</div>
           <div class="s-value" style="color:var(--plus-light);">Plus Only</div>
-          <div class="s-sub">Advanced is locked to Shopify's standard checkout</div>
+          <div class="s-sub">Information, shipping &amp; payment step extensions</div>
         </div>
         <div class="stat-card teal">
-          <div class="s-label">Extension Points</div>
-          <div class="s-value" style="color:var(--accent2);">10+</div>
-          <div class="s-sub">Cart, information, shipping, payment, thank you, order status</div>
+          <div class="s-label">Branding API</div>
+          <div class="s-value" style="color:var(--accent2);">Plus Only</div>
+          <div class="s-sub">Programmatic checkout styling beyond the editor</div>
         </div>
         <div class="stat-card plus">
-          <div class="s-label">Building Blocks</div>
-          <div class="s-value" style="color:var(--plus-light);">2</div>
-          <div class="s-sub">UI Extensions (visual) + Functions (logic)</div>
+          <div class="s-label">Custom Functions</div>
+          <div class="s-value" style="color:var(--plus-light);">Plus Only</div>
+          <div class="s-sub">Public Functions apps work on all plans; your own custom ones need Plus</div>
         </div>
         <div class="stat-card teal">
-          <div class="s-label">App Store</div>
-          <div class="s-value" style="color:var(--accent2);">1000+</div>
-          <div class="s-sub">Apps with checkout extensions available in the Shopify App Store</div>
+          <div class="s-label">B2B + D2C</div>
+          <div class="s-value" style="color:var(--accent2);">2 flows</div>
+          <div class="s-sub">Separate checkout experiences in one store</div>
         </div>
       </div>
     </div>
 
     <div class="section a2">
-      <div class="section-label">UI Extensions — What You Can Build</div>
+      <div class="section-label">UI Extensions in the Checkout Steps — What You Can Build</div>
       <div class="impl-grid">
         <div class="impl-card plus">
           <span class="impl-icon">🛒</span>
           <div class="impl-title">Pre-Payment Upsells <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Inject <strong>product upsell offers directly into the checkout</strong> — before the buyer completes payment. One-click add to order, no re-entering payment details. Target by cart contents, order value, customer segment, or product type. Common placements: after cart summary, on the payment page, or between shipping and payment steps.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Checkout upsells convert at 3–5x the rate of post-purchase popups because your buyer already has their payment details entered and intent is at its peak. It's the highest-converting upsell placement available — and it's only accessible on Plus.</div>
+          <div class="impl-body">Inject <strong>product offers directly into checkout before payment</strong> — one-click add to order, targeted by cart contents, order value or customer segment. Placements in the information, shipping and payment steps are Plus-only.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Buyers see the offer while they are still completing the order, so accepting it doesn't mean starting a new transaction.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🔁</span>
           <div class="impl-title">Cross-Sell Recommendations <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Display <strong>complementary product recommendations</strong> at checkout — accessories, consumables, warranties, or bundles. Powered by your own logic or third-party recommendation engines. Shown at the cart or payment step when buyer intent is highest.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Cross-sells at checkout increase your average order value without any additional acquisition spend. The same buyer spends more in the same session — pure margin improvement on traffic you've already paid for.</div>
-        </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">🎁</span>
-          <div class="impl-title">Post-Purchase Upsell Pages <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Add a <strong>post-purchase page between "Place Order" and the order confirmation</strong> — a dedicated upsell moment after payment is captured but before the thank you page. Buyers can add to their order without re-entering payment details. The most frictionless upsell point in ecommerce.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Post-purchase upsells carry zero risk to your primary conversion — the order is already placed. Every buyer who accepts is incremental revenue with no impact on your checkout completion rate.</div>
+          <div class="impl-body">Display <strong>complementary products, consumables, warranties or bundles</strong> inside the checkout steps, powered by your own logic or a recommendation engine.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Raises average order value on traffic you have already paid to acquire.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">📝</span>
-          <div class="impl-title">Custom Fields & Order Notes <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Add <strong>custom input fields to checkout</strong> — gift messages, delivery instructions, engraving text, PO numbers, installation dates, or any business-specific data. Fields are saved to order metafields and flow through to your OMS, ERP, or fulfilment system automatically.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Capturing PO numbers, delivery instructions, and custom fields at checkout eliminates manual follow-up and reduces fulfilment errors — saving your operations team time on every B2B order. For your DTC buyers, personalisation options at checkout add perceived value that strengthens the purchase experience.</div>
+          <div class="impl-title">Custom Fields &amp; Order Notes <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Add <strong>custom input fields to checkout</strong> — delivery instructions, engraving text, installation dates, job numbers or any business-specific data — saved to order metafields for your OMS, ERP or fulfilment system.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Captures the data operations needs at the point of order, removing manual follow-up on B2B orders.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">✅</span>
-          <div class="impl-title">Custom Consent & Compliance UI <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Inject <strong>custom consent checkboxes, age verification prompts, regulatory disclosures, and terms acceptance</strong> directly into checkout. Required for age-restricted products, regulated industries, subscription terms, or markets with specific consent requirements (GDPR, CCPA).</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Capturing consent natively within checkout gives you a cleaner, more auditable record than bolted-on popups or pre-checkout consent pages. It's better for your buyers' experience and stronger from a compliance standpoint.</div>
+          <div class="impl-title">Consent &amp; Compliance UI <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Inject <strong>consent checkboxes, age verification, regulatory disclosures and terms acceptance</strong> directly into the checkout steps.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> A cleaner, more auditable record than pre-checkout popups.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🏷️</span>
-          <div class="impl-title">Dynamic Banners & Promotions <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Display <strong>contextual banners at checkout</strong> — free shipping thresholds, loyalty points earned on this order, limited-time discount countdowns, or bundle incentives. Banners update dynamically based on cart contents and order value.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Buyers sometimes abandon checkout when they second-guess the value of their purchase. Dynamic incentive banners at the payment step — free shipping thresholds, loyalty point previews, limited-time offers — reduce that hesitation and can measurably lift your checkout completion rate.</div>
+          <div class="impl-title">Dynamic Banners &amp; Incentives <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Show <strong>contextual messages in checkout</strong> — free shipping thresholds, loyalty points earned, bundle incentives — that update with cart contents.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Reduces hesitation at the payment step.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🤝</span>
-          <div class="impl-title">Loyalty & Rewards Integration <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Surface <strong>loyalty point balances, reward redemption, and tier status directly inside checkout</strong> — no redirect, no external widget. Buyers see their points, choose how to apply them, and complete the order in one flow. Integrates with Smile, LoyaltyLion, Yotpo, and other major loyalty platforms.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Showing your buyers their loyalty points earned on the current order — and letting them redeem at checkout — reinforces the repeat purchase habit at the exact moment it matters most. It's one of the most effective retention tools available at checkout.</div>
+          <div class="impl-title">Loyalty Redemption In Checkout <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Let buyers <strong>see and redeem points inside the checkout steps</strong> with loyalty apps such as Smile, LoyaltyLion and Yotpo. (Thank you page loyalty blocks work on all plans; in-checkout redemption needs Plus.)</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Reinforces the repeat-purchase habit at the moment it matters.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🔒</span>
-          <div class="impl-title">B2B Approval & Validation UI <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">For B2B checkout flows, inject <strong>approval workflows, purchase order entry, credit limit validation, and buyer authorisation</strong> directly into checkout. Display company-specific messaging, payment terms, and account information — all scoped to the logged-in company account.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Your enterprise B2B buyers have procurement processes that don't fit a standard consumer checkout. With Plus, you can build the checkout around their requirements — approval workflows, PO capture, account-specific payment terms — rather than asking them to adapt to yours.</div>
+          <div class="impl-title">B2B Approval &amp; Validation UI <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Add <strong>approval steps, PO capture, credit-limit messaging and company-specific terms</strong> to the B2B checkout — and run it as a separate flow from your D2C checkout.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Lets enterprise buyers' procurement process fit your checkout instead of the other way round.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🎨</span>
+          <div class="impl-title">Checkout Branding API &amp; Checkout Blocks <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Go beyond the editor's logo, colour and font settings with the <strong>Checkout Branding API</strong>, and use <strong>Checkout Blocks</strong> for no-code content and custom shipping discounts, customisable per market.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> A checkout that matches your brand and each market without custom development.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">🎁</span>
+          <div class="impl-title">Post-Purchase, Thank You &amp; Order Status <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Post-purchase upsell pages and Thank you / Order status page extensions are <strong>available on Advanced and Plus</strong> (post-purchase extensions need access requested for live stores). Listed so the comparison is like-for-like.</div>
         </div>
       </div>
     </div>
 
     <div class="section a2">
-      <div class="section-label">Functions — What You Can Customise</div>
+      <div class="section-label">Functions — Your Own Logic (Custom Apps on Plus)</div>
       <div class="impl-grid">
+        <div class="impl-card both">
+          <span class="impl-icon">ℹ️</span>
+          <div class="impl-title">How Functions availability works <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">App Store apps that contain Functions run on every plan. <strong>Only Plus stores can install custom apps that contain Shopify Function APIs</strong> — your own logic, built for your business, not a vendor's generic version.</div>
+        </div>
         <div class="impl-card plus">
           <span class="impl-icon">💸</span>
           <div class="impl-title">Custom Discount Logic <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Build <strong>fully custom discount rules that run server-side</strong> — beyond what Shopify's native discount engine supports. Volume-based discounts, tiered pricing at checkout, bundle discounts, customer-segment pricing, B2B account-level discounts, and complex conditional promotions. All execute as Functions without exposing logic to the client.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> If your pricing rules are complex — volume tiers, bundle logic, segment-specific discounts — you've probably been managing them with third-party apps or workarounds that add fragility to your checkout. Functions replace all of that with native, server-side logic that runs reliably inside Shopify's checkout with no performance trade-off.</div>
+          <div class="impl-body">Build <strong>your own server-side discount rules</strong> — volume tiers, bundle discounts, segment pricing, B2B account discounts, stacking caps — combined with Plus's enhanced shipping, order and payment discount controls.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Pricing rules that match your commercial agreements exactly, without depending on a third-party app's feature set.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🚚</span>
           <div class="impl-title">Custom Shipping Logic <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Override Shopify's shipping rate calculation with <strong>fully custom delivery logic</strong> — hide, rename, reorder, or inject shipping methods based on cart contents, customer tags, delivery address, order value, or B2B company. Enforce carrier rules, restrict dangerous goods shipping, or offer LTL freight options for large B2B orders.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Your shipping logic doesn't have to be a compromise. With Shopify Functions, you can express complex carrier rules — dangerous goods restrictions, B2B freight options, regional carrier preferences — as code that runs natively at checkout. No third-party app dependency, no performance overhead.</div>
+          <div class="impl-body">Hide, rename, reorder or add delivery options based on cart contents, customer, address, order value or company — dangerous-goods restrictions, freight options for large B2B orders, regional carrier rules.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Carrier rules expressed as code that runs natively at checkout.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">💳</span>
-          <div class="impl-title">Custom Payment Customisation <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body"><strong>Hide, reorder, or rename payment methods</strong> based on cart contents, customer type, order value, or geography. Show net terms payment only to B2B accounts. Hide BNPL for orders under a threshold. Restrict payment methods by product type (e.g. no PayPal for age-restricted items). Display methods in a custom priority order.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Showing the right payment methods to the right buyers — and hiding irrelevant ones — removes confusion at the most critical moment. Your B2B buyers don't need to see consumer BNPL options on a $50K order, and your DTC buyers don't need to see net-30 terms. Functions give you that control natively.</div>
+          <div class="impl-title">Custom Payment Logic <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Hide, reorder or rename payment methods</strong> by cart, customer type, order value or geography — net terms only for B2B, no BNPL above a threshold.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> The right payment options for each buyer at the most critical moment.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">✔️</span>
-          <div class="impl-title">Custom Cart & Checkout Validation <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Run <strong>server-side validation rules before an order can be placed</strong> — enforce minimum order quantities, B2B purchase limits, product compatibility checks, inventory holds, or regulatory compliance rules. If the cart fails validation, the buyer sees a clear error and cannot proceed until the issue is resolved.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Invalid orders that slip through to fulfilment create significant operational overhead — manual corrections, customer service escalations, and potential fulfilment errors. Cart validation Functions stop those orders at checkout, before they ever become a problem.</div>
+          <div class="impl-title">Custom Cart &amp; Checkout Validation <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Run <strong>your own validation before an order can be placed</strong> — minimums, purchase limits, compatibility checks, regulatory rules.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Stops invalid orders at checkout instead of in fulfilment.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🧩</span>
+          <div class="impl-title">Cart Transform — Line Updates <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">The Cart Transform API's <strong><code>lineUpdate</code> operation is Plus-only</strong> — override a cart line's price, title and image for custom bundles, configured products or kits. (Expand and merge operations work on all plans.)</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Custom bundle and configurator pricing presented exactly the way you sell it.</div>
         </div>
       </div>
     </div>
 
     <div class="section a3">
-      <div class="section-label">Advanced vs Plus — Checkout Extensibility</div>
+      <div class="section-label">Advanced vs Plus — Checkout</div>
       <div class="table-wrap">
         <table class="rate-table">
           <thead>
             <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
           </thead>
           <tbody>
-            <tr><td>Checkout UI customisation</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Pre-payment upsells &amp; cross-sells</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Post-purchase upsell page</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Checkout editor branding (logo, colours, fonts)</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Thank you &amp; Order status page extensions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Post-purchase extensions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Public App Store apps with Functions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>UI extensions in information, shipping &amp; payment steps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Pre-payment upsells &amp; cross-sells in checkout</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>Custom checkout fields</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom consent &amp; compliance UI</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Loyalty &amp; rewards at checkout</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Consent &amp; compliance UI in checkout</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Loyalty redemption inside checkout</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>B2B approval &amp; validation UI</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom discount logic (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom shipping logic (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom payment customisation (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Server-side cart validation (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Standard Shopify checkout</td><td class="center" style="color:var(--adv);font-weight:700;">✓ only</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Separate B2B and D2C checkout flows</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Checkout Branding API</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Checkout Blocks</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom apps with Functions (discount, shipping, payment, validation)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Cart Transform <code>lineUpdate</code></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Bot protection during flash sales</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
           </tbody>
         </table>
       </div>
       <div class="verdict" style="margin-top:16px;">
-        <strong>Bottom line:</strong> On Advanced, <strong>the checkout is Shopify's — not yours</strong>. You can change colours and a logo. On Plus, you own the entire checkout experience — every step, every piece of logic, every revenue opportunity. For merchants serious about conversion optimisation, B2B workflows, or compliance, this gap is one of the most consequential differences between the two plans.
+        <strong>Bottom line:</strong> On Advanced, you can brand checkout and extend what happens after purchase — but <strong>the steps where buyers enter their details and pay are Shopify's</strong>. On Plus, those steps are yours too: your fields, your validation, your offers, your logic.
       </div>
     </div>
 
@@ -1799,8 +1854,8 @@
         </div>
         <div class="stat-card teal">
           <div class="s-label">API Rate Limit (Plus)</div>
-          <div class="s-value" style="color:var(--accent2);">4×</div>
-          <div class="s-sub">500% higher REST & GraphQL limits vs standard plans</div>
+          <div class="s-value" style="color:var(--accent2);">5×</div>
+          <div class="s-sub">GraphQL Admin: 1,000 vs 200 points/sec on Advanced</div>
         </div>
         <div class="stat-card plus">
           <div class="s-label">Assignment Model</div>
@@ -1833,13 +1888,13 @@
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">💰</span>
-          <div class="impl-title">Percentage & Fixed Price Rules <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-title">Percentage & Fixed Price Rules <span class="impl-plan-tag both">Both Plans</span></div>
           <div class="impl-body">Each catalog supports <strong>percentage-based discounts off the base price or fully fixed price overrides</strong> per variant. Set a wholesale tier at 40% off retail, a VIP account at a specific fixed price per SKU, and a distributor at a negotiated margin — all independently, all at scale across thousands of variants.</div>
           <div class="impl-implication"><strong>Business Impact:</strong> Your B2B pricing relationships likely combine margin-based rules and negotiated fixed prices. Plus supports both models natively — which means your pricing logic lives inside Shopify where it can be managed, audited, and synced with your ERP, not scattered across external tools.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">📦</span>
-          <div class="impl-title">Catalog-Level Product Visibility <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-title">Catalog-Level Product Visibility <span class="impl-plan-tag both">Both Plans</span></div>
           <div class="impl-body">Each catalog controls <strong>which products are visible to that buyer</strong> — not just the price. Show a distributor only the SKUs they're contracted for. Hide discontinued products from certain accounts. Give a key account early access to a new product line before it's live for other buyers.</div>
           <div class="impl-implication"><strong>Business Impact:</strong> Controlling which products each buyer can see eliminates one of the most common channel conflict risks in B2B — a buyer seeing contracted SKUs or prices that weren't meant for them. With Plus catalogs, every buyer sees exactly what you intend them to see, nothing more.</div>
         </div>
@@ -1887,8 +1942,8 @@
       <div class="impl-grid">
         <div class="impl-card plus">
           <span class="impl-icon">🚀</span>
-          <div class="impl-title">500% Higher API Rate Limits <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Shopify Plus grants <strong>500% higher REST and GraphQL API rate limits</strong> compared to standard plans. For catalog integrations, this is the difference between a sync that completes in minutes and one that throttles for hours. Bulk catalog creation, price updates, product visibility changes, and company assignments all consume API calls — at scale, limits matter.</div>
+          <div class="impl-title">5× the GraphQL Admin API Limit <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">The GraphQL Admin API rate limit is <strong>1,000 points/second on Plus vs 200 on Advanced</strong> (100 on standard plans), and Plus merchants can request higher limits through support. For catalog integrations, this is the difference between a sync that completes in minutes and one that throttles for hours. Bulk catalog creation, price updates and product visibility changes all move 5× faster at the same query cost.</div>
           <div class="impl-implication"><strong>Business Impact:</strong> If you're syncing hundreds of buyer accounts, thousands of SKUs, and regular price updates from your ERP, standard API limits throttle that process to the point of unreliability. Plus's enhanced API limits mean your sync runs to completion every time — without hitting ceilings that force retries or leave your pricing stale.</div>
         </div>
         <div class="impl-card plus">
@@ -1899,15 +1954,15 @@
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">📡</span>
-          <div class="impl-title">Real-Time Catalog Webhooks <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-title">Real-Time Catalog Webhooks <span class="impl-plan-tag both">Both Plans</span></div>
           <div class="impl-body">Shopify's <strong>catalog and company webhooks</strong> fire on price list changes, company assignments, and product availability updates — giving downstream systems (OMS, ERP, data warehouse) real-time visibility into catalog state. Combined with Plus API limits, you can handle high-frequency catalog events without dropping events or falling behind.</div>
           <div class="impl-implication"><strong>Business Impact:</strong> Keeping your ERP and order management system in sync with Shopify in real time means your buyers never place orders at stale prices or against incorrect availability. Real-time webhooks and Plus API capacity make that synchronisation dependable at the volume your business operates at.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🧩</span>
-          <div class="impl-title">GraphQL Bulk Operations <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Shopify's <strong>GraphQL Bulk Operations API</strong> allows asynchronous processing of massive catalog mutations — create or update tens of thousands of price list entries in a single job rather than looping through individual API calls. Plus merchants can run multiple bulk operations concurrently without hitting limits that block standard plan integrations.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Importing a large B2B catalogue — tens of thousands of SKUs across multiple price lists — is only reliably feasible via Bulk Operations at Plus API limits. On Advanced, full imports can throttle or fail mid-run. On Plus, they complete reliably, making large catalogue onboarding a routine operation rather than a project risk.</div>
+          <div class="impl-title">GraphQL Bulk Operations <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Shopify's <strong>GraphQL Bulk Operations API</strong> (available on all plans) processes massive catalog jobs asynchronously — create or update tens of thousands of price list entries in one job instead of looping through individual calls. On Plus, the surrounding per-record calls and follow-up queries run at 5× the rate limit.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Large catalog imports combine bulk jobs with many individual queries and mutations. Plus's higher rate limit keeps those individual calls from becoming the bottleneck.</div>
         </div>
       </div>
     </div>
@@ -1927,180 +1982,377 @@
             <tr><td>Percentage-based pricing rules</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>Fixed price overrides per variant</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>Per-catalog product visibility control</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Volume pricing via Functions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Bundle &amp; mix-match pricing (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Discount stacking rules (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Checkout catalog validation (Functions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Enhanced API rate limits (500%)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Volume pricing via custom Functions app</td><td class="center" style="color:var(--adv);font-weight:700;">Public apps only</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Bundle &amp; mix-match pricing (custom Functions)</td><td class="center" style="color:var(--adv);font-weight:700;">Public apps only</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Discount stacking rules (custom Functions)</td><td class="center" style="color:var(--adv);font-weight:700;">Public apps only</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Checkout catalog validation (custom Functions)</td><td class="center" style="color:var(--adv);font-weight:700;">Public apps only</td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>GraphQL Admin API rate limit</td><td class="center" style="color:var(--adv);font-weight:700;">200 pts/sec</td><td class="center" style="color:var(--plus-light);font-weight:700;">1,000 pts/sec</td></tr>
             <tr><td>ERP/PIM price sync at scale</td><td class="center" style="color:var(--adv);font-weight:700;">Limited</td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>GraphQL Bulk Operations for catalogs</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>GraphQL Bulk Operations for catalogs</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>Real-time catalog webhooks</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
           </tbody>
         </table>
       </div>
       <div class="verdict" style="margin-top:16px;">
-        <strong>Bottom line:</strong> Advanced gives you a foundation — 3 catalogs, basic pricing rules, and standard API access. <strong>Plus gives you an architecture</strong> — unlimited catalogs with direct assignment, server-side pricing logic via Functions, and the API throughput to sync it all reliably with your ERP or PIM. For any B2B merchant managing more than 3 buyer segments or processing more than a few hundred catalog records, Advanced is a constraint. Plus is a platform.
+        <strong>Bottom line:</strong> Advanced gives you a foundation — 3 catalogs routed through Markets and 200 points/sec of API capacity. <strong>Plus gives you an architecture</strong> — unlimited catalogs with direct company and location assignment, your own pricing logic as custom Functions, and 5× the API throughput to keep it all in sync with your ERP or PIM.
       </div>
     </div>
 
   </div>
 
-</div>
 
-
-  <!-- SUB-VIEW: Customer Account Extensions -->
-  <div id="excl-accountext" class="excl-sub">
+  <!-- SUB-VIEW: Developer Platform -->
+  <div id="excl-devplatform" class="excl-sub">
     <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
 
     <div class="section a1">
-      <div class="section-label">What are Customer Account Extensions?</div>
+      <div class="section-label">Plus-Only APIs &amp; Developer Platform</div>
       <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
-        <strong style="color:var(--plus-light);">Customer Account Extensions is a Plus-exclusive capability</strong> that lets merchants build fully custom experiences inside the logged-in customer and company account portal. On Advanced, the account page is entirely static — Shopify controls the layout and content, and merchants cannot modify it. On Plus, you own the account experience: inject custom UI components, third-party integrations, B2B tools, and self-serve workflows directly into the portal your buyers use every day.
+        <strong style="color:var(--plus-light);">Plus changes what your developers and integrations are allowed to do, not just how much.</strong> It raises the GraphQL Admin API limit 5×, opens API resources Advanced can't call, lets you deploy your own Functions, removes the large-catalog variant throttle, and gives your team staging stores, early-access environments and up to 25 public Hydrogen storefronts.
       </div>
     </div>
 
     <div class="section a1">
       <div class="section-label">At a Glance</div>
       <div class="stat-row">
-        <div class="stat-card adv">
-          <div class="s-label">Account Page on Advanced</div>
-          <div class="s-value" style="color:var(--adv);">Static</div>
-          <div class="s-sub">No customisation — Shopify controls the layout entirely</div>
-        </div>
         <div class="stat-card plus">
-          <div class="s-label">Account Page on Plus</div>
-          <div class="s-value" style="color:var(--plus-light);">Extensible</div>
-          <div class="s-sub">Full custom UI via Extensions — inject anything</div>
+          <div class="s-label">GraphQL Admin API</div>
+          <div class="s-value" style="color:var(--plus-light);">5×</div>
+          <div class="s-sub">1,000 vs 200 points/sec — more on request</div>
         </div>
         <div class="stat-card teal">
-          <div class="s-label">B2B Portal Access</div>
-          <div class="s-value" style="color:var(--accent2);">Native</div>
-          <div class="s-sub">Company account tools surfaced in the same portal</div>
+          <div class="s-label">Plus-Only APIs</div>
+          <div class="s-value" style="color:var(--accent2);">5</div>
+          <div class="s-sub">GiftCard, Multipass, User, publishablePublish/Unpublish</div>
         </div>
         <div class="stat-card plus">
-          <div class="s-label">App Ecosystem</div>
-          <div class="s-value" style="color:var(--plus-light);">Growing</div>
-          <div class="s-sub">Loyalty, returns, subscriptions & more via App Store</div>
+          <div class="s-label">Hydrogen Storefronts</div>
+          <div class="s-value" style="color:var(--plus-light);">25</div>
+          <div class="s-sub">Public Oxygen environments (1 on Advanced)</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Staging Stores</div>
+          <div class="s-value" style="color:var(--accent2);">Unlimited</div>
+          <div class="s-sub">Plus Feature Test Drive environments</div>
         </div>
       </div>
     </div>
 
     <div class="section a2">
-      <div class="section-label">What You Can Build — DTC & B2C</div>
+      <div class="section-label">APIs Only Plus Can Call</div>
       <div class="impl-grid">
         <div class="impl-card plus">
           <span class="impl-icon">🎁</span>
-          <div class="impl-title">Loyalty & Rewards Dashboard <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Surface a <strong>fully branded loyalty dashboard</strong> inside the account page — points balance, tier status, rewards available to redeem, referral links, and earning history. Integrates natively with Smile, LoyaltyLion, Yotpo, and other loyalty platforms. Buyers stay in your portal to manage their relationship with your brand rather than switching to a third-party app.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Your loyalty programme drives repeat purchases only when buyers can easily engage with it. A buried link to an external app breaks that habit. Surfacing loyalty status natively inside your account page means buyers see and engage with their rewards every time they log in — keeping the repeat purchase loop active.</div>
+          <div class="impl-title">GiftCard API <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Create, issue, update and disable gift cards programmatically.</strong> Issue store credit from your ERP or returns platform, run gift-card loyalty rewards, or sync balances with POS and external systems.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Gift cards and store credit become an integrated part of your finance and loyalty stack instead of a manual admin task.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">📦</span>
-          <div class="impl-title">Enhanced Order Management <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Go beyond Shopify's default order history list. Inject <strong>custom order tracking widgets, shipment status, carrier updates, and delivery ETAs</strong> directly into the account order page. Add one-click reorder, order modification windows, and split-shipment visibility — all in the context of the order the buyer is looking at.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> "Where is my order?" is the most common customer service query your team handles. Surfacing rich order tracking and shipment data natively inside your account page means buyers find that information themselves — reducing inbound support volume and freeing your team for higher-value interactions.</div>
+          <span class="impl-icon">🔑</span>
+          <div class="impl-title">Multipass <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Single sign-on from an external website, app or portal into Shopify customer accounts.</strong> If the customer doesn't have an account yet, one is created automatically. Plus also supports <strong>custom identity providers</strong> for customer sign-in.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> B2B buyers and members log in once — on your portal, dealer site or app — and land in Shopify already authenticated.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">🔄</span>
-          <div class="impl-title">Returns & Exchanges Portal <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Embed a <strong>self-serve returns and exchange flow</strong> directly into the account page. Buyers initiate returns, select reasons, print labels, and track refund status without contacting support. Integrates with Loop Returns, AfterShip Returns, and other returns platforms — all surfaced in your branded account environment.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> A frictionless returns experience is one of the strongest drivers of repeat purchase. When your buyers can self-serve returns directly from their account page, they trust your brand more — and your team handles fewer return requests manually, significantly reducing the cost per return.</div>
+          <span class="impl-icon">👤</span>
+          <div class="impl-title">User API <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Read and manage staff accounts and their permissions through the API.</strong> Pairs with SCIM provisioning for automated joiner/leaver workflows.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Staff access can be audited and managed by your identity and IT tooling, not by hand.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">🔁</span>
-          <div class="impl-title">Subscription Management <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Give subscribers <strong>full control over their subscriptions inside the account portal</strong> — skip a delivery, swap a product, change frequency, pause, or cancel. Integrates with Recharge, Skio, Stay.ai, and other subscription platforms. No redirecting buyers to a separate portal — it lives in your account page.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Subscription cancellations often happen because managing a plan feels like friction. A native subscription management interface inside your account page removes that barrier — and giving buyers "skip" and "pause" options instead of just "cancel" significantly reduces hard churn.</div>
-        </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">💳</span>
-          <div class="impl-title">Saved Payment & Address Management <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Extend the default payment and address management with <strong>custom UI for vaulted cards, preferred payment methods, B2B payment terms, and delivery address books</strong>. For subscriptions, show which card is attached to which subscription. For B2B, surface net terms and payment method options scoped to the company account.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> When buyers can update their own payment methods and delivery addresses, they don't need to contact your team to do it. Self-service account management reduces inbound support volume on routine, non-revenue-generating queries — freeing your team to focus on what matters.</div>
-        </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">🌟</span>
-          <div class="impl-title">Branded Content & Personalisation <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Inject <strong>personalised banners, product recommendations, and exclusive content</strong> into the account page based on customer tags, purchase history, loyalty tier, or segment. Show a VIP customer different content than a first-time buyer. Promote loyalty-gated products, early access offers, or member-only collections directly in the account context.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Your account page is one of the most-visited authenticated pages on your store — and one of the most underutilised for revenue. Personalised recommendations and exclusive offers transform it from a static utility into a retention and revenue surface that works every time a buyer logs in.</div>
+          <span class="impl-icon">📢</span>
+          <div class="impl-title">publishablePublish / Unpublish <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">GraphQL mutations to <strong>publish and unpublish products and collections to sales channels and publications</strong> by API.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Automated channel publishing from your PIM or ERP — drops, embargoes, channel-specific assortments.</div>
         </div>
       </div>
     </div>
 
     <div class="section a2">
-      <div class="section-label">What You Can Build — B2B Critical</div>
+      <div class="section-label">Throughput &amp; Scale</div>
       <div class="impl-grid">
         <div class="impl-card plus">
-          <span class="impl-icon">🏢</span>
-          <div class="impl-title">Company Account Dashboard <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Surface a <strong>company-level account view</strong> — total spend, open orders, outstanding invoices, net terms balance, and credit limit — directly in the account portal. Procurement managers and buyers at enterprise accounts expect a view of their full account relationship, not just their individual order history.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> On Advanced, your B2B buyers only see their own individual orders — there's no company-level view. For buyers who operate as part of an organisation, this is a fundamental gap: they can't see team orders, manage company users, or get a consolidated view of their account. Plus gives you the tools to build that company portal properly.</div>
+          <span class="impl-icon">🚀</span>
+          <div class="impl-title">5× GraphQL Admin Rate Limit <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Standard plans get 100 points/second, Advanced 200, <strong>Plus 1,000</strong>. Plus merchants can also request higher limits through support.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Integrations finish 5× faster at the same query cost, with headroom for peak events.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">👥</span>
-          <div class="impl-title">Multi-User & Buyer Management <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Let company admins <strong>manage their own buyer accounts</strong> from within the portal — invite new buyers, set permission levels (admin vs ordering only), deactivate users, and view activity per buyer. Eliminates the need to contact your team to add or remove company staff from the portal.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> For enterprise accounts with distributed buying teams or frequent staff changes, the ability for company admins to manage their own users is the difference between a scalable onboarding process and a constant stream of access requests hitting your customer service team.</div>
+          <span class="impl-icon">📦</span>
+          <div class="impl-title">No Daily Variant-Creation Cap <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Once a store reaches 500,000 variants, non-Plus stores can create at most <strong>10,000 new variants per day</strong> on any API. <strong>Plus is exempt.</strong></div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Large industrial, parts and B2B catalogs can load and grow without a daily ceiling.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">📄</span>
-          <div class="impl-title">Invoice & Payment History <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Surface a <strong>full invoicing and payment history view</strong> — open invoices, overdue amounts, payment due dates, and historical receipts. Buyers can download invoices directly from the portal and see net terms balance at a glance. Integrates with your ERP or accounts payable system to show real-time financial status per company account.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> B2B payments slow down when buyers can't easily find their invoices. A self-serve invoice portal inside your account page reduces payment chasing, improves your AR cycle time, and eliminates the "can you resend that invoice?" requests your team handles today.</div>
+          <span class="impl-icon">🔐</span>
+          <div class="impl-title">Unlimited Level 2 PII Custom Apps <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Plus allows <strong>unlimited custom apps with access to Level 2 protected customer data</strong> (fields like name, email, phone and address).</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Build customer-data integrations — CRM, ERP, marketing — in-house without app-count limits.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">📋</span>
-          <div class="impl-title">Quick Order & Reorder Lists <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Beyond the standard quick order list, inject <strong>custom reorder tools</strong> — saved order templates, favourite SKU lists, and one-click repeat order from any past order. B2B buyers often place the same or similar orders on a recurring basis. A frictionless reorder experience in the account portal reduces the time from intent to placed order.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Repeat orders are your highest-margin B2B transactions — no sales effort, no negotiation. Making reordering frictionless from within your account portal directly increases order frequency and reduces the risk of buyers defaulting to a competitor simply because it's easier.</div>
+          <span class="impl-icon">⚙️</span>
+          <div class="impl-title">Custom Apps with Functions <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Only Plus can install <strong>custom apps that contain Shopify Function APIs</strong>, including the Plus-only Cart Transform <code>lineUpdate</code> operation for custom bundle pricing, titles and images.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Your business logic, deployed only to your store.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Environments &amp; Headless</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🧪</span>
+          <div class="impl-title">Unlimited Staging Stores <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Plus includes <strong>unlimited staging stores</strong> on top of the 9 expansion stores — mirror production to test themes, apps, checkout changes and integrations.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Nothing reaches buyers until it has been tested against a real copy of your setup.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">🔔</span>
-          <div class="impl-title">Custom Notifications & Alerts <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Inject <strong>account-level notification preferences and alert management</strong> — let buyers configure which communications they receive, set re-order reminders for consumable products, and view notification history. B2B buyers managing large accounts need control over communication volume without relying on your marketing team to adjust list preferences.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Letting your buyers self-manage their communication preferences reduces blanket unsubscribes from critical transactional emails. Buyers who configure their own alerts stay more engaged — and are far less likely to opt out of all communications when they feel in control of what they receive.</div>
+          <span class="impl-icon">🚗</span>
+          <div class="impl-title">Feature Test Drive <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Early-access sandbox environments</strong> and control over feature releases, so you can try new Shopify capabilities before they reach your live store.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Your team evaluates platform changes on your schedule.</div>
         </div>
-        <div class="impl-card adv">
-          <span class="impl-icon">⚠️</span>
-          <div class="impl-title">The Advanced Gap — Static & Unbranded <span class="impl-plan-tag adv">Advanced</span></div>
-          <div class="impl-body">On Advanced, the account page is <strong>entirely outside merchant control</strong>. It shows order history, saved addresses, and a logout button — nothing more. No loyalty, no B2B company view, no invoice management, no custom branding, no self-serve tools. Every gap is filled by either directing buyers to a third-party portal or fielding CS requests manually.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Enterprise B2B buyers evaluate suppliers on the quality of their self-serve tools. A generic account page signals a consumer-grade platform. A custom, branded portal signals a partner who has invested in their experience — and that perception directly affects procurement decisions.</div>
+        <div class="impl-card plus">
+          <span class="impl-icon">💧</span>
+          <div class="impl-title">25 Hydrogen Storefronts on Oxygen <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Oxygen hosting is included on paid plans, but Advanced gets <strong>1 public environment</strong>. <strong>Plus gets 25</strong> — separate headless storefronts for brands, regions, B2B portals or campaigns.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Run multiple headless experiences without paying for separate hosting.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🎨</span>
+          <div class="impl-title">100 Themes &amp; 1 TB Storage <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Plus stores can hold <strong>up to 100 themes</strong> in the library and <strong>1 TB of file storage</strong> per store, with paid increases available through support.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Room for seasonal, market and test themes and large media libraries.</div>
         </div>
       </div>
     </div>
 
     <div class="section a3">
-      <div class="section-label">Advanced vs Plus — Account Experience Capability</div>
+      <div class="section-label">Advanced vs Plus — Developer Platform</div>
       <div class="table-wrap">
         <table class="rate-table">
           <thead>
             <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
           </thead>
           <tbody>
-            <tr><td>Custom UI in account portal</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Loyalty &amp; rewards dashboard</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Native returns &amp; exchange portal</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Subscription management</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Personalised content &amp; recommendations</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Rich order tracking &amp; shipment detail</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Company account dashboard (B2B)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Multi-user buyer management (B2B)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Invoice &amp; payment history (B2B)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Quick order &amp; reorder lists (B2B)</td><td class="center" style="color:var(--adv);font-weight:700;">Basic</td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom notification preferences</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Branded account experience</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>GraphQL Admin API rate limit</td><td class="center"><span style="color:var(--adv);font-weight:700;">200 pts/sec</span></td><td class="center"><span style="color:var(--plus-light);font-weight:700;">1,000 pts/sec</span></td></tr>
+            <tr><td>Higher limits on request</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>GiftCard API</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Multipass</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom identity provider for customer sign-in</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>User API</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>publishablePublish / publishableUnpublish</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom apps (Admin API)</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom apps with Shopify Functions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Cart Transform <code>lineUpdate</code></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Unlimited Level 2 PII custom apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Exempt from 10,000/day variant cap (500K+ variants)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Variants per product</td><td class="center">2,048</td><td class="center">2,048</td></tr>
+            <tr><td>Hydrogen public environments on Oxygen</td><td class="center">1</td><td class="center">25</td></tr>
+            <tr><td>Staging stores</td><td class="center"><span class="cross">✕</span></td><td class="center"><span style="color:var(--plus-light);font-weight:700;">Unlimited</span></td></tr>
+            <tr><td>Feature Test Drive</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Themes in library</td><td class="center">20</td><td class="center">100</td></tr>
           </tbody>
         </table>
       </div>
       <div class="verdict" style="margin-top:16px;">
-        <strong>Bottom line:</strong> On Advanced, <strong>the account page is Shopify's — not yours</strong>. It's a utility, not a destination. On Plus, it becomes a <strong>self-serve portal that serves both retention and operational efficiency</strong>. For B2B merchants, a branded company account portal is not a nice-to-have — it's the primary interface through which enterprise buyers manage their relationship with your business. Advanced cannot deliver that. Plus can.
+        <strong>Bottom line:</strong> Advanced gives your developers the standard Shopify platform. <strong>Plus gives them 5× the throughput, the APIs enterprise integrations depend on, and the environments to build and test safely.</strong>
       </div>
     </div>
 
   </div>
 
-</div>
+  <!-- SUB-VIEW: Payments -->
+  <div id="excl-payments" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
 
+    <div class="section a1">
+      <div class="section-label">Extended Authorization &amp; Business Entities</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Two Plus-only payment capabilities change how B2B and multi-entity businesses collect money.</strong> Extended authorization lets you hold a card authorization for up to 30 days instead of 7. Business entities let one store sell as several legal entities, each with its own Shopify Payments account.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Authorization Window</div>
+          <div class="s-value" style="color:var(--plus-light);">30 days</div>
+          <div class="s-sub">Visa, Mastercard, Amex (10 for Discover, JCB) — 7 on Advanced</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Business Entities</div>
+          <div class="s-value" style="color:var(--accent2);">Multiple</div>
+          <div class="s-sub">Separate Shopify Payments accounts in one store</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Payouts</div>
+          <div class="s-value" style="color:var(--plus-light);">Per entity</div>
+          <div class="s-sub">Own payout currency and schedule</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Online Card Rate</div>
+          <div class="s-value" style="color:var(--accent2);">2.25%</div>
+          <div class="s-sub">vs 2.5% on Advanced (US)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">What Plus Adds</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">⏱️</span>
+          <div class="impl-title">Extended Authorization <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Authorize at order and <strong>capture up to 30 days later</strong> for Visa, Mastercard and Amex (10 days for Discover and JCB). Authorization expiry dates show on the Orders page. Capturing after day 7 carries an additional 1.75% fee.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Made-to-order, backordered and staged B2B shipments can be captured when they ship — no re-authorization or early capture.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🏛️</span>
+          <div class="impl-title">Multiple Business Entities <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Add each legal entity in organization settings, <strong>connect each to its own Shopify Payments account</strong>, and assign entities to markets. Each entity can have its own payout currency and schedule, and at POS the entity assigned to a location sets its currency.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Separate B2B vs D2C, online vs retail, or per-country entities — in one store instead of several.</div>
+        </div>
+        <div class="impl-card adv">
+          <span class="impl-icon">⚠️</span>
+          <div class="impl-title">On Advanced <span class="impl-plan-tag adv">Advanced</span></div>
+          <div class="impl-body">Card authorizations follow the standard <strong>7-day</strong> window, and every order processes through the store's <strong>single primary Shopify Payments account</strong>.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Multi-entity finance structures need separate stores or manual reconciliation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — Payments</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Card authorization window (Visa/MC/Amex)</td><td class="center">7 days</td><td class="center">30 days</td></tr>
+            <tr><td>Card authorization window (Discover/JCB)</td><td class="center">7 days</td><td class="center">10 days</td></tr>
+            <tr><td>Multiple business entities in one store</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Per-entity payout currency &amp; schedule</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Deposits, partial payments, per-fulfillment payment requests</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> Plus lets your payment setup match how your business actually ships and how it is legally structured.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUB-VIEW: Organization -->
+  <div id="excl-org" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">Organization Admin &amp; Operations</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">Plus adds an organization layer above your stores</strong> — organization settings, user groups, cross-store analytics and security settings — plus operational capabilities like email suppression, bot protection during flash sales and access to Shopify Plus Certified App Partners.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Stores</div>
+          <div class="s-value" style="color:var(--plus-light);">1 + 9</div>
+          <div class="s-sub">Expansion stores, plus unlimited staging stores</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Analytics</div>
+          <div class="s-value" style="color:var(--accent2);">Cross-store</div>
+          <div class="s-sub">Organization-level insights across all stores</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">Themes</div>
+          <div class="s-value" style="color:var(--plus-light);">100</div>
+          <div class="s-sub">Per store theme library (20 on Advanced)</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">File Storage</div>
+          <div class="s-value" style="color:var(--accent2);">1 TB</div>
+          <div class="s-sub">Per store, increases available</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">What Plus Adds</div>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🏢</span>
+          <div class="impl-title">Organization Admin <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Organization settings, user groups, analytics and advanced security</strong> managed once for every store in the organization.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> One place to govern users, security and reporting across all your stores.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📊</span>
+          <div class="impl-title">Cross-Store Insights <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Reporting that spans stores — sales, cohort, inventory and customer reports, custom dashboards and exportable data with <strong>cross-store insights</strong>.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> See the whole business, not one store at a time.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">✉️</span>
+          <div class="impl-title">Email Suppression <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Described by Shopify as <strong>exclusive to the Shopify Plus plan</strong> — suppress Shopify notification emails where another system handles customer communications.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Avoid duplicate or conflicting emails when your ERP, OMS or ESP owns messaging.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🤖</span>
+          <div class="impl-title">Bot Protection for Flash Sales <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Bot protection during flash sales</strong> is part of Plus's security stack.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Limited drops reach real customers, not resellers' scripts.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🤝</span>
+          <div class="impl-title">Plus Certified App Partners &amp; Plus Partner Program <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Access to <strong>Shopify Plus Certified App Partners</strong> and the curated <strong>Plus Partner Program</strong> of service partners.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Vetted apps and agencies that work at enterprise scale.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🏪</span>
+          <div class="impl-title">POS Pro Included <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>First 20 POS Pro locations included</strong>; with more than 20 and Shopify Payments as primary retail provider, POS Pro fees are <strong>waived for up to 200 locations</strong> ($89/location/month on Advanced).</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Retail footprints of any size without per-location POS Pro fees.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Advanced vs Plus — Organization &amp; Operations</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Organization settings, groups &amp; analytics</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Expansion stores</td><td class="center"><span class="cross">✕</span></td><td class="center">9</td></tr>
+            <tr><td>Staging stores</td><td class="center"><span class="cross">✕</span></td><td class="center"><span style="color:var(--plus-light);font-weight:700;">Unlimited</span></td></tr>
+            <tr><td>Email suppression</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Bot protection during flash sales</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Themes in library</td><td class="center">20</td><td class="center">100</td></tr>
+            <tr><td>File storage per store</td><td class="center">Standard</td><td class="center">1 TB</td></tr>
+            <tr><td>POS Pro locations included</td><td class="center"><span class="cross">✕</span></td><td class="center">20 (waived up to 200)</td></tr>
+            <tr><td>Inventory locations</td><td class="center">10</td><td class="center">200</td></tr>
+            <tr><td>Plus Certified App Partners &amp; Plus Partner Program</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> Plus is built for running a business across stores, teams and channels — with the controls and partners to match.
+      </div>
+    </div>
+
+  </div>
 
   <!-- SUB-VIEW: Functions & Custom Apps -->
   <div id="excl-functions" class="excl-sub">
@@ -2109,7 +2361,7 @@
     <div class="section a1">
       <div class="section-label">Functions & Custom Apps — The Plus IP Advantage</div>
       <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
-        <strong style="color:var(--plus-light);">Shopify Plus unlocks the ability to build proprietary commerce logic directly into the platform.</strong> Shopify Functions let you replace core platform behaviour — discounts, shipping, payments, cart validation — with your own server-side code. Custom and private apps let you build bespoke experiences that live inside your Shopify admin, are invisible to competitors, and cannot be replicated by merchants on any other plan. This is the foundation for building real IP on top of Shopify.
+        <strong style="color:var(--plus-light);">Shopify Plus lets you deploy your own commerce logic directly into the platform.</strong> App Store apps that contain Shopify Functions run on every plan, but <strong>only Plus stores can install custom apps that contain Function APIs</strong>. That means discount, shipping, payment, validation and cart transform logic built for your business alone — not a vendor's generic configuration — running natively inside Shopify with no external servers.
       </div>
     </div>
 
@@ -2119,17 +2371,17 @@
         <div class="stat-card plus">
           <div class="s-label">Functions Access</div>
           <div class="s-value" style="color:var(--plus-light);">Full</div>
-          <div class="s-sub">Deploy custom server-side logic across checkout, cart & discounts</div>
+          <div class="s-sub">Custom Functions apps across checkout, cart &amp; discounts</div>
         </div>
         <div class="stat-card teal">
-          <div class="s-label">Private Apps</div>
+          <div class="s-label">Level 2 PII Custom Apps</div>
           <div class="s-value" style="color:var(--accent2);">Unlimited</div>
-          <div class="s-sub">Build and install apps visible only to your store</div>
+          <div class="s-sub">Custom apps with access to protected customer data</div>
         </div>
         <div class="stat-card plus">
           <div class="s-label">API Rate Limits</div>
-          <div class="s-value" style="color:var(--plus-light);">500%</div>
-          <div class="s-sub">Higher throughput for complex integrations & custom apps</div>
+          <div class="s-value" style="color:var(--plus-light);">5×</div>
+          <div class="s-sub">1,000 vs 200 GraphQL Admin points/sec on Advanced</div>
         </div>
         <div class="stat-card teal">
           <div class="s-label">Deployment</div>
@@ -2170,103 +2422,98 @@
     </div>
 
     <div class="section a2">
-      <div class="section-label">Custom & Private Apps — Build Proprietary IP</div>
+      <div class="section-label">What Custom Apps Get on Plus</div>
       <div class="impl-grid">
         <div class="impl-card plus">
-          <span class="impl-icon">🔒</span>
-          <div class="impl-title">Private Apps Visible Only to Your Store <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Plus merchants can build and install <strong>private apps that live exclusively in their Shopify admin</strong> — not listed in the App Store, not available to any other merchant. Your custom logic, your custom UI, your custom integrations — all running inside Shopify as if they were native features. Competitors cannot access, inspect, or replicate them.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> A well-built private app is a competitive advantage that lives inside your Shopify store. Custom B2B buyer tools, proprietary pricing engines, bespoke fulfilment workflows — these are capabilities your competitors on standard plans simply cannot replicate, because the tools are exclusively yours.</div>
+          <span class="impl-icon">🧩</span>
+          <div class="impl-title">Cart Transform Line Updates <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">The Cart Transform API's <strong><code>lineUpdate</code> operation is Plus-only</strong> — override a cart line's price, title and image for custom bundles, kits and configured products. Expand and merge operations work on all plans.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Bundle and configurator pricing shown exactly the way you sell it.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">🛠️</span>
-          <div class="impl-title">Custom Admin Extensions <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Build <strong>custom UI panels directly into the Shopify admin</strong> — on order pages, product pages, customer profiles, or company accounts. Show ERP data in context, inject fulfilment tools, surface custom notes or approval workflows. Your ops team works in Shopify without switching tabs to external systems.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Every time your operations or customer service team switches to an external system to find information that should be in Shopify, that's friction and time. Custom admin extensions bring your ERP data, fulfilment tools, and approval workflows into Shopify — where the work actually happens.</div>
+          <span class="impl-icon">🔐</span>
+          <div class="impl-title">Unlimited Level 2 PII Custom Apps <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Plus allows <strong>unlimited custom apps that access Level 2 protected customer data</strong>.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Build CRM, ERP and marketing integrations in-house without app-count limits.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🔗</span>
-          <div class="impl-title">Proprietary ERP & Middleware Integrations <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Build <strong>bespoke integration middleware</strong> that handles the exact data flows, transformation logic, and sync cadence your ERP requires — without compromising on a generic connector. Custom apps act as the integration layer, consuming Shopify's enhanced Plus API limits to sync orders, inventory, pricing, and customer data at the volume and speed an enterprise operation demands.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Off-the-shelf ERP connectors make compromises your integration shouldn't have to. A custom integration built as a private app on Plus is built to your exact data model, your exact sync cadence, and your exact error handling requirements — no generic middle ground.</div>
+          <div class="impl-title">ERP &amp; Middleware at 5× Throughput <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Custom integration apps run against <strong>1,000 GraphQL Admin points/second on Plus vs 200 on Advanced</strong>, and can use Plus-only APIs such as GiftCard, Multipass and User.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Integrations built to your exact data model that finish on time, every time.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🎨</span>
-          <div class="impl-title">Bespoke Buyer-Facing Tools <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Inject <strong>entirely custom buyer-facing tools into your storefront or account portal</strong> — product configurators, custom quoting tools, guided selling experiences, B2B onboarding flows, or industry-specific ordering interfaces. These live inside your Shopify store as custom extensions, giving buyers an experience no off-the-shelf theme or app can replicate.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> If your business operates in a specialised vertical — industrial equipment, custom manufacturing, professional services — generic ecommerce tools don't reflect your buyers' actual purchasing process. With Plus, you can build the ordering experience your buyers need directly into Shopify, turning the platform into a custom commerce system tailored to your business.</div>
-        </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">📊</span>
-          <div class="impl-title">Custom Reporting & Data Apps <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Build <strong>custom reporting dashboards and data export apps</strong> that pull exactly the data your business needs — in the format your BI tools, finance team, or ERP expects. Surface custom KPIs in the Shopify admin, automate data exports on custom schedules, or build live dashboards that aggregate Shopify data with external sources.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Generic Shopify analytics answer generic questions. Custom reporting apps built on Plus answer the specific questions your business actually runs on — surfacing the exact KPIs your finance team, operations team, and leadership need, in Shopify where decisions get made.</div>
+          <div class="impl-title">Custom Logic Inside Checkout <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Pair custom Functions with <strong>UI extensions in the information, shipping and payment steps</strong> — configurators' pricing, quoting rules, B2B approval logic — all Plus-only.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Buyer-facing tools that reflect your actual purchasing process.</div>
         </div>
         <div class="impl-card adv">
           <span class="impl-icon">⚠️</span>
-          <div class="impl-title">Advanced Has No Equivalent <span class="impl-plan-tag adv">Advanced</span></div>
-          <div class="impl-body">Advanced merchants are limited to <strong>public apps from the App Store</strong> — the same tools every other Shopify merchant has access to. They cannot deploy Functions, cannot install private apps, and cannot build custom admin extensions. Every "customisation" is constrained to what a public app allows — with the same limitations, the same pricing, and the same capabilities as any other merchant using that app.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> When every business on your platform uses the same public apps in the same way, technology offers no competitive advantage — it's a commodity. Plus gives you the ability to build above the platform, creating proprietary capabilities that are genuinely yours and cannot be replicated by a competitor on a standard plan.</div>
+          <div class="impl-title">What Advanced Can and Can't Do <span class="impl-plan-tag adv">Advanced</span></div>
+          <div class="impl-body">Advanced can build custom apps on the Admin API and install App Store apps that contain Functions. It <strong>cannot install custom apps that contain Functions</strong>, cannot use Cart Transform <code>lineUpdate</code>, and runs at 200 points/second.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> On Advanced, your checkout logic is limited to what an App Store vendor has chosen to build.</div>
         </div>
       </div>
     </div>
 
     <div class="section a3">
-      <div class="section-label">Advanced vs Plus — Functions & Custom App Capability</div>
+      <div class="section-label">Advanced vs Plus — Functions &amp; Custom Apps</div>
       <div class="table-wrap">
         <table class="rate-table">
           <thead>
             <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
           </thead>
           <tbody>
-            <tr><td>Shopify Functions (discount, shipping, payment, validation)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Private / custom apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom admin UI extensions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Proprietary checkout logic</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Bespoke buyer-facing tools</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom ERP/middleware integration apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Custom reporting &amp; data apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Enhanced API rate limits (500%)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>App Store public apps</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Logic runs inside Shopify (no external server)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>App Store apps that contain Functions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom apps (Admin API)</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom apps that contain Functions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Your own discount, shipping, payment &amp; validation Functions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Cart Transform <code>lineUpdate</code></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Unlimited Level 2 PII custom apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Plus-only APIs (GiftCard, Multipass, User)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>GraphQL Admin API rate limit</td><td class="center"><span style="color:var(--adv);font-weight:700;">200 pts/sec</span></td><td class="center"><span style="color:var(--plus-light);font-weight:700;">1,000 pts/sec</span></td></tr>
           </tbody>
         </table>
       </div>
       <div class="verdict" style="margin-top:16px;">
-        <strong>Bottom line:</strong> Advanced gives you access to what everyone else has — the App Store. <strong>Plus gives you the ability to build what no one else has.</strong> Functions and custom apps are how merchants move from using Shopify to owning their commerce stack. Every piece of proprietary logic — every bespoke buyer tool, every custom integration, every unique checkout experience — is IP that lives on your Plus plan and cannot be commoditised by a competitor installing the same app.
+        <strong>Bottom line:</strong> Advanced gives you what App Store vendors have built. <strong>Plus lets you build logic no one else has</strong> — and run it natively inside Shopify.
       </div>
     </div>
-
   </div>
 
   <div id="excl-combinedlistings" class="excl-sub">
     <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
 
     <div class="section a1">
-      <div class="section-label">Shopify Combined Listings — One URL, Infinite Variants</div>
+      <div class="section-label">Shopify Combined Listings</div>
       <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
-        <strong style="color:var(--plus-light);">Shopify Plus unlocks Combined Listings — the ability to present multiple standalone products as a single unified listing on your storefront.</strong> Instead of forcing shoppers to navigate between separate product pages for each colour or size variant, Combined Listings groups them under a single URL and a single purchase experience. This is a game-changer for high-SKU catalogues, fashion brands, and any merchant where the standard 100-variant limit creates meaningful friction.
+        <strong style="color:var(--plus-light);">Combined Listings are available only on Shopify Plus.</strong> They group up to 60 separate products — each with its own images, URL handle, inventory and merchandising — under one parent, so shoppers on any of them see every option in a single picker. Since October 2025 every plan supports 2,048 variants per product, so this isn't about variant counts: it's about keeping colourways, materials or models as their own products while selling them as one.
       </div>
     </div>
 
-    <div class="section a2">
+    <div class="section a1">
       <div class="section-label">At a Glance</div>
-      <div class="stat-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
-        <div class="stat-card plus-card" style="text-align:center;">
-          <div class="stat-val" style="color:var(--plus-light);">100</div>
-          <div class="stat-label">Variants per standard product</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Child Products</div>
+          <div class="s-value" style="color:var(--plus-light);">60</div>
+          <div class="s-sub">Per combined listing</div>
         </div>
-        <div class="stat-card plus-card" style="text-align:center;">
-          <div class="stat-val" style="color:var(--plus-light);">Unlimited</div>
-          <div class="stat-label">Effective options via Combined Listings</div>
+        <div class="stat-card teal">
+          <div class="s-label">Variants</div>
+          <div class="s-value" style="color:var(--accent2);">2,000</div>
+          <div class="s-sub">Across all children in a listing</div>
         </div>
-        <div class="stat-card plus-card" style="text-align:center;">
-          <div class="stat-val" style="color:var(--plus-light);">1 URL</div>
-          <div class="stat-label">Single product page per combined listing</div>
+        <div class="stat-card plus">
+          <div class="s-label">Per Child</div>
+          <div class="s-value" style="color:var(--plus-light);">Own URL</div>
+          <div class="s-sub">Own images, URL handle and inventory</div>
         </div>
-        <div class="stat-card plus-card" style="text-align:center;">
-          <div class="stat-val" style="color:var(--plus-light);">SEO+</div>
-          <div class="stat-label">Consolidated authority on one canonical URL</div>
+        <div class="stat-card teal">
+          <div class="s-label">Shopper View</div>
+          <div class="s-value" style="color:var(--accent2);">1 picker</div>
+          <div class="s-sub">All options from every child on one page</div>
         </div>
       </div>
     </div>
@@ -2275,40 +2522,28 @@
       <div class="section-label">Core Benefits</div>
       <div class="impl-grid">
         <div class="impl-card plus">
-          <span class="impl-icon">🚫</span>
-          <div class="impl-title">Break the 100-Variant Ceiling <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Shopify's standard product model caps variants at 100 per product and 3 option types. For brands selling apparel across 20 colours × 10 sizes, or footwear across multiple widths and lengths, this limit forces either catalogue fragmentation or compromise. Combined Listings removes this constraint by linking separate products (each with their own variant set) under one storefront presentation — effectively creating a unified product with an unlimited combination of options.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> If your catalogue has split products like "Red T-Shirt" and "Blue T-Shirt" as separate listings because of variant limits, Combined Listings collapses them into one — reducing the management overhead on your team and giving your buyers a cleaner, faster shopping experience.</div>
+          <span class="impl-icon">🧵</span>
+          <div class="impl-title">Keep Products Separate, Sell Them Together <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Each colourway, material or model stays a <strong>full product of its own</strong> — its own title, description, images, URL handle and inventory — while shoppers see one product with every option.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Merchandise and report on each child individually without fragmenting the shopping experience.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🔍</span>
-          <div class="impl-title">SEO Consolidation <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">When a product exists as multiple separate pages, backlinks and organic traffic are split across URLs. Combined Listings consolidates all variants behind a single canonical URL, pooling domain authority, reviews, and engagement signals. For high-intent search terms like "Nike Air Max size 12 wide", a single authoritative listing outranks fragmented individual pages. This is particularly impactful for brands in competitive, high-search-volume categories.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> If you've been splitting products due to variant limits, you're likely diluting your SEO authority across multiple URLs. Combined Listings consolidates that into a single canonical listing — reclaiming organic ranking potential and turning fragmented traffic into a single, authoritative destination.</div>
+          <div class="impl-title">Individually Merchandisable Pages <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Because child products keep <strong>their own URL handles</strong>, each can be placed in its own collections, targeted in campaigns and indexed on its own, while still showing the full option set.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Specific colourways and models stay discoverable while the shopping experience stays unified.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🛒</span>
           <div class="impl-title">Seamless Buyer Experience <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Buyers should never have to leave a product page to find their size or colour. With Combined Listings, the storefront dynamically updates imagery, pricing, availability, and descriptions as the shopper selects options — all on one page. No redirect, no page reload, no confusion. For conversion rate optimisation, keeping the buyer on a single page with clear, live inventory feedback reduces drop-off and increases add-to-cart rate.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> When your buyers have to navigate between separate product pages to find their size or colour, every extra click is a conversion risk. Combined Listings keeps them on one page — options update live, intent stays high, and drop-off is reduced.</div>
+          <div class="impl-body">Shoppers switch between children from one option picker — imagery, price and availability update to the selected child.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Fewer clicks between pages and less conversion risk.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">📦</span>
-          <div class="impl-title">Independent Inventory & Pricing Per Variant Group <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Each child product within a Combined Listing retains its own inventory, pricing, SKU, and fulfilment logic. This means you can have different prices for different colourways, unique fulfilment rules per variant group, or separate stock pools without exposing that complexity to the buyer. The storefront sees one unified listing; the back-end retains full operational granularity. This is critical for brands with dynamic pricing, tiered wholesale pricing, or multi-warehouse inventory.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> If your B2B buyers have company-specific pricing, Combined Listings can surface different price points per variant group while presenting a clean, unified product experience — your operational complexity stays invisible to the buyer.</div>
-        </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">⭐</span>
-          <div class="impl-title">Unified Reviews & Social Proof <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Product reviews and ratings aggregated across all variants appear on a single listing rather than being fragmented across multiple product pages. A jacket available in 12 colours, previously listed as 12 separate products, might have 8–12 reviews each. Combined into one listing, that becomes 100+ reviews — significantly improving social proof signals and conversion for new visitors. Review platforms that support Combined Listings (including Shopify's native reviews) automatically aggregate.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Fragmented listings mean fragmented reviews — a jacket available in 12 colours might have 8 reviews per page instead of 100 on a single listing. Consolidating with Combined Listings aggregates that social proof immediately, lifting conversion without any additional review collection effort.</div>
-        </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">🏷️</span>
-          <div class="impl-title">Cleaner Merchandising & Catalogue Management <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Managing a catalogue of 200 colourway-split products instead of 20 Combined Listings creates significant operational overhead — duplicate metafields, repeated content updates, fragmented collection organisation, and manual sync work. Combined Listings reduces the merchandising burden: one product page to update, one set of metafields to maintain, one collection entry to manage. For teams running lean catalogue operations, this is a direct reduction in time-to-publish and error risk.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Managing 200 split product listings instead of 20 Combined Listings creates real operational overhead — duplicate content updates, repeated metafield maintenance, fragmented collection management. Combined Listings reduces your catalogue to its natural size, cutting time-to-publish and reducing the risk of errors across your product data.</div>
+          <div class="impl-title">Independent Inventory &amp; Pricing Per Child <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Inventory lives on the child products, and each child is purchased and tracked as its own product.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Different prices, stock pools and fulfilment rules per colourway or model, presented as one listing.</div>
         </div>
       </div>
     </div>
@@ -2318,23 +2553,23 @@
       <div class="impl-grid">
         <div class="impl-card plus">
           <span class="impl-icon">👗</span>
-          <div class="impl-title">Apparel & Fashion <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">The canonical use case. A single style available in 15 colours × 8 sizes = 120 variants, exceeding the standard limit. Combined Listings makes this trivial — one product page per style, all options presented inline. Imagery swaps per colour selection, size availability updates live, and the buyer never leaves the page.</div>
+          <div class="impl-title">Apparel &amp; Fashion <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">One style in many colourways, each with its own photography, description and stock — presented as a single product with colour and size pickers.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">👟</span>
-          <div class="impl-title">Footwear with Width & Size Options <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Shoes with multiple width fittings (narrow, standard, wide, extra-wide) multiplied across a full size run can easily exceed 100 variants per style. Combined Listings handles this natively — all widths and sizes surface on one listing with accurate inventory per combination.</div>
+          <div class="impl-title">Footwear <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Models or colourways as separate products with their own imagery, combined so shoppers pick model, width and size in one place.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🪑</span>
-          <div class="impl-title">Home, Furniture & Lifestyle <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">A sofa available in 8 fabrics × 3 leg finishes × 4 configurations is 96 variants before adding size options. Furniture and home goods brands with complex configuration options benefit directly — buyers customise their product on a single page, and the merchant manages it as one listing.</div>
+          <div class="impl-title">Home &amp; Furniture <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Fabric or finish options as separate products with their own photography and lead times, sold through one configurable listing.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🏭</span>
-          <div class="impl-title">Industrial & B2B Product Catalogues <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">B2B buyers purchasing components, parts, or materials often need to select across multiple technical specifications — material grade, dimensions, finish, and quantity. Combined Listings enables a single technical product page that surfaces all specification variants, reducing the need for custom configurators or external CPQ tools.</div>
+          <div class="impl-title">Industrial &amp; B2B Catalogues <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Technical product families — grades, dimensions, finishes — as individual products for ERP mapping, combined into one technical listing for buyers.</div>
         </div>
       </div>
     </div>
@@ -2344,30 +2579,19 @@
       <div class="table-wrap">
         <table class="rate-table">
           <thead>
-            <tr>
-              <th>Capability</th>
-              <th class="adv-col">Advanced</th>
-              <th class="plus-col">Plus</th>
-            </tr>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
           </thead>
           <tbody>
-            <tr><td>Combined Listings app</td><td class="adv-rate">✗ Not available</td><td class="plus-rate">✓ Included</td></tr>
-            <tr><td>Variants per product</td><td class="adv-rate">100 max</td><td class="plus-rate">100 per child + unlimited children</td></tr>
-            <tr><td>Option types per product</td><td class="adv-rate">3 max</td><td class="plus-rate">Unlimited via combined structure</td></tr>
-            <tr><td>Independent pricing per variant group</td><td class="adv-rate">✗</td><td class="plus-rate">✓</td></tr>
-            <tr><td>Independent inventory per variant group</td><td class="adv-rate">✗</td><td class="plus-rate">✓</td></tr>
-            <tr><td>Unified URL / canonical SEO</td><td class="adv-rate">✗</td><td class="plus-rate">✓</td></tr>
-            <tr><td>Aggregated reviews across variant groups</td><td class="adv-rate">✗</td><td class="plus-rate">✓</td></tr>
-            <tr><td>Dynamic image swap per option selection</td><td class="adv-rate">Limited (single product only)</td><td class="plus-rate">✓ Per child product</td></tr>
+            <tr><td>Combined Listings app</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Variants per single product</td><td class="center">2,048</td><td class="center">2,048</td></tr>
+            <tr><td>Group separate products into one listing</td><td class="center"><span class="cross">✕</span></td><td class="center">Up to 60 children</td></tr>
+            <tr><td>Variants across a combined listing</td><td class="center">—</td><td class="center">Up to 2,000</td></tr>
+            <tr><td>Per-child images, URL handle &amp; inventory in one listing</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
           </tbody>
         </table>
       </div>
-    </div>
-
-    <div class="section a3">
-      <div class="section-label">Bottom Line</div>
-      <div class="verdict" style="margin-top:0;">
-        <strong>Combined Listings is the right tool for any merchant whose catalogue complexity exceeds Shopify's standard variant model.</strong> For fashion, footwear, home goods, and B2B catalogue merchants, the 100-variant ceiling is a recurring limitation on Advanced — requiring workarounds like split products, custom apps, or third-party configurators. Plus removes that ceiling entirely via Combined Listings, delivering a better buyer experience, stronger SEO, and a materially simpler catalogue management workflow. If a prospect mentions variant limits as a pain point, this is the direct answer.
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> For catalogues where each colourway, material or model deserves its own product, Combined Listings lets you keep that structure and still give shoppers one clean product page. Note: combined listings currently sell through the Online Store channel only (not POS, third-party channels or subscriptions), and themes need updating to support them.
       </div>
     </div>
 
@@ -2555,89 +2779,102 @@
     <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
 
     <div class="section a1">
-      <div class="section-label">Custom User Groups & Permissions — Governance at Scale</div>
+      <div class="section-label">User Groups, Unlimited Staff &amp; Organization Security</div>
       <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
-        <strong style="color:var(--plus-light);">Shopify Plus unlocks granular staff permissions — the ability to define custom roles with scoped access to specific parts of your admin, limit what individual users can see and do, and enforce approval workflows across your organisation.</strong> On Advanced, staff either have full admin access or highly limited preset roles. On Plus, you define exactly what each team member, department, or external partner can access — nothing more, nothing less. For B2B operations, large teams, and merchants with compliance or audit requirements, this is foundational infrastructure.
+        <strong style="color:var(--plus-light);">Advanced already supports custom store roles. Plus adds scale and organization-level governance.</strong> Plus removes the 15-staff limit, adds <strong>user groups</strong> to assign permissions in bulk, supports <strong>custom organization roles</strong>, and adds organization-wide security: enforced 2FA, verified domains, SAML single sign-on, SCIM provisioning and user activity logs.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Staff Accounts</div>
+          <div class="s-value" style="color:var(--plus-light);">15 → ∞</div>
+          <div class="s-sub">Unlimited staff on Plus</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">User Groups</div>
+          <div class="s-value" style="color:var(--accent2);">Plus Only</div>
+          <div class="s-sub">Assign permissions in bulk</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">SSO</div>
+          <div class="s-value" style="color:var(--plus-light);">SAML</div>
+          <div class="s-sub">Log in with your identity provider</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Provisioning</div>
+          <div class="s-value" style="color:var(--accent2);">SCIM</div>
+          <div class="s-sub">Auto-create and remove accounts</div>
+        </div>
       </div>
     </div>
 
     <div class="section a2">
-      <div class="section-label">Core Capabilities</div>
+      <div class="section-label">What Plus Adds</div>
       <div class="impl-grid">
         <div class="impl-card plus">
-          <span class="impl-icon">🔐</span>
-          <div class="impl-title">Custom Role Creation <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Define named roles — Sales Rep, Warehouse Picker, Finance Viewer, Customer Service Agent, B2B Account Manager — with precise permission sets. Each role controls which sections of the Shopify admin are visible, which actions can be taken, and which data can be accessed or exported. Roles are reusable: assign them to any number of staff and update once to propagate changes across the entire group.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Your B2B account managers need to manage company accounts, view B2B orders, and adjust pricing — but they shouldn't have access to financial reports or store settings. Custom roles make that separation enforceable by design, not by trust.</div>
+          <span class="impl-icon">♾️</span>
+          <div class="impl-title">Unlimited Staff Accounts <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Advanced includes <strong>15 staff accounts</strong>; Plus is <strong>unlimited</strong>. Every person gets a named account — no shared logins.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Inside sales, account managers, support, warehouse and agency staff can all have their own access as you grow.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">👥</span>
+          <div class="impl-title">User Groups <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Assign permissions to groups of users in bulk</strong> rather than one person at a time.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Change a department's access once and it applies to everyone in it.</div>
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🏢</span>
-          <div class="impl-title">Department-Level Access Scoping <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Segment admin access by function — warehouse staff can access fulfilment and orders but not products or pricing; marketing teams can manage content and discounts but not customer PII; finance teams can access reports and payouts but not product management. This isn't about locking people out arbitrarily — it's about ensuring the right people interact with the right parts of the system, reducing error risk and data exposure.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> If your business is subject to SOC 2, ISO 27001, GDPR, or internal audit requirements, you need demonstrable access controls. Granular permissions give you the documented access segregation those frameworks require — with a clear audit trail to back it up.</div>
+          <div class="impl-title">Custom Organization Roles <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Custom roles at the <strong>organization level</strong>, spanning every store in the organization, alongside the custom store roles all plans above Basic have.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Consistent access across expansion stores without re-creating roles per store.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">🤝</span>
-          <div class="impl-title">External Partner & Agency Access <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Grant agencies, system integrators, and third-party consultants scoped access to exactly what they need — and nothing else. An SEO agency gets content and metafield access; a fulfilment partner gets order and inventory access; a developer gets theme and app access. When the engagement ends, remove the role. No more shared admin credentials, no more over-privileged guest access, no audit trail gaps.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Shared admin credentials are an uncontrolled security risk — when someone leaves, you don't know what they accessed or changed. Custom permissions with named user accounts give you a full audit trail of who did what, and make offboarding clean and immediate.</div>
+          <span class="impl-icon">🔐</span>
+          <div class="impl-title">SAML SSO &amp; SCIM Provisioning <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Connect Shopify to <strong>Okta, Microsoft Entra ID or Google Workspace</strong>. Staff log in with corporate credentials, and SCIM creates, updates and deactivates accounts automatically as people join and leave.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Departed employees lose access when IT offboards them, not when someone remembers.</div>
         </div>
         <div class="impl-card plus">
-          <span class="impl-icon">✅</span>
-          <div class="impl-title">Approval Workflows & Change Controls <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Prevent unauthorised changes to pricing, products, or promotions by restricting those actions to senior roles. Junior staff can create and draft — but publishing, pricing changes, and bulk actions require a role with elevated permissions. For merchants with complex pricing structures, frequent promotional activity, or catalogue management teams, this prevents costly mistakes from reaching the live storefront.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Accidental price changes, premature product publishes, and bulk deletions by staff without appropriate oversight are a genuine operational risk on Advanced. On Plus, scoped permissions enforce review gates structurally — the wrong person simply cannot make those changes.</div>
+          <span class="impl-icon">🛡️</span>
+          <div class="impl-title">Org-Wide 2FA, Verified Domains &amp; Activity Logs <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Enforce two-factor authentication</strong> for every user, restrict access to verified company domains, and review <strong>user activity logs</strong>.</div>
+          <div class="impl-implication"><strong>Business Impact:</strong> Demonstrable access controls for SOC 2, ISO 27001 and internal audit requirements.</div>
         </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">🗂️</span>
-          <div class="impl-title">B2B-Specific Staff Roles <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">B2B operations require staff who can manage company profiles, assign buyers to companies, adjust company-specific pricing tiers, approve net-terms orders, and handle B2B-specific fulfilment rules — without touching D2C operations. Custom permissions let you build a B2B operations team role that has full access to B2B admin functions and zero access to D2C customer data or retail settings. This is critical for merchants running D2C and B2B in parallel on the same store.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Without permission separation, your B2B staff operating in a mixed D2C/B2B admin can inadvertently make changes that affect your retail customers. Custom roles give your parallel-channel operation the guardrails it needs — clean separation between who manages what, by design.</div>
+        <div class="impl-card both">
+          <span class="impl-icon">ℹ️</span>
+          <div class="impl-title">Available on Both Plans <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body"><strong>Custom store roles and Shopify-managed roles</strong> are available on every plan above Basic, including Advanced, so per-store granular permissions aren't a Plus-only feature.</div>
         </div>
-        <div class="impl-card plus">
-          <span class="impl-icon">📋</span>
-          <div class="impl-title">Audit Trails & Staff Accountability <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Every action taken in Shopify admin is logged against a named user account. With custom roles and named staff accounts (no shared logins), audit trails become meaningful — you know exactly who changed a price, who processed a refund, who modified a B2B company's credit limit. For organisations with internal controls, compliance obligations, or dispute resolution needs, this accountability layer is not optional.</div>
-          <div class="impl-implication"><strong>Business Impact:</strong> Shared credentials break your audit trail — the log tells you what happened, but not who did it. Named accounts with role-based access ensure the admin log is a reliable record of individual actions, making it meaningful for internal audits, compliance reviews, and dispute resolution.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section a2">
-      <div class="section-label">Why This Is Especially Critical for B2B</div>
-      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
-        B2B commerce on Shopify introduces a layer of operational complexity that D2C doesn't have: company profiles, buyer hierarchies, net terms, custom pricing tiers, order approval workflows, and credit management. Each of these functions requires staff who can act within that domain — but who should not have free access to the entire admin. Custom permissions let you build a B2B operations team that has exactly the access they need to manage accounts, process orders, and handle customer relationships, without the risk of unintended changes to pricing, catalogue, or D2C customer data. For merchants scaling their B2B channel alongside D2C, this separation isn't a nice-to-have — it's a governance requirement.
       </div>
     </div>
 
     <div class="section a3">
-      <div class="section-label">Advanced vs Plus — Staff Permissions</div>
+      <div class="section-label">Advanced vs Plus — Staff &amp; Security</div>
       <div class="table-wrap">
         <table class="rate-table">
           <thead>
-            <tr>
-              <th>Capability</th>
-              <th class="adv-col">Advanced</th>
-              <th class="plus-col">Plus</th>
-            </tr>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
           </thead>
           <tbody>
-            <tr><td>Staff accounts included</td><td class="adv-rate">15</td><td class="plus-rate">Unlimited</td></tr>
-            <tr><td>Custom role creation</td><td class="adv-rate">✗ Preset roles only</td><td class="plus-rate">✓ Fully custom</td></tr>
-            <tr><td>Granular permission scoping</td><td class="adv-rate">✗</td><td class="plus-rate">✓ Per section / action</td></tr>
-            <tr><td>B2B-specific staff roles</td><td class="adv-rate">✗</td><td class="plus-rate">✓</td></tr>
-            <tr><td>External partner scoped access</td><td class="adv-rate">✗</td><td class="plus-rate">✓</td></tr>
-            <tr><td>Named account audit trail</td><td class="adv-rate">Limited</td><td class="plus-rate">✓ Full per-user log</td></tr>
-            <tr><td>Department-level access separation</td><td class="adv-rate">✗</td><td class="plus-rate">✓</td></tr>
+            <tr><td>Staff accounts</td><td class="center">15</td><td class="center"><span style="color:var(--plus-light);font-weight:700;">Unlimited</span></td></tr>
+            <tr><td>Custom store roles</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>User groups (bulk permissions)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Custom organization roles</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Org-wide 2FA enforcement</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Verified domains</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>SAML single sign-on</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>SCIM user provisioning</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>User activity logs</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>User API (staff management by API)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
           </tbody>
         </table>
       </div>
-    </div>
-
-    <div class="section a3">
-      <div class="section-label">Bottom Line</div>
-      <div class="verdict" style="margin-top:0;">
-        <strong>Custom permissions aren't a feature for large enterprise teams only — they're a structural safeguard for any merchant with more than one person touching their store.</strong> On Advanced, the lack of granular role control means either over-privileging staff (security and error risk) or under-privileging them (operational friction). Plus resolves this with a flexible permissions model that scales from a 5-person DTC team to a 200-person B2B operation. For merchants with B2B channels, compliance obligations, external partners, or simply a desire to run a tight operational ship, custom user groups are a fundamental capability that Advanced cannot provide.
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Bottom line:</strong> Advanced handles roles for a single team. <strong>Plus handles identity and access for an organization</strong> — unlimited people, managed by your IdP, governed across every store.
       </div>
     </div>
 
@@ -2699,21 +2936,57 @@ const features = [
   { cat:'Payments',          name:'Deposit requirements (draft orders)',                    adv:'no',  plus:'yes' },
   { cat:'Payments',          name:'Partial payments',                                       adv:'no',  plus:'yes' },
   { cat:'Payments',          name:'Payment requests per fulfillment',                       adv:'no',  plus:'yes' },
+  { cat:'Payments',          name:'Card authorization window (days, Visa/Mastercard/Amex)', adv:'7',   plus:'30' },
+  { cat:'Payments',          name:'Multiple business entities (separate Shopify Payments accounts) in one store', adv:'no', plus:'yes' },
   { cat:'Checkout & Orders', name:'Draft → Invoice',                                        adv:'yes', plus:'yes' },
   { cat:'Checkout & Orders', name:'Checkout → Draft',                                       adv:'yes', plus:'yes' },
   { cat:'Checkout & Orders', name:'Easy reorders',                                          adv:'yes', plus:'yes' },
   { cat:'Checkout & Orders', name:'PO numbers',                                             adv:'yes', plus:'yes' },
   { cat:'Checkout & Orders', name:'Contextual Checkout (via Markets)',                      adv:'yes', plus:'yes' },
-  { cat:'Checkout & Orders', name:'Checkout Extensibility (UI Extensions & Functions)',     adv:'no',  plus:'yes' },
-  { cat:'Checkout & Orders', name:'Customer Account Extensions',                            adv:'no',  plus:'yes' },
+  { cat:'Checkout & Orders', name:'Checkout editor branding (logo, colours, fonts)',          adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'UI extensions on Thank you & Order status pages',          adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'Post-purchase extensions',                                 adv:'yes', plus:'yes' },
+  { cat:'Checkout & Orders', name:'UI extensions in information, shipping & payment steps',   adv:'no',  plus:'yes' },
+  { cat:'Checkout & Orders', name:'Checkout Branding API',                                    adv:'no',  plus:'yes' },
+  { cat:'Checkout & Orders', name:'Separate B2B and D2C checkout flows in one store',         adv:'no',  plus:'yes' },
+  { cat:'Checkout & Orders', name:'Checkout Blocks (incl. custom shipping discounts, per-market blocks)', adv:'no', plus:'yes' },
+  { cat:'Checkout & Orders', name:'Bot protection during flash sales',                        adv:'no',  plus:'yes' },
+  { cat:'Customer Accounts', name:'Customer account UI extensions (incl. full-page)',        adv:'yes', plus:'yes' },
+  { cat:'Customer Accounts', name:'Custom identity provider for customer sign-in',           adv:'no',  plus:'yes' },
+  { cat:'Customer Accounts', name:'Multipass (SSO from an external site or portal)',         adv:'no',  plus:'yes' },
   { cat:'Sales Staff',       name:'Companies staff permissions',                            adv:'15',  plus:'unlimited' },
   { cat:'Storefront',        name:'Trade theme',                                            adv:'yes', plus:'yes' },
   { cat:'Storefront',        name:'Quick order list',                                       adv:'yes', plus:'yes' },
   { cat:'Storefront',        name:'Contextual Storefront (via Markets)',                    adv:'yes', plus:'yes' },
   { cat:'Complementary',     name:'Flow (using B2B objects)',                               adv:'yes', plus:'yes' },
-  { cat:'Complementary',     name:'Expansion Stores',                                       adv:'no',  plus:'9' },
+  { cat:'Organization',      name:'Expansion Stores',                                       adv:'no',  plus:'9' },
   { cat:'Operations',        name:'Inventory locations',                                    adv:'10',  plus:'200' },
-  { cat:'Operations',        name:'POS Pro locations included',                             adv:'no',  plus:'200' },
+  { cat:'Operations',        name:'POS Pro locations included (20; fees waived up to 200 with Shopify Payments)', adv:'no', plus:'20–200' },
+  { cat:'Operations',        name:'Themes in theme library',                                 adv:'20',  plus:'100' },
+  { cat:'Operations',        name:'File storage per store',                                  adv:'Standard', plus:'1 TB' },
+  { cat:'Operations',        name:'Email suppression',                                       adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'GraphQL Admin API rate limit (points/sec)',               adv:'200', plus:'1000' },
+  { cat:'Developer & APIs',  name:'Higher API rate limits on request',                       adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'GiftCard API (create, issue & manage gift cards)',        adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'Multipass API',                                           adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'User API (staff accounts)',                               adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'publishablePublish / publishableUnpublish (GraphQL)',     adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'Public App Store apps that contain Functions',            adv:'yes', plus:'yes' },
+  { cat:'Developer & APIs',  name:'Custom apps that contain Shopify Functions',              adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'Cart Transform API — lineUpdate operation',               adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'Unlimited custom apps with Level 2 (protected) customer data', adv:'no', plus:'yes' },
+  { cat:'Developer & APIs',  name:'Exempt from 10,000/day variant-creation cap (500K+ variants)', adv:'no', plus:'yes' },
+  { cat:'Developer & APIs',  name:'Hydrogen public storefront environments on Oxygen',      adv:'1',   plus:'25' },
+  { cat:'Developer & APIs',  name:'Unlimited staging stores',                                adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'Feature Test Drive (early-access environments)',          adv:'no',  plus:'yes' },
+  { cat:'Storefront',        name:'Variants per product',                                    adv:'2048', plus:'2048' },
+  { cat:'Storefront',        name:'Combined Listings (up to 60 products per listing)',       adv:'no',  plus:'yes' },
+  { cat:'Marketing',         name:'Shopify Audiences',                                       adv:'no',  plus:'yes' },
+  { cat:'Marketing',         name:'Launchpad (scheduled sales events & rollback)',           adv:'no',  plus:'yes' },
+  { cat:'Organization',      name:'Organization admin: settings, groups & cross-store analytics', adv:'no', plus:'yes' },
+  { cat:'Organization',      name:'Custom store roles',                                      adv:'yes', plus:'yes' },
+  { cat:'Organization',      name:'User groups (assign permissions in bulk)',                adv:'no',  plus:'yes' },
+  { cat:'Organization',      name:'Shopify Plus Certified App Partners & Plus Partner Program', adv:'no', plus:'yes' },
   { cat:'Security',          name:'Org-wide 2FA enforcement',                               adv:'no',  plus:'yes' },
   { cat:'Security',          name:'Verified domains',                                       adv:'no',  plus:'yes' },
   { cat:'Security',          name:'SAML single sign-on',                                    adv:'no',  plus:'yes' },
@@ -2730,8 +3003,8 @@ const implications = [
   },
   {
     type:'plus', icon:'🛒', title:'Checkout Customisation',
-    body:`<strong>Checkout Extensibility — UI Extensions and Functions — is exclusive to Plus.</strong> This unlocks custom checkout flows, B2B-specific validation logic, custom fields, upsells at checkout, and integration with third-party services at the payment step. Advanced merchants work with Shopify's standard checkout only.`,
-    implication:`If your B2B buyers have complex ordering rules, approval workflows, or custom pricing requirements at checkout, Advanced is a hard ceiling. Plus gives you the tools to build a checkout that works the way your buyers need it to.`,
+    body:`Every plan can brand checkout in the editor and add extensions to the Thank you, Order status and post-purchase pages. <strong>Only Plus can place UI extensions inside the information, shipping and payment steps, use the Checkout Branding API, run separate B2B and D2C checkout flows, and deploy custom apps with Shopify Functions.</strong> That's where custom fields, B2B validation, in-checkout upsells and payment-step integrations live.`,
+    implication:`If your B2B buyers have complex ordering rules, approval workflows, or custom pricing requirements at checkout, the steps where those rules need to run are closed on Advanced. Plus opens every step of checkout to your own logic and UI.`,
     tags:['Checkout Extensibility','UI Extensions','Functions']
   },
   {
@@ -2741,10 +3014,10 @@ const implications = [
     tags:['Unlimited catalogs','Direct catalog assignment']
   },
   {
-    type:'plus', icon:'👤', title:'Customer Account Extensibility',
-    body:`On Advanced, the customer account login page is <strong>fully static — merchants cannot customise, extend, or brand it in any way</strong>. Every buyer sees the same generic Shopify account interface regardless of who they are or what they need. Plus unlocks <strong>Customer Account Extensions</strong>, giving merchants the ability to build a fully branded, functional self-serve portal inside the logged-in account experience. This means custom modules for order history, reorder workflows, loyalty programme status, B2B company management, net-terms balance visibility, saved payment methods, custom branded content, and company-specific messaging — all within the account page, without any external portal or third-party login system.<br><br>For B2B specifically, the account portal is the primary interface through which buyers manage their relationship with the supplier. A well-built account portal <strong>dramatically increases buyer adoption of self-serve</strong> — buyers who can check order status, reorder past purchases, manage company users, and view outstanding invoices independently are buyers who don't need to call or email your team. This directly reduces inbound support volume and the operational cost per account. On Advanced, that portal is fixed and generic. On Plus, it becomes a competitive advantage.`,
-    implication:`Every order status check, invoice lookup, and reorder request your buyers make by phone or email has an operational cost attached to it. A well-built account portal eliminates those calls. Every self-serve action your buyer takes is a support ticket that never reaches your team — and at scale, that saving is material.`,
-    tags:['Customer Account Extensions','Self-Serve Portal','B2B Critical','Support Cost Reduction','Buyer Adoption']
+    type:'plus', icon:'🔌', title:'Integration Throughput & Plus-Only APIs',
+    body:`The GraphQL Admin API runs at <strong>1,000 points/second on Plus vs 200 on Advanced — 5× the throughput</strong>, with further increases available on request. Plus also unlocks API resources Advanced can't call at all: <strong>GiftCard</strong> (issue and manage gift cards programmatically), <strong>Multipass</strong> (single sign-on from an external site or portal), <strong>User</strong> (staff accounts), and the <strong>publishablePublish / publishableUnpublish</strong> mutations. Stores past 500,000 variants are also exempt from the 10,000-per-day variant-creation cap.`,
+    implication:`ERP, PIM and OMS syncs finish 5× faster at the same query cost, and integrations that depend on gift card issuance, SSO or staff provisioning can be built natively instead of worked around.`,
+    tags:['5× API limit','GiftCard API','Multipass','User API','ERP sync']
   },
   {
     type:'plus', icon:'💰', title:'Cash Flow Protection',
@@ -2765,16 +3038,16 @@ const implications = [
     tags:['Staff permissions']
   },
   {
-    type:'adv', icon:'🔒', title:'Static Account & Company Pages',
-    body:`On Advanced, the customer account page and company account portal are <strong>fully static — no customisation is possible</strong>. Merchants cannot add custom fields, branded content, loyalty widgets, order tracking modules, or company-specific messaging. What Shopify ships is what buyers see.`,
-    implication:`If your buyers rely on the account portal for self-service, a static, generic page limits adoption and increases inbound support volume. Plus unlocks Customer Account Extensions so you can build a portal that actually works for your buyers — branded, functional, and tailored to their needs.`,
-    tags:['Customer Account Extensions','B2B Portal','Storefront']
+    type:'adv', icon:'⏱️', title:'7-Day Authorization Window',
+    body:`On Advanced, a card authorization must be captured within the standard <strong>7 days</strong>. <strong>Plus extends authorizations to up to 30 days</strong> for Visa, Mastercard and Amex (10 days for Discover and JCB), with expiry dates shown on the Orders page. Capturing after day 7 carries an additional 1.75% fee.`,
+    implication:`For made-to-order, backordered or staged B2B shipments, a 7-day window forces either early capture or re-authorization. Plus lets you authorize at order and capture when you ship.`,
+    tags:['Extended authorization','B2B','Made-to-order']
   },
   {
-    type:'adv', icon:'🛒', title:'Locked Checkout — No Cross-Sell, Upsell or Post-Purchase',
-    body:`Advanced merchants are locked to Shopify's standard checkout. There is <strong>no ability to inject upsell offers, cross-sell recommendations, custom fields, or post-purchase pages</strong>. Plus unlocks Checkout Extensibility (UI Extensions and Functions), enabling fully customised checkout flows — including product upsells before payment, order bump cross-sells, and post-purchase upsell pages after the transaction completes.`,
-    implication:`Checkout is the highest-intent moment in your buyer's journey. On Advanced, that moment is fixed — Shopify controls the experience and there's nothing you can do to change it. On Plus, you own that moment — and you can use it to increase order value, capture critical buyer information, and build a checkout that reflects how your business actually operates.`,
-    tags:['Checkout Extensibility','UI Extensions','Functions','Upsell','Cross-sell']
+    type:'adv', icon:'🛒', title:'Checkout Steps Closed on Advanced',
+    body:`Advanced can brand checkout in the editor and extend the Thank you, Order status and post-purchase pages. <strong>The information, shipping and payment steps can't be extended</strong>: no custom fields, upsells, consent UI or B2B validation inside those steps, no Checkout Branding API, and no custom Functions apps. Plus opens all of it.`,
+    implication:`Checkout is the highest-intent moment in your buyer's journey. On Advanced, the steps where the buyer enters details and pays are fixed. On Plus, you can use them to capture the data your operation needs, enforce your rules, and lift order value.`,
+    tags:['Checkout UI extensions','Checkout Branding API','Custom Functions']
   },
   {
     type:'plus', icon:'📍', title:'Inventory Locations — 10 vs 200',
@@ -2783,8 +3056,8 @@ const implications = [
     tags:['Inventory locations','Omnichannel','Fulfilment','Operations']
   },
   {
-    type:'plus', icon:'🏪', title:'POS Pro — 200 Locations Included on Plus',
-    body:`Shopify POS Pro is <strong>$89 per location per month on Advanced</strong>. On Plus, <strong>200 POS Pro locations are included in the platform fee</strong>. For any merchant with physical retail — even a handful of locations — this changes the economics of Plus vs Advanced entirely. A merchant with 10 retail locations pays <strong>$890/month in POS Pro fees on Advanced</strong>. On Plus, those locations are included. At 20 locations: $1,780/month in savings. At 50 locations: $4,450/month. The POS Pro inclusion alone can offset a meaningful portion — or the entirety — of the Plus platform fee delta for merchants with an active retail footprint.`,
+    type:'plus', icon:'🏪', title:'POS Pro — Included on Plus',
+    body:`Shopify POS Pro is <strong>$89 per location per month on Advanced</strong>. On Plus, <strong>the first 20 POS Pro locations are included</strong>, and merchants with more than 20 locations who use Shopify Payments as their primary retail provider have POS Pro fees <strong>waived for up to 200 retail locations</strong>. A merchant with 10 retail locations pays $890/month in POS Pro fees on Advanced; at 20 locations that's $1,780/month; at 50 locations (with Shopify Payments), $4,450/month — all included on Plus.`,
     implication:`If you have physical retail locations, the POS Pro inclusion on Plus is one of the most direct cost savings in the platform. At 10 locations, that's $890/month you're no longer paying — before counting any other Plus benefit. Run your location count against $89/month and compare it to the Plus fee delta. For many businesses with retail, Plus is the lower total cost option.`,
     tags:['POS Pro','Retail','Cost savings','Omnichannel']
   },
@@ -2795,8 +3068,20 @@ const implications = [
     tags:['2FA Enforcement','SAML SSO','SCIM Provisioning','Verified Domains','Activity Logs','Compliance']
   },
   {
+    type:'plus', icon:'🏛️', title:'Multiple Legal Entities, One Store',
+    body:`<strong>Business entities are Plus-only.</strong> Register each legal entity in organization settings, give each its own Shopify Payments account, payout currency and payout schedule, then assign entities to markets. Typical structures: separate entities for B2B vs D2C, online vs retail, or per country. On Advanced, every order processes through the store's single primary Shopify Payments account.`,
+    implication:`If your finance structure has more than one legal entity, Plus lets one store reflect it instead of forcing separate stores and duplicated operations.`,
+    tags:['Business entities','Shopify Payments','Markets','Finance']
+  },
+  {
+    type:'plus', icon:'🧪', title:'Build, Test & Go Headless Safely',
+    body:`Plus includes <strong>unlimited staging stores</strong> (on top of 9 expansion stores), <strong>Feature Test Drive</strong> early-access environments, <strong>up to 25 public Hydrogen storefront environments</strong> on Oxygen (1 on Advanced), <strong>100 themes</strong> in the library, and <strong>1 TB</strong> of file storage per store.`,
+    implication:`Your team and agency can test ERP integrations, checkout changes and new themes against a copy of production before anything goes live, and run headless storefronts without a separate hosting bill.`,
+    tags:['Staging stores','Test Drive','Hydrogen','Oxygen']
+  },
+  {
     type:'adv', icon:'⚠️', title:'Where Advanced Stalls',
-    body:`Advanced covers the fundamentals well but is missing the <strong>payment infrastructure for sophisticated B2B transactions</strong>. No deposits, no partial payments, no per-fulfillment billing, no direct catalog assignment, no checkout extensibility. Complexity gets managed through workarounds.`,
+    body:`Advanced covers the fundamentals well but is missing the <strong>payment infrastructure for sophisticated B2B transactions</strong>. No deposits, no partial payments, no per-fulfillment billing, no direct catalog assignment, no extensions inside the checkout steps, and a 7-day authorization window. Complexity gets managed through workarounds.`,
     implication:`Advanced is a capable starting point for B2B — but as your buyer relationships mature, the gaps become real operational friction. Complex pricing, phased payments, and large orders all hit limits on Advanced that Plus is built to handle natively.`,
     tags:['Deposits','Partials','Extensibility','Catalogs']
   },
@@ -2817,6 +3102,7 @@ function isDiff(f) { return f.adv !== f.plus; }
 function buildDiffTable() {
   const diffs = features.filter(isDiff);
   document.getElementById('diff-count').textContent = diffs.length + ' differences';
+  const pc = document.getElementById('plus-only-count'); if (pc) pc.textContent = diffs.length;
   const cats = [...new Set(diffs.map(f => f.cat))];
   document.getElementById('diff-tbody').innerHTML = cats.map(cat => {
     const rows = diffs.filter(f => f.cat === cat);
