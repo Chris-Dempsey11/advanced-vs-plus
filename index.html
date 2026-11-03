@@ -357,46 +357,6 @@
   .excl-hub { display: block; }
   .excl-hub.hidden { display: none; }
 
-  /* ── ASK CHRIS BUTTON & MODAL ── */
-  .ask-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 20px; border-radius: 30px; font-size: .82rem; font-weight: 700;
-    background: var(--plus-dim); border: 1px solid rgba(108,99,255,.4); color: var(--plus-light);
-    cursor: pointer; transition: background .15s, border-color .15s, transform .15s;
-    white-space: nowrap; font-family: var(--font);
-  }
-  .ask-btn:hover { background: rgba(108,99,255,.22); border-color: rgba(108,99,255,.7); transform: translateY(-1px); }
-  .ask-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65);
-    z-index: 200; align-items: center; justify-content: center; padding: 20px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
-    padding: 36px 40px; width: 100%; max-width: 520px;
-    box-shadow: 0 24px 60px rgba(0,0,0,.6); animation: fadeUp .25s ease both;
-  }
-  .modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
-  .modal-title { font-size: 1.15rem; font-weight: 800; color: var(--text); }
-  .modal-close { background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; line-height: 1; padding: 0; }
-  .modal-close:hover { color: var(--text); }
-  .modal-sub { font-size: .82rem; color: var(--muted); margin-bottom: 24px; line-height: 1.55; }
-  .modal-sub a { color: var(--plus-light); text-decoration: none; }
-  .modal-field { margin-bottom: 16px; }
-  .modal-field label { display: block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 7px; }
-  .modal-field input, .modal-field textarea {
-    width: 100%; background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: .88rem; font-family: var(--font);
-    outline: none; transition: border-color .15s; resize: vertical;
-  }
-  .modal-field input:focus, .modal-field textarea:focus { border-color: var(--plus); }
-  .modal-field textarea { min-height: 110px; }
-  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
-  .modal-cancel { padding: 10px 20px; border-radius: 8px; font-size: .85rem; font-weight: 700; background: none; border: 1px solid var(--border); color: var(--muted); cursor: pointer; font-family: var(--font); }
-  .modal-cancel:hover { border-color: var(--text); color: var(--text); }
-  .modal-send { padding: 10px 24px; border-radius: 8px; font-size: .85rem; font-weight: 700; background: var(--plus); border: none; color: #fff; cursor: pointer; font-family: var(--font); transition: background .15s; }
-  .modal-send:hover { background: #5850e6; }
 
   /* ── TOAST ── */
   .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--plus); color: #fff; padding: 11px 22px; border-radius: 30px; font-weight: 700; font-size: .88rem; transition: transform .3s cubic-bezier(.34,1.56,.64,1); z-index: 100; pointer-events: none; white-space: nowrap; }
@@ -433,9 +393,8 @@
     /* Shopify logo — slightly smaller */
     .header-shopify-bg { width: 160px; height: 180px; right: -10px; }
 
-    /* Header inner — stack logo + ask button vertically */
+    /* Header inner — stack vertically */
     .header-inner > div { flex-direction: column; gap: 12px; }
-    .ask-btn { font-size: .78rem; padding: 8px 14px; align-self: flex-start; margin-top: 0 !important; }
 
     /* Header text */
     .header-inner h1 { font-size: 1.55rem; letter-spacing: -1px; margin-bottom: 10px; }
@@ -488,10 +447,6 @@
     .excl-grid { grid-template-columns: 1fr; gap: 12px; }
     .excl-card { padding: 18px 16px; }
 
-    /* Modal — full width */
-    .modal { padding: 22px 16px; margin: 12px; width: calc(100% - 24px); max-width: none; border-radius: 12px; }
-    .modal-actions { flex-direction: column-reverse; gap: 8px; }
-    .modal-send, .modal-cancel { width: 100%; text-align: center; padding: 12px; }
 
     /* Section headings */
     .section-label { font-size: .63rem; }
@@ -545,8 +500,6 @@
     background: linear-gradient(90deg, #ffc857 0%, #ffffff 45%, #96ffcf 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  html.light .ask-btn { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.35); color: #fff; }
-  html.light .ask-btn:hover { background: rgba(255,255,255,.25); }
 
   /* Tab bar — white with Shopify green active indicator */
   html.light .tab-bar { background: #fff; border-bottom: 2px solid #e0e0e0; }
@@ -671,10 +624,6 @@
         <h1>Full Plan Comparison</h1>
         <p>Every difference between Shopify Advanced and Shopify Plus — features, payments, legal protections, support, and what it means for your business.</p>
       </div>
-      <button class="ask-btn" onclick="openAskModal()" style="margin-top:14px; flex-shrink:0;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        Ask Chris a Question
-      </button>
     </div>
   </div>
   <div class="tab-bar">
@@ -2883,29 +2832,6 @@
 </div>
 
 
-<!-- ASK CHRIS MODAL -->
-<div class="modal-overlay" id="askModal" onclick="handleOverlayClick(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">Ask Chris a Question</div>
-      <button class="modal-close" onclick="closeAskModal()">✕</button>
-    </div>
-    <p class="modal-sub">Have a question about Advanced vs Plus for your business? Send it directly to <a href="mailto:chris.dempsey@shopify.com">chris.dempsey@shopify.com</a>.</p>
-    <div class="modal-field">
-      <label>Your Name</label>
-      <input type="text" id="ask-name" placeholder="e.g. Jane Smith">
-    </div>
-    <div class="modal-field">
-      <label>Your Question</label>
-      <textarea id="ask-question" placeholder="e.g. We're processing around $600K/month — at what point does upgrading to Plus make financial sense for us?"></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="modal-cancel" onclick="closeAskModal()">Cancel</button>
-      <button class="modal-send" onclick="sendQuestion()">Open in Email →</button>
-    </div>
-  </div>
-</div>
-
 <footer>
   <div class="footer-brand" style="display:flex;align-items:center;gap:9px;">
     <svg width="18" height="20" viewBox="0 0 109 124" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3306,31 +3232,6 @@ function closeExcl() {
   document.getElementById('excl-hub').classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-// ═══════════════ ASK CHRIS MODAL ═══════════════
-function openAskModal() {
-  document.getElementById('askModal').classList.add('open');
-  setTimeout(() => document.getElementById('ask-name').focus(), 50);
-}
-function closeAskModal() {
-  document.getElementById('askModal').classList.remove('open');
-}
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('askModal')) closeAskModal();
-}
-function sendQuestion() {
-  const name = document.getElementById('ask-name').value.trim();
-  const question = document.getElementById('ask-question').value.trim();
-  if (!question) { document.getElementById('ask-question').focus(); return; }
-  const subject = encodeURIComponent('Question about Shopify Advanced vs Plus');
-  const body = encodeURIComponent(
-    (name ? 'Hi Chris,\n\nMy name is ' + name + '.\n\n' : 'Hi Chris,\n\n') +
-    question + '\n\nThanks'
-  );
-  window.location.href = `mailto:chris.dempsey@shopify.com?subject=${subject}&body=${body}`;
-  closeAskModal();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAskModal(); });
 
 // ═══════════════ INIT ═══════════════
 buildDiffTable();
