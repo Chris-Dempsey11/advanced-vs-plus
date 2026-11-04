@@ -88,9 +88,10 @@
   .header-inner p { color: var(--muted); font-size: .93rem; max-width: 560px; line-height: 1.6; margin-bottom: 28px; }
 
   /* ── TABS ── */
-  .tab-bar { max-width: 1100px; margin: 0 auto; display: flex; }
+  .tab-bar { max-width: 1100px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; }
+  .tab-bar::-webkit-scrollbar { display: none; }
   .tab-btn {
-    padding: 14px 26px; font-size: .85rem; font-weight: 700; color: var(--muted);
+    padding: 14px 13px; flex-shrink: 0; font-size: .8rem; font-weight: 700; color: var(--muted);
     background: none; border: none; border-bottom: 3px solid transparent;
     cursor: pointer; transition: color .15s, border-color .15s; white-space: nowrap;
   }
@@ -189,6 +190,68 @@
   .val-num      { background: rgba(255,200,87,.12); color: var(--adv); border: 1px solid rgba(255,200,87,.25); }
   .val-unlimited{ background: rgba(108,99,255,.14); color: var(--plus-light); border: 1px solid rgba(108,99,255,.3); }
   .upgrade-tag  { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 20px; font-size: .66rem; font-weight: 700; background: rgba(0,212,170,.1); color: var(--accent2); border: 1px solid rgba(0,212,170,.25); }
+
+
+  /* ── BUSINESS CASES ── */
+  .bc-toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .bc-search {
+    flex: 1 1 260px; min-width: 0; padding: 10px 14px; border-radius: 10px; font-family: var(--font); font-size: .85rem;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text); outline: none;
+  }
+  .bc-search:focus { border-color: var(--plus); }
+  .bc-count { font-size: .78rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .bc-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .bc-chip {
+    padding: 6px 12px; border-radius: 20px; font-size: .74rem; font-weight: 700; font-family: var(--font); cursor: pointer;
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted); transition: all .15s;
+  }
+  .bc-chip:hover { color: var(--text); border-color: var(--plus); }
+  .bc-chip.active { background: var(--plus-dim); border-color: var(--plus); color: var(--plus-light); }
+  .bc-chip .n { opacity: .7; margin-left: 4px; font-weight: 600; }
+  .bc-chips-label { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin: 10px 0 8px; }
+  .bc-cat { margin-top: 26px; }
+  .bc-cat-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .bc-cat-icon { font-size: 1.4rem; }
+  .bc-cat-title { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+  .bc-cat-n { font-size: .7rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); }
+  .bc-cat-link { margin-left: auto; font-size: .78rem; font-weight: 700; color: var(--plus-light); background: none; border: none; cursor: pointer; font-family: var(--font); padding: 0; }
+  .bc-cat-link:hover { text-decoration: underline; }
+  .bc-pitch { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .bc-pitch > div {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;
+    font-size: .8rem; line-height: 1.55; color: var(--muted);
+  }
+  .bc-pitch > div strong { color: var(--text); }
+  .bc-pitch .bc-k { display: block; font-size: .64rem; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; }
+  .bc-pitch .unlock { border-left: 3px solid var(--plus); }
+  .bc-pitch .unlock .bc-k { color: var(--plus-light); }
+  .bc-pitch .without { border-left: 3px solid var(--adv); }
+  .bc-pitch .without .bc-k { color: var(--adv); }
+  .bc-pitch .ask { border-left: 3px solid var(--accent2); }
+  .bc-pitch .ask .bc-k { color: var(--accent2); }
+  .bc-table td { vertical-align: top; font-size: .84rem; line-height: 1.5; }
+  .bc-table td.bc-num { color: var(--muted); font-weight: 700; font-size: .75rem; width: 36px; }
+  .bc-table td.bc-m { font-weight: 700; color: var(--text); width: 30%; }
+  .bc-table td.bc-w { color: var(--muted); width: 32%; }
+  .bc-table td.bc-p strong { color: var(--plus-light); }
+  .bc-cap {
+    display: inline-block; margin-top: 6px; padding: 2px 9px; border-radius: 20px; font-size: .68rem; font-weight: 700;
+    background: var(--plus-dim); color: var(--plus-light); border: 1px solid rgba(108,99,255,.3); cursor: pointer; font-family: var(--font);
+  }
+  .bc-cap:hover { border-color: var(--plus); }
+  .bc-empty { padding: 40px; text-align: center; color: var(--muted); font-size: .9rem; }
+  html.light .bc-cap { border-color: rgba(0,128,96,.28); }
+  html.light .bc-table td.bc-p strong { color: #006649; }
+  @media (max-width: 900px) { .bc-pitch { grid-template-columns: 1fr; } }
+  @media (max-width: 680px) {
+    .bc-table, .bc-table tbody, .bc-table tr, .bc-table td { display: block; width: 100% !important; min-width: 0 !important; }
+    .bc-table thead { display: none; }
+    .bc-table tr { padding: 12px 14px; }
+    .bc-table td { padding: 2px 0; }
+    .bc-table td.bc-num { display: none; }
+    .bc-table td.bc-w::before { content: 'Needs: '; font-weight: 700; color: var(--text); }
+    .bc-cat-link { margin-left: 0; }
+  }
 
   /* ── IMPLICATION CARDS ── */
   .impl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 16px; align-items: start; }
@@ -628,12 +691,13 @@
   </div>
   <div class="tab-bar">
     <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+    <button class="tab-btn" onclick="switchTab('cases',this)">Business Cases for Plus</button>
     <button class="tab-btn" onclick="switchTab('implications',this)">Business Implications</button>
     <button class="tab-btn" onclick="switchTab('legal',this)">Legal &amp; Commercial</button>
     <button class="tab-btn" onclick="switchTab('support',this)">Support</button>
     <button class="tab-btn" onclick="switchTab('payments',this)">Payments Rates</button>
     <button class="tab-btn" onclick="switchTab('features',this)">B2B Feature Differences</button>
-    <button class="tab-btn" onclick="switchTab('exclusives',this)">Plus Exclusives</button>
+    <button class="tab-btn" id="tab-exclusives" onclick="switchTab('exclusives',this)">Plus Exclusives</button>
   </div>
 </header>
 
@@ -691,7 +755,7 @@
           <li><span class="ci" style="color:var(--danger)">✕</span>No UI extensions in checkout's information, shipping &amp; payment steps</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>No custom apps with Shopify Functions</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>GraphQL Admin API capped at 200 points/sec</li>
-          <li><span class="ci" style="color:var(--danger)">✕</span>No GiftCard, Multipass or User APIs</li>
+          <li><span class="ci" style="color:var(--danger)">✕</span>No GiftCard or User APIs, no third-party identity provider for customer sign-in</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>Card authorizations expire after 7 days</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>One legal entity per store for Shopify Payments</li>
           <li><span class="ci" style="color:var(--danger)">✕</span>Standard support only, no phone</li>
@@ -715,7 +779,7 @@
           <li class="upgrade"><span class="ci">+</span>Checkout Branding API &amp; separate B2B / D2C checkout flows</li>
           <li class="upgrade"><span class="ci">+</span>Custom apps with Shopify Functions (incl. Cart Transform line updates)</li>
           <li class="upgrade"><span class="ci">+</span>5× GraphQL Admin API limit (1,000 vs 200 points/sec)</li>
-          <li class="upgrade"><span class="ci">+</span>Plus-only APIs: GiftCard, Multipass, User, publishablePublish/Unpublish</li>
+          <li class="upgrade"><span class="ci">+</span>Plus-only APIs: GiftCard, User, publishablePublish/Unpublish; customer SSO via your own identity provider</li>
           <li class="upgrade"><span class="ci">+</span>Extended card authorization (up to 30 days)</li>
           <li class="upgrade"><span class="ci">+</span>Multiple business entities in one store</li>
           <li class="upgrade"><span class="ci">+</span>Combined Listings, Launchpad &amp; Shopify Audiences</li>
@@ -731,6 +795,67 @@
           <li class="upgrade"><span class="ci">+</span>Scoped, time-limited IP license</li>
         </ul>
       </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB · BUSINESS CASES FOR PLUS
+══════════════════════════════════ -->
+<div id="panel-cases" class="tab-panel">
+
+  <div class="section a1">
+    <div class="section-label">Business Cases for Shopify Plus</div>
+    <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+      <strong style="color:var(--plus-light);">Real merchants, real workflows, and the exact Plus capability each one depends on.</strong>
+      Every case below is a workflow that Advanced can't deliver natively, with the specific Plus feature that closes the gap. Use it in discovery: when a prospect recognizes their own business in a few of these rows, the conversation moves from "do we need Plus?" to "which of these do we turn on first?"
+    </div>
+  </div>
+
+  <div class="section a1">
+    <div class="section-label">At a Glance</div>
+    <div class="stat-row">
+      <div class="stat-card plus">
+        <div class="s-label">Business Cases</div>
+        <div class="s-value plus">50</div>
+        <div class="s-sub">workflows that need Plus, across 10 categories</div>
+      </div>
+      <div class="stat-card adv">
+        <div class="s-label">Advanced B2B Ceiling</div>
+        <div class="s-value adv">3</div>
+        <div class="s-sub">active catalogs across all B2B markets (unlimited on Plus)</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="s-label">Custom Functions</div>
+        <div class="s-value teal" id="bc-fn-count"></div>
+        <div class="s-sub">cases solved with your own Shopify Functions — custom Functions apps are Plus-only</div>
+      </div>
+      <div class="stat-card plus">
+        <div class="s-label">API Throughput</div>
+        <div class="s-value plus">5×</div>
+        <div class="s-sub">1,000 vs 200 GraphQL Admin points/sec for ERP, PIM &amp; EDI sync</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section a2">
+    <div class="section-label">Find Your Prospect</div>
+    <div class="bc-toolbar">
+      <input class="bc-search" id="bc-search" type="search" placeholder="Search — e.g. freight, GPO, deposit, ERP, license…" oninput="renderCases()">
+      <span class="bc-count" id="bc-count"></span>
+    </div>
+    <div class="bc-chips-label">By category</div>
+    <div class="bc-chips" id="bc-cat-chips"></div>
+    <div class="bc-chips-label">By Plus capability</div>
+    <div class="bc-chips" id="bc-cap-chips"></div>
+    <div id="bc-list"></div>
+  </div>
+
+  <div class="section a3">
+    <div class="verdict" style="border-left-color:var(--plus);">
+      <strong>How to use this in a deal:</strong> Ask the discovery questions in each category, note the rows the prospect recognizes, and map each one to the Plus capability beside it. Three or four matched rows usually make the business case on their own — each one is manual work, lost margin or a workaround that goes away on Plus. Tap any capability tag to open the matching Plus Exclusives page.
     </div>
   </div>
 
@@ -1249,7 +1374,7 @@
         <div class="excl-card" onclick="openExcl('devplatform')">
           <span class="excl-card-icon">🔌</span>
           <div class="excl-card-title">Plus-Only APIs &amp; Developer Platform</div>
-          <div class="excl-card-desc">5× API throughput, GiftCard / Multipass / User APIs, Cart Transform line updates, Level 2 PII custom apps, 25 Hydrogen storefronts and unlimited staging stores.</div>
+          <div class="excl-card-desc">5× API throughput, GiftCard / User APIs, customer SSO via your identity provider, Cart Transform line updates, Level 2 PII custom apps, 25 Hydrogen storefronts and unlimited staging stores.</div>
           <div class="excl-card-tags">
             <span class="excl-card-tag">Plus Only</span>
             <span class="excl-card-tag">APIs</span>
@@ -1971,8 +2096,8 @@
         </div>
         <div class="stat-card teal">
           <div class="s-label">Plus-Only APIs</div>
-          <div class="s-value" style="color:var(--accent2);">5</div>
-          <div class="s-sub">GiftCard, Multipass, User, publishablePublish/Unpublish</div>
+          <div class="s-value" style="color:var(--accent2);">4+</div>
+          <div class="s-sub">GiftCard, User, publishablePublish/Unpublish, plus customer SSO</div>
         </div>
         <div class="stat-card plus">
           <div class="s-label">Hydrogen Storefronts</div>
@@ -1998,8 +2123,8 @@
         </div>
         <div class="impl-card plus">
           <span class="impl-icon">🔑</span>
-          <div class="impl-title">Multipass <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body"><strong>Single sign-on from an external website, app or portal into Shopify customer accounts.</strong> If the customer doesn't have an account yet, one is created automatically. Plus also supports <strong>custom identity providers</strong> for customer sign-in.</div>
+          <div class="impl-title">Customer SSO via Your Identity Provider <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Connect your own OpenID Connect identity provider to Shopify customer accounts</strong>, so buyers sign in with the credentials they already use on your portal, dealer site or app. This is Shopify's replacement for Multipass, which is also Plus-only but closed to new stores (existing Multipass stores keep it).</div>
           <div class="impl-implication"><strong>Business Impact:</strong> B2B buyers and members log in once — on your portal, dealer site or app — and land in Shopify already authenticated.</div>
         </div>
         <div class="impl-card plus">
@@ -2088,7 +2213,7 @@
             <tr><td>GraphQL Admin API rate limit</td><td class="center"><span style="color:var(--adv);font-weight:700;">200 pts/sec</span></td><td class="center"><span style="color:var(--plus-light);font-weight:700;">1,000 pts/sec</span></td></tr>
             <tr><td>Higher limits on request</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>GiftCard API</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Multipass</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Multipass (existing stores only — closed to new stores)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>Custom identity provider for customer sign-in</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>User API</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>publishablePublish / publishableUnpublish</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
@@ -2388,7 +2513,7 @@
         <div class="impl-card plus">
           <span class="impl-icon">🔗</span>
           <div class="impl-title">ERP &amp; Middleware at 5× Throughput <span class="impl-plan-tag plus">Plus</span></div>
-          <div class="impl-body">Custom integration apps run against <strong>1,000 GraphQL Admin points/second on Plus vs 200 on Advanced</strong>, and can use Plus-only APIs such as GiftCard, Multipass and User.</div>
+          <div class="impl-body">Custom integration apps run against <strong>1,000 GraphQL Admin points/second on Plus vs 200 on Advanced</strong>, and can use Plus-only APIs such as GiftCard and User.</div>
           <div class="impl-implication"><strong>Business Impact:</strong> Integrations built to your exact data model that finish on time, every time.</div>
         </div>
         <div class="impl-card plus">
@@ -2420,7 +2545,7 @@
             <tr><td>Your own discount, shipping, payment &amp; validation Functions</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>Cart Transform <code>lineUpdate</code></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>Unlimited Level 2 PII custom apps</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
-            <tr><td>Plus-only APIs (GiftCard, Multipass, User)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Plus-only APIs (GiftCard, User)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
             <tr><td>GraphQL Admin API rate limit</td><td class="center"><span style="color:var(--adv);font-weight:700;">200 pts/sec</span></td><td class="center"><span style="color:var(--plus-light);font-weight:700;">1,000 pts/sec</span></td></tr>
           </tbody>
         </table>
@@ -2879,7 +3004,6 @@ const features = [
   { cat:'Checkout & Orders', name:'Bot protection during flash sales',                        adv:'no',  plus:'yes' },
   { cat:'Customer Accounts', name:'Customer account UI extensions (incl. full-page)',        adv:'yes', plus:'yes' },
   { cat:'Customer Accounts', name:'Custom identity provider for customer sign-in',           adv:'no',  plus:'yes' },
-  { cat:'Customer Accounts', name:'Multipass (SSO from an external site or portal)',         adv:'no',  plus:'yes' },
   { cat:'Sales Staff',       name:'Companies staff permissions',                            adv:'15',  plus:'unlimited' },
   { cat:'Storefront',        name:'Trade theme',                                            adv:'yes', plus:'yes' },
   { cat:'Storefront',        name:'Quick order list',                                       adv:'yes', plus:'yes' },
@@ -2894,7 +3018,7 @@ const features = [
   { cat:'Developer & APIs',  name:'GraphQL Admin API rate limit (points/sec)',               adv:'200', plus:'1000' },
   { cat:'Developer & APIs',  name:'Higher API rate limits on request',                       adv:'no',  plus:'yes' },
   { cat:'Developer & APIs',  name:'GiftCard API (create, issue & manage gift cards)',        adv:'no',  plus:'yes' },
-  { cat:'Developer & APIs',  name:'Multipass API',                                           adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'Multipass (existing stores only — closed to new stores)', adv:'no',  plus:'yes' },
   { cat:'Developer & APIs',  name:'User API (staff accounts)',                               adv:'no',  plus:'yes' },
   { cat:'Developer & APIs',  name:'publishablePublish / publishableUnpublish (GraphQL)',     adv:'no',  plus:'yes' },
   { cat:'Developer & APIs',  name:'Public App Store apps that contain Functions',            adv:'yes', plus:'yes' },
@@ -2941,9 +3065,9 @@ const implications = [
   },
   {
     type:'plus', icon:'🔌', title:'Integration Throughput & Plus-Only APIs',
-    body:`The GraphQL Admin API runs at <strong>1,000 points/second on Plus vs 200 on Advanced — 5× the throughput</strong>, with further increases available on request. Plus also unlocks API resources Advanced can't call at all: <strong>GiftCard</strong> (issue and manage gift cards programmatically), <strong>Multipass</strong> (single sign-on from an external site or portal), <strong>User</strong> (staff accounts), and the <strong>publishablePublish / publishableUnpublish</strong> mutations. Stores past 500,000 variants are also exempt from the 10,000-per-day variant-creation cap.`,
+    body:`The GraphQL Admin API runs at <strong>1,000 points/second on Plus vs 200 on Advanced — 5× the throughput</strong>, with further increases available on request. Plus also unlocks API resources Advanced can't call at all: <strong>GiftCard</strong> (issue and manage gift cards programmatically), <strong>customer single sign-on through your own identity provider</strong> (the successor to Multipass, which is closed to new stores), <strong>User</strong> (staff accounts), and the <strong>publishablePublish / publishableUnpublish</strong> mutations. Stores past 500,000 variants are also exempt from the 10,000-per-day variant-creation cap.`,
     implication:`ERP, PIM and OMS syncs finish 5× faster at the same query cost, and integrations that depend on gift card issuance, SSO or staff provisioning can be built natively instead of worked around.`,
-    tags:['5× API limit','GiftCard API','Multipass','User API','ERP sync']
+    tags:['5× API limit','GiftCard API','Customer SSO','User API','ERP sync']
   },
   {
     type:'plus', icon:'💰', title:'Cash Flow Protection',
@@ -3233,10 +3357,479 @@ function closeExcl() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// ═══════════════ BUSINESS CASES ═══════════════
+const businessCases = [
+ {
+  "key": "pricing",
+  "icon": "🏷️",
+  "title": "B2B Pricing & Catalog Access",
+  "view": "catalogs",
+  "pitch": "Advanced caps B2B at <strong>3 active catalogs across all B2B markets</strong>, and those catalogs reach buyers through markets. Plus removes the cap and lets you <strong>assign a catalog directly to a company or a single location</strong>, so every tier, contract, GPO, franchise and dealer program gets the exact price list and assortment it's entitled to.",
+  "without": "Teams flatten pricing into 3 tiers, re-key contract prices on draft orders, or tell some buyers to call in — margin leaks and buyers see prices or products they shouldn't.",
+  "ask": "How many price tiers or contract price lists do you run today? Do any customers see products that others shouldn't?",
+  "rows": [
+   {
+    "m": "Distributor with dealer, distributor, OEM, contractor and retail tiers",
+    "w": "More than 3 wholesale price tiers",
+    "p": "<strong>Unlimited catalogs.</strong> Lower plans cap at 3 active B2B catalogs.",
+    "cap": "Unlimited catalogs"
+   },
+   {
+    "m": "Cross-border distributor",
+    "w": "A separate wholesale price list for each country or region, more than 3 in total",
+    "p": "<strong>Unlimited catalogs</strong>",
+    "cap": "Unlimited catalogs"
+   },
+   {
+    "m": "Industrial supplier with negotiated contracts",
+    "w": "Contract pricing per company or location",
+    "p": "<strong>Catalogs assigned directly to a company or location</strong>",
+    "cap": "Direct catalog assignment"
+   },
+   {
+    "m": "Brand with authorized-dealer or regional SKUs",
+    "w": "Each account sees only the products it's approved for",
+    "p": "<strong>Catalogs assigned directly to a company or location</strong>",
+    "cap": "Direct catalog assignment"
+   },
+   {
+    "m": "Medical, dental or foodservice supplier selling through GPOs",
+    "w": "Member accounts get the GPO contract price list",
+    "p": "<strong>Catalogs assigned directly to a company or location</strong>",
+    "cap": "Direct catalog assignment"
+   },
+   {
+    "m": "Franchisor supplying franchisees",
+    "w": "Franchisees see only the approved assortment at franchise pricing",
+    "p": "<strong>Catalogs assigned directly to a company or location</strong>",
+    "cap": "Direct catalog assignment"
+   },
+   {
+    "m": "Salon, spa or clinical brand with professional-only lines",
+    "w": "Pro-only products visible only to verified accounts",
+    "p": "<strong>Catalogs assigned directly to a company or location</strong>",
+    "cap": "Direct catalog assignment"
+   }
+  ]
+ },
+ {
+  "key": "checkoutdata",
+  "icon": "📝",
+  "title": "Checkout Data Capture",
+  "view": "checkout",
+  "pitch": "Only Plus can add <strong>UI extensions to the information and shipping steps of checkout</strong>. That's where B2B buyers need to give you the job-site details, cost codes, certificates, licenses and delivery instructions your team otherwise chases after the order is placed.",
+  "without": "Reps follow up by phone and email after the order lands, data lives in notes fields or inboxes, and orders sit on hold until the paperwork arrives.",
+  "ask": "What information does your team collect by phone or email after an order is placed? What causes orders to go on hold?",
+  "rows": [
+   {
+    "m": "Building materials seller delivering to job sites",
+    "w": "Collect liftgate, dock hours, delivery appointment and site contact",
+    "p": "<strong>Checkout UI extensions</strong> on the information and shipping steps",
+    "cap": "Checkout UI extension"
+   },
+   {
+    "m": "Retail replenishment supplier",
+    "w": "Buyer picks a requested ship date or delivery window",
+    "p": "<strong>Checkout UI extension</strong> on the shipping step",
+    "cap": "Checkout UI extension"
+   },
+   {
+    "m": "Brand selling to resellers that drop-ship",
+    "w": "Blind shipping: reseller's name on the packing slip, no prices shown",
+    "p": "<strong>Checkout UI extension</strong> on the shipping step",
+    "cap": "Checkout UI extension"
+   },
+   {
+    "m": "Supplier to hospitals, universities or government",
+    "w": "Collect cost center, GL code or project number (PO number is native)",
+    "p": "<strong>Checkout UI extension</strong> on the information step",
+    "cap": "Checkout UI extension"
+   },
+   {
+    "m": "Supplier to resellers that claim tax exemption",
+    "w": "Upload or confirm a resale or tax-exempt certificate at checkout",
+    "p": "<strong>Checkout UI extension</strong> on the information step",
+    "cap": "Checkout UI extension"
+   },
+   {
+    "m": "Medical, firearms or alcohol wholesaler",
+    "w": "Collect and require a license number (DEA, medical, FFL, liquor) before checkout",
+    "p": "<strong>Checkout UI extension</strong> on the information step plus <strong>custom validation Function</strong>",
+    "cap": "Checkout UI extension"
+   }
+  ]
+ },
+ {
+  "key": "shipping",
+  "icon": "🚚",
+  "title": "Shipping & Delivery Rules",
+  "view": "checkout",
+  "pitch": "Advanced gets live carrier rates. Plus lets you run your own <strong>Delivery Customization Functions</strong> to hide, rename, reorder or limit options by cart, account, weight or time of day, and pair them with shipping-step UI extensions and account-specific freight discounts.",
+  "without": "Buyers pick rates that can't be honored (parcel on a pallet, air on hazmat, same-day after cutoff), and the team corrects shipping charges by hand after the order lands.",
+  "ask": "Do you ship freight, hazmat or on customer carrier accounts? Do accounts have carrier mandates, branch pickup or a shipping cutoff?",
+  "rows": [
+   {
+    "m": "Furniture or equipment seller shipping pallets",
+    "w": "Hide parcel rates on freight items; show LTL above a weight",
+    "p": "<strong>Custom Delivery Customization Function.</strong> Live carrier rates alone only need Advanced.",
+    "cap": "Delivery Function"
+   },
+   {
+    "m": "Chemical, battery or aerosol supplier",
+    "w": "Hide air and express rates when the cart has hazmat items",
+    "p": "<strong>Custom Delivery Customization Function</strong>",
+    "cap": "Delivery Function"
+   },
+   {
+    "m": "Wholesaler whose big accounts use their own UPS or FedEx account",
+    "w": "Collect the buyer's carrier account number; show only a \"ship on my account\" rate",
+    "p": "<strong>Checkout UI extension</strong> on the shipping step plus <strong>custom Delivery Customization Function</strong>",
+    "cap": "Delivery Function"
+   },
+   {
+    "m": "Distributor with a same-day shipping promise",
+    "w": "Hide same-day and expedited options after the warehouse cutoff",
+    "p": "<strong>Custom Delivery Customization Function</strong>",
+    "cap": "Delivery Function"
+   },
+   {
+    "m": "Wholesaler whose accounts each mandate a carrier",
+    "w": "Rename, reorder or limit rates to the carrier each account requires",
+    "p": "<strong>Custom Delivery Customization Function</strong>",
+    "cap": "Delivery Function"
+   },
+   {
+    "m": "Multi-branch distributor with will-call counters",
+    "w": "Offer pickup only at the account's branch; hide pickup for freight items",
+    "p": "<strong>Custom delivery or pickup Function</strong> (basic local pickup is native)",
+    "cap": "Delivery Function"
+   },
+   {
+    "m": "Supplier offering free freight to key accounts",
+    "w": "Free or discounted freight above a pallet count or order value for each account",
+    "p": "<strong>Custom Discount Function</strong> (shipping discount)",
+    "cap": "Discount Function"
+   }
+  ]
+ },
+ {
+  "key": "payments",
+  "icon": "💳",
+  "title": "Payment Terms, Deposits & Progress Billing",
+  "view": "payments",
+  "pitch": "Plus lets you control <strong>which payment methods each account sees</strong> with Payment Customization Functions, and adds <strong>required deposits, partial payments and payment requests per fulfillment</strong>, so how you collect matches how you build, ship and extend credit.",
+  "without": "Finance runs deposits and progress billing in a separate invoicing tool or by hand, and new or terms accounts can choose payment methods they shouldn't.",
+  "ask": "Do you take deposits, bill per shipment, or treat terms and prepaid accounts differently? How are new accounts approved for terms?",
+  "rows": [
+   {
+    "m": "Wholesaler with both net-terms and prepaid accounts",
+    "w": "Hide cards for terms accounts; ACH or wire only above a dollar threshold",
+    "p": "<strong>Custom Payment Customization Function</strong>",
+    "cap": "Payment Function"
+   },
+   {
+    "m": "Supplier onboarding new accounts",
+    "w": "Card-only payment until an account is approved for other methods",
+    "p": "<strong>Custom Payment Customization Function</strong>",
+    "cap": "Payment Function"
+   },
+   {
+    "m": "Regional distributor running delivery routes",
+    "w": "Offer cash on delivery only to approved accounts",
+    "p": "<strong>Custom Payment Customization Function</strong>",
+    "cap": "Payment Function"
+   },
+   {
+    "m": "Custom manufacturer (fixtures, uniforms, printed goods)",
+    "w": "Take a deposit up front and collect the balance later",
+    "p": "<strong>Required deposits and partial payments</strong>",
+    "cap": "Deposits & partial payments"
+   },
+   {
+    "m": "Brand taking pre-book orders months ahead",
+    "w": "Lock in pre-book orders with a deposit",
+    "p": "<strong>Required deposits</strong>",
+    "cap": "Deposits & partial payments"
+   },
+   {
+    "m": "Distributor with backorders and long lead times",
+    "w": "Bill each shipment as it goes out",
+    "p": "<strong>Payment requests per fulfillment</strong>",
+    "cap": "Deposits & partial payments"
+   },
+   {
+    "m": "Supplier selling large project orders over months",
+    "w": "Partial payments against one order as phases ship",
+    "p": "<strong>Partial payments and payment requests per fulfillment</strong>",
+    "cap": "Deposits & partial payments"
+   }
+  ]
+ },
+ {
+  "key": "rules",
+  "icon": "✔️",
+  "title": "Order Rules, Credit & Compliance",
+  "view": "functions",
+  "pitch": "Plus runs your own <strong>cart and checkout validation Functions</strong> before an order can be placed — credit limits synced from your ERP, case-pack and pallet minimums by customer, and regional product restrictions.",
+  "without": "Invalid orders get placed and then cancelled, held or edited by customer service, and compliance depends on someone catching the order in time.",
+  "ask": "Which orders does your team have to cancel or edit after they're placed? Do you enforce credit limits, case packs or shipping restrictions by hand?",
+  "rows": [
+   {
+    "m": "Brand restricted by state or country (Prop 65, export controls, licensed products)",
+    "w": "Block specific SKUs from shipping to restricted regions",
+    "p": "<strong>Custom cart and checkout validation Function</strong>",
+    "cap": "Validation Function"
+   },
+   {
+    "m": "Food, beverage or packaging wholesaler",
+    "w": "Case packs, mixed-pallet minimums, minimums that vary by customer",
+    "p": "<strong>Custom cart and checkout validation Function</strong> (per-product quantity rules are native)",
+    "cap": "Validation Function"
+   },
+   {
+    "m": "Distributor that extends credit",
+    "w": "Block checkout when an order exceeds the credit limit or the account is on hold (credit data synced from ERP)",
+    "p": "<strong>Custom cart and checkout validation Function</strong>",
+    "cap": "Validation Function"
+   }
+  ]
+ },
+ {
+  "key": "linepricing",
+  "icon": "🧩",
+  "title": "Custom Line Pricing, Kits & Fees",
+  "view": "functions",
+  "pitch": "The Cart Transform API's <strong><code>lineUpdate</code></strong> operation (override a line's price, title and image) and <strong>custom Cart Transform Functions</strong> are Plus-only. They let you price by measurement, sell configure-to-order kits as one line, and add imprint, setup or small-order fees.",
+  "without": "These orders become quotes and draft orders handled by reps, or approximations built from fixed variants that never quite match how you sell.",
+  "ask": "Do you sell anything priced by length, area or weight, as a configured kit, or with setup, personalization or small-order fees?",
+  "rows": [
+   {
+    "m": "Metals, lumber, cable, fabric or signage seller",
+    "w": "Price by length, area or weight the buyer enters",
+    "p": "<strong>Cart Transform <code>lineUpdate</code></strong>",
+    "cap": "Cart Transform"
+   },
+   {
+    "m": "Equipment or electrical supplier selling kits",
+    "w": "Configure-to-order kits priced as one line",
+    "p": "<strong>Custom Cart Transform Function</strong>",
+    "cap": "Cart Transform"
+   },
+   {
+    "m": "Promotional products or uniform supplier",
+    "w": "Add logo imprint, setup and personalization fees to the line price",
+    "p": "<strong>Custom Cart Transform Function</strong>",
+    "cap": "Cart Transform"
+   },
+   {
+    "m": "Wholesaler with costly small orders",
+    "w": "Add a small-order fee below a minimum order value",
+    "p": "<strong>Custom Cart Transform Function</strong>",
+    "cap": "Cart Transform"
+   }
+  ]
+ },
+ {
+  "key": "promos",
+  "icon": "🎯",
+  "title": "Discounts, Promotions & Launches",
+  "view": "functions",
+  "pitch": "Plus lets you write <strong>custom Discount Functions</strong> that match your commercial agreements exactly — mix-and-match volume breaks, contract-tier rebates and deadline-driven early-order programs — and schedule pre-book drops with <strong>Launchpad</strong>.",
+  "without": "Promotions are limited to what native discounts and App Store apps support, and launches depend on someone publishing collections and theme changes at the right minute.",
+  "ask": "How are rebates, contract-tier promotions and early-order programs handled today? Who's up at midnight when a collection launches?",
+  "rows": [
+   {
+    "m": "Hardware or packaging supplier",
+    "w": "Mix-and-match volume breaks across a product family",
+    "p": "<strong>Custom Discount Function</strong> (native volume pricing is per variant)",
+    "cap": "Discount Function"
+   },
+   {
+    "m": "Brand with rebates and promos tied to contract tier",
+    "w": "Account-specific discounts and stacking rules",
+    "p": "<strong>Custom Discount Function</strong>",
+    "cap": "Discount Function"
+   },
+   {
+    "m": "Seasonal brand running an early-order program",
+    "w": "Extra discount for pre-season orders placed by a deadline",
+    "p": "<strong>Custom Discount Function</strong>",
+    "cap": "Discount Function"
+   },
+   {
+    "m": "Apparel or seasonal goods brand doing pre-book",
+    "w": "Pre-book collections, product releases and theme changes go live at a set time",
+    "p": "<strong>Launchpad</strong>",
+    "cap": "Launchpad"
+   }
+  ]
+ },
+ {
+  "key": "fulfillment",
+  "icon": "📦",
+  "title": "Fulfillment & Order Routing",
+  "view": "functions",
+  "pitch": "Plus can run custom <strong>fulfillment-constraint</strong> and <strong>order-routing location rule</strong> Functions, so freight, cold-chain, ship-complete, home-branch and drop-ship rules are applied automatically when the order is placed.",
+  "without": "Orders split across the wrong locations, and the warehouse team re-routes or consolidates them by hand.",
+  "ask": "Do any products have to ship from specific locations? Do accounts expect ship-complete or a home branch? Do you mix stocked and drop-shipped lines?",
+  "rows": [
+   {
+    "m": "Seller of oversized or freight-only items",
+    "w": "Freight items ship from one DC and pallet orders never split",
+    "p": "<strong>Custom fulfillment-constraint Function</strong>",
+    "cap": "Fulfillment Function"
+   },
+   {
+    "m": "Food or pharma distributor with cold-chain items",
+    "w": "Refrigerated items ship only from temperature-controlled locations",
+    "p": "<strong>Custom fulfillment-constraint Function</strong>",
+    "cap": "Fulfillment Function"
+   },
+   {
+    "m": "Supplier whose accounts demand complete shipments",
+    "w": "Ship-complete accounts get everything from one location",
+    "p": "<strong>Custom fulfillment-constraint Function</strong>",
+    "cap": "Fulfillment Function"
+   },
+   {
+    "m": "Distributor with regional warehouses",
+    "w": "Route each account's orders to its home branch or warehouse",
+    "p": "<strong>Custom order-routing location rule Function</strong>",
+    "cap": "Fulfillment Function"
+   },
+   {
+    "m": "Distributor mixing stocked and drop-shipped lines",
+    "w": "Route vendor-direct items to the vendor's location",
+    "p": "<strong>Custom order-routing location rule Function</strong>",
+    "cap": "Fulfillment Function"
+   }
+  ]
+ },
+ {
+  "key": "scale",
+  "icon": "🔌",
+  "title": "Integration Scale",
+  "view": "devplatform",
+  "pitch": "The GraphQL Admin API runs at <strong>1,000 points/sec on Plus vs 200 on Advanced</strong> (100 on lower plans), and Plus is exempt from the daily cap on new variants for very large catalogs. ERP, PIM, EDI and 3PL integrations finish in the window you need.",
+  "without": "Syncs throttle, run for hours or overlap the next run, so prices, inventory and orders drift out of date between systems.",
+  "ask": "How many SKUs and contract accounts do you sync, and how often? Which systems — ERP, PIM, EDI, 3PL — need to stay in sync with the store?",
+  "rows": [
+   {
+    "m": "Parts or MRO catalog with 100k+ SKUs",
+    "w": "Frequent ERP or PIM sync of products and prices",
+    "p": "<strong>GraphQL Admin limit: 1,000 points/sec on Plus</strong> vs 200 on Advanced and 100 on lower plans. Plus is also exempt from the cap on new variants.",
+    "cap": "API limits"
+   },
+   {
+    "m": "Wholesaler on EDI with many 3PLs",
+    "w": "High-volume order intake and inventory sync across warehouses",
+    "p": "<strong>Plus API rate limits</strong>",
+    "cap": "API limits"
+   },
+   {
+    "m": "Distributor with thousands of contract accounts",
+    "w": "Nightly ERP push of every account's contract prices",
+    "p": "<strong>Plus API rate limits</strong> plus <strong>catalogs assigned directly to companies</strong>",
+    "cap": "API limits"
+   }
+  ]
+ },
+ {
+  "key": "org",
+  "icon": "🏢",
+  "title": "Identity, Stores & Teams",
+  "view": "expansion",
+  "pitch": "Plus connects <strong>your own identity provider</strong> to customer accounts, adds <strong>9 expansion stores</strong> with organization-level admin, and removes Advanced's <strong>15-staff limit</strong>.",
+  "without": "Buyers manage a second login, separate brands or entities need separately managed stores, and reps share logins once the team outgrows 15 seats.",
+  "ask": "Do buyers already sign in to a dealer portal? Do you run (or plan) separate B2B, brand or regional stores? How many people need admin access?",
+  "rows": [
+   {
+    "m": "Manufacturer with an existing dealer portal",
+    "w": "Buyers sign in with the identity provider they already use (SSO)",
+    "p": "<strong>Third-party identity provider for customer accounts</strong> (Multipass is Plus-only and closed to new stores)",
+    "cap": "Identity provider"
+   },
+   {
+    "m": "Brand running separate wholesale and D2C stores",
+    "w": "Dedicated B2B store next to the D2C store",
+    "p": "<strong>Expansion stores and organization-level admin</strong>",
+    "cap": "Expansion stores"
+   },
+   {
+    "m": "Holding company with multiple brands or legal entities",
+    "w": "One store per brand, region or entity, managed from one organization",
+    "p": "<strong>Expansion stores and organization-level admin</strong>",
+    "cap": "Expansion stores"
+   },
+   {
+    "m": "Inside sales or rep-driven wholesaler",
+    "w": "A large team of reps placing and editing orders in admin",
+    "p": "<strong>Unlimited staff accounts.</strong> Advanced caps at 15.",
+    "cap": "Unlimited staff"
+   }
+  ]
+ }
+];
+const capView = {"Unlimited catalogs": "catalogs", "Direct catalog assignment": "catalogs", "Checkout UI extension": "checkout", "Delivery Function": "checkout", "Discount Function": "functions", "Payment Function": "checkout", "Deposits & partial payments": "payments", "Validation Function": "functions", "Cart Transform": "functions", "Launchpad": "launchpad", "Fulfillment Function": "functions", "API limits": "devplatform", "Identity provider": "devplatform", "Expansion stores": "expansion", "Unlimited staff": "usergroups"};
+let bcCat = 'all', bcCap = 'all';
+function goExcl(view) {
+  switchTab('exclusives', document.getElementById('tab-exclusives'));
+  openExcl(view);
+}
+function bcEsc(t) { return t.replace(/<[^>]+>/g, '').toLowerCase(); }
+function renderCaseChips() {
+  const all = businessCases.flatMap(c => c.rows);
+  const catChips = [`<button class="bc-chip${bcCat==='all'?' active':''}" onclick="bcCat='all';renderCases()">All<span class="n">${all.length}</span></button>`]
+    .concat(businessCases.map(c => `<button class="bc-chip${bcCat===c.key?' active':''}" onclick="bcCat='${c.key}';renderCases()">${c.icon} ${c.title}<span class="n">${c.rows.length}</span></button>`));
+  document.getElementById('bc-cat-chips').innerHTML = catChips.join('');
+  const caps = {};
+  all.forEach(r => caps[r.cap] = (caps[r.cap] || 0) + 1);
+  const capChips = [`<button class="bc-chip${bcCap==='all'?' active':''}" onclick="bcCap='all';renderCases()">Any</button>`]
+    .concat(Object.entries(caps).sort((a,b) => b[1]-a[1]).map(([k,n]) =>
+      `<button class="bc-chip${bcCap===k?' active':''}" onclick="bcCap=${JSON.stringify(k).replace(/"/g,'&quot;')};renderCases()">${k}<span class="n">${n}</span></button>`));
+  document.getElementById('bc-cap-chips').innerHTML = capChips.join('');
+}
+function renderCases() {
+  renderCaseChips();
+  const q = (document.getElementById('bc-search').value || '').trim().toLowerCase();
+  let n = 0, shown = 0, html = '';
+  businessCases.forEach(c => {
+    const rows = c.rows.map(r => ({ ...r, i: ++n })).filter(r =>
+      (bcCat === 'all' || bcCat === c.key) && (bcCap === 'all' || bcCap === r.cap) &&
+      (!q || [r.m, r.w, r.p, r.cap, c.title].some(t => bcEsc(t).includes(q))));
+    if (!rows.length) return;
+    shown += rows.length;
+    html += `<div class="bc-cat">
+      <div class="bc-cat-head">
+        <span class="bc-cat-icon">${c.icon}</span><span class="bc-cat-title">${c.title}</span>
+        <span class="bc-cat-n">${rows.length} case${rows.length>1?'s':''}</span>
+        <button class="bc-cat-link" onclick="goExcl('${c.view}')">See the Plus feature →</button>
+      </div>
+      <div class="bc-pitch">
+        <div class="unlock"><span class="bc-k">What Plus unlocks</span>${c.pitch}</div>
+        <div class="without"><span class="bc-k">Without Plus</span>${c.without}</div>
+        <div class="ask"><span class="bc-k">Ask in discovery</span>${c.ask}</div>
+      </div>
+      <div class="table-wrap"><table class="bc-table">
+        <thead><tr><th>#</th><th>Example merchant</th><th>Workflow they need</th><th>What needs Plus</th></tr></thead>
+        <tbody>${rows.map(r => `<tr>
+          <td class="bc-num">${r.i}</td><td class="bc-m">${r.m}</td><td class="bc-w">${r.w}</td>
+          <td class="bc-p">${r.p}<br><button class="bc-cap" onclick="goExcl('${capView[r.cap] || c.view}')">${r.cap} →</button></td>
+        </tr>`).join('')}</tbody>
+      </table></div>
+    </div>`;
+  });
+  document.getElementById('bc-list').innerHTML = html || '<div class="bc-empty">No business cases match. Try another search or clear the filters.</div>';
+  document.getElementById('bc-count').textContent = shown + ' of ' + n + ' cases';
+}
+document.getElementById('bc-fn-count').textContent =
+  businessCases.flatMap(c => c.rows).filter(r => /Function|Cart Transform/.test(r.p)).length;
+
 // ═══════════════ INIT ═══════════════
 buildDiffTable();
 renderFullTable();
 buildImplications();
+renderCases();
 </script>
 </body>
 </html>
