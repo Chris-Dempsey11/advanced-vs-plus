@@ -216,7 +216,7 @@
   .bc-cat-n { font-size: .7rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); }
   .bc-cat-link { margin-left: auto; font-size: .78rem; font-weight: 700; color: var(--plus-light); background: none; border: none; cursor: pointer; font-family: var(--font); padding: 0; }
   .bc-cat-link:hover { text-decoration: underline; }
-  .bc-pitch { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .bc-pitch { display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px; margin-bottom: 12px; }
   .bc-pitch > div {
     background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;
     font-size: .8rem; line-height: 1.55; color: var(--muted);
@@ -227,8 +227,6 @@
   .bc-pitch .unlock .bc-k { color: var(--plus-light); }
   .bc-pitch .without { border-left: 3px solid var(--adv); }
   .bc-pitch .without .bc-k { color: var(--adv); }
-  .bc-pitch .ask { border-left: 3px solid var(--accent2); }
-  .bc-pitch .ask .bc-k { color: var(--accent2); }
   .bc-table td { vertical-align: top; font-size: .84rem; line-height: 1.5; }
   .bc-table td.bc-num { color: var(--muted); font-weight: 700; font-size: .75rem; width: 36px; }
   .bc-table td.bc-m { font-weight: 700; color: var(--text); width: 30%; }
@@ -810,7 +808,7 @@
     <div class="section-label">Business Cases for Shopify Plus</div>
     <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
       <strong style="color:var(--plus-light);">Real merchants, real workflows, and the exact Plus capability each one depends on.</strong>
-      Every case below is a workflow that Advanced can't deliver natively, with the specific Plus feature that closes the gap. Use it in discovery: when a prospect recognizes their own business in a few of these rows, the conversation moves from "do we need Plus?" to "which of these do we turn on first?"
+      Every case below is a workflow that Advanced can't deliver natively, with the specific Plus feature that closes the gap. If you recognize your own business in a few of these rows, those are the workflows Plus lets you run natively — without manual work, workarounds or extra stores.
     </div>
   </div>
 
@@ -841,7 +839,7 @@
   </div>
 
   <div class="section a2">
-    <div class="section-label">Find Your Prospect</div>
+    <div class="section-label">Find Your Business</div>
     <div class="bc-toolbar">
       <input class="bc-search" id="bc-search" type="search" placeholder="Search — e.g. freight, GPO, deposit, ERP, license…" oninput="renderCases()">
       <span class="bc-count" id="bc-count"></span>
@@ -855,7 +853,7 @@
 
   <div class="section a3">
     <div class="verdict" style="border-left-color:var(--plus);">
-      <strong>How to use this in a deal:</strong> Ask the discovery questions in each category, note the rows the prospect recognizes, and map each one to the Plus capability beside it. Three or four matched rows usually make the business case on their own — each one is manual work, lost margin or a workaround that goes away on Plus. Tap any capability tag to open the matching Plus Exclusives page.
+      <strong>Building your business case:</strong> Note the rows that match how you sell today, and the Plus capability beside each one. Every match is manual work, lost margin or a workaround that goes away on Plus. Tap any capability tag to see the feature in detail on the Plus Exclusives tab.
     </div>
   </div>
 
@@ -3366,7 +3364,6 @@ const businessCases = [
   "view": "catalogs",
   "pitch": "Advanced caps B2B at <strong>3 active catalogs across all B2B markets</strong>, and those catalogs reach buyers through markets. Plus removes the cap and lets you <strong>assign a catalog directly to a company or a single location</strong>, so every tier, contract, GPO, franchise and dealer program gets the exact price list and assortment it's entitled to.",
   "without": "Teams flatten pricing into 3 tiers, re-key contract prices on draft orders, or tell some buyers to call in — margin leaks and buyers see prices or products they shouldn't.",
-  "ask": "How many price tiers or contract price lists do you run today? Do any customers see products that others shouldn't?",
   "rows": [
    {
     "m": "Distributor with dealer, distributor, OEM, contractor and retail tiers",
@@ -3419,7 +3416,6 @@ const businessCases = [
   "view": "checkout",
   "pitch": "Only Plus can add <strong>UI extensions to the information and shipping steps of checkout</strong>. That's where B2B buyers need to give you the job-site details, cost codes, certificates, licenses and delivery instructions your team otherwise chases after the order is placed.",
   "without": "Reps follow up by phone and email after the order lands, data lives in notes fields or inboxes, and orders sit on hold until the paperwork arrives.",
-  "ask": "What information does your team collect by phone or email after an order is placed? What causes orders to go on hold?",
   "rows": [
    {
     "m": "Building materials seller delivering to job sites",
@@ -3466,7 +3462,6 @@ const businessCases = [
   "view": "checkout",
   "pitch": "Advanced gets live carrier rates. Plus lets you run your own <strong>Delivery Customization Functions</strong> to hide, rename, reorder or limit options by cart, account, weight or time of day, and pair them with shipping-step UI extensions and account-specific freight discounts.",
   "without": "Buyers pick rates that can't be honored (parcel on a pallet, air on hazmat, same-day after cutoff), and the team corrects shipping charges by hand after the order lands.",
-  "ask": "Do you ship freight, hazmat or on customer carrier accounts? Do accounts have carrier mandates, branch pickup or a shipping cutoff?",
   "rows": [
    {
     "m": "Furniture or equipment seller shipping pallets",
@@ -3519,7 +3514,6 @@ const businessCases = [
   "view": "payments",
   "pitch": "Plus lets you control <strong>which payment methods each account sees</strong> with Payment Customization Functions, and adds <strong>required deposits, partial payments and payment requests per fulfillment</strong>, so how you collect matches how you build, ship and extend credit.",
   "without": "Finance runs deposits and progress billing in a separate invoicing tool or by hand, and new or terms accounts can choose payment methods they shouldn't.",
-  "ask": "Do you take deposits, bill per shipment, or treat terms and prepaid accounts differently? How are new accounts approved for terms?",
   "rows": [
    {
     "m": "Wholesaler with both net-terms and prepaid accounts",
@@ -3572,7 +3566,6 @@ const businessCases = [
   "view": "functions",
   "pitch": "Plus runs your own <strong>cart and checkout validation Functions</strong> before an order can be placed — credit limits synced from your ERP, case-pack and pallet minimums by customer, and regional product restrictions.",
   "without": "Invalid orders get placed and then cancelled, held or edited by customer service, and compliance depends on someone catching the order in time.",
-  "ask": "Which orders does your team have to cancel or edit after they're placed? Do you enforce credit limits, case packs or shipping restrictions by hand?",
   "rows": [
    {
     "m": "Brand restricted by state or country (Prop 65, export controls, licensed products)",
@@ -3601,7 +3594,6 @@ const businessCases = [
   "view": "functions",
   "pitch": "The Cart Transform API's <strong><code>lineUpdate</code></strong> operation (override a line's price, title and image) and <strong>custom Cart Transform Functions</strong> are Plus-only. They let you price by measurement, sell configure-to-order kits as one line, and add imprint, setup or small-order fees.",
   "without": "These orders become quotes and draft orders handled by reps, or approximations built from fixed variants that never quite match how you sell.",
-  "ask": "Do you sell anything priced by length, area or weight, as a configured kit, or with setup, personalization or small-order fees?",
   "rows": [
    {
     "m": "Metals, lumber, cable, fabric or signage seller",
@@ -3636,7 +3628,6 @@ const businessCases = [
   "view": "functions",
   "pitch": "Plus lets you write <strong>custom Discount Functions</strong> that match your commercial agreements exactly — mix-and-match volume breaks, contract-tier rebates and deadline-driven early-order programs — and schedule pre-book drops with <strong>Launchpad</strong>.",
   "without": "Promotions are limited to what native discounts and App Store apps support, and launches depend on someone publishing collections and theme changes at the right minute.",
-  "ask": "How are rebates, contract-tier promotions and early-order programs handled today? Who's up at midnight when a collection launches?",
   "rows": [
    {
     "m": "Hardware or packaging supplier",
@@ -3671,7 +3662,6 @@ const businessCases = [
   "view": "functions",
   "pitch": "Plus can run custom <strong>fulfillment-constraint</strong> and <strong>order-routing location rule</strong> Functions, so freight, cold-chain, ship-complete, home-branch and drop-ship rules are applied automatically when the order is placed.",
   "without": "Orders split across the wrong locations, and the warehouse team re-routes or consolidates them by hand.",
-  "ask": "Do any products have to ship from specific locations? Do accounts expect ship-complete or a home branch? Do you mix stocked and drop-shipped lines?",
   "rows": [
    {
     "m": "Seller of oversized or freight-only items",
@@ -3712,7 +3702,6 @@ const businessCases = [
   "view": "devplatform",
   "pitch": "The GraphQL Admin API runs at <strong>1,000 points/sec on Plus vs 200 on Advanced</strong> (100 on lower plans), and Plus is exempt from the daily cap on new variants for very large catalogs. ERP, PIM, EDI and 3PL integrations finish in the window you need.",
   "without": "Syncs throttle, run for hours or overlap the next run, so prices, inventory and orders drift out of date between systems.",
-  "ask": "How many SKUs and contract accounts do you sync, and how often? Which systems — ERP, PIM, EDI, 3PL — need to stay in sync with the store?",
   "rows": [
    {
     "m": "Parts or MRO catalog with 10k+ SKUs",
@@ -3741,7 +3730,6 @@ const businessCases = [
   "view": "expansion",
   "pitch": "Plus connects <strong>your own identity provider</strong> to customer accounts, adds <strong>9 expansion stores</strong> with organization-level admin, and removes Advanced's <strong>15-staff limit</strong>.",
   "without": "Buyers manage a second login, separate brands or entities need separately managed stores, and reps share logins once the team outgrows 15 seats.",
-  "ask": "Do buyers already sign in to a dealer portal? Do you run (or plan) separate B2B, brand or regional stores? How many people need admin access?",
   "rows": [
    {
     "m": "Manufacturer with an existing dealer portal",
@@ -3808,7 +3796,6 @@ function renderCases() {
       <div class="bc-pitch">
         <div class="unlock"><span class="bc-k">What Plus unlocks</span>${c.pitch}</div>
         <div class="without"><span class="bc-k">Without Plus</span>${c.without}</div>
-        <div class="ask"><span class="bc-k">Ask in discovery</span>${c.ask}</div>
       </div>
       <div class="table-wrap"><table class="bc-table">
         <thead><tr><th>#</th><th>Example merchant</th><th>Workflow they need</th><th>What needs Plus</th></tr></thead>
