@@ -251,6 +251,10 @@
     .bc-cat-link { margin-left: 0; }
   }
 
+  .ca-intro { font-size: .85rem; color: var(--muted); line-height: 1.6; margin: -6px 0 16px; max-width: 900px; }
+  .ca-intro strong { color: var(--text); }
+  .ca-list { margin: 4px 0 0 18px; display: flex; flex-direction: column; gap: 6px; }
+  .ca-list li { line-height: 1.45; }
   /* ── IMPLICATION CARDS ── */
   .impl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 16px; align-items: start; }
   .impl-card {
@@ -695,7 +699,7 @@
     <button class="tab-btn" onclick="switchTab('payments',this)">Payments Rates</button>
     <button class="tab-btn" onclick="switchTab('features',this)">B2B Feature Differences</button>
     <button class="tab-btn" id="tab-exclusives" onclick="switchTab('exclusives',this)">Plus Exclusives</button>
-    <button class="tab-btn" onclick="switchTab('cases',this)">Business Cases for Plus</button>
+    <button class="tab-btn" id="tab-cases" onclick="switchTab('cases',this)">Business Cases for Plus</button>
   </div>
 </header>
 
@@ -1345,6 +1349,18 @@
         </div>
 
         <!-- Placeholder cards — expand as needed -->
+        <div class="excl-card" onclick="openExcl('customapps')">
+          <span class="excl-card-icon">🧑‍💻</span>
+          <div class="excl-card-title">Custom Apps</div>
+          <div class="excl-card-desc">Software built only for your business: your own Functions inside cart and checkout, UI in the checkout steps, one app across every store, and Plus-only APIs.</div>
+          <div class="excl-card-tags">
+            <span class="excl-card-tag">Plus Only</span>
+            <span class="excl-card-tag">9 Function APIs</span>
+            <span class="excl-card-tag">Proprietary</span>
+          </div>
+          <div class="excl-card-cta">Explore feature</div>
+        </div>
+
         <div class="excl-card" onclick="openExcl('checkout')">
           <span class="excl-card-icon">🏗️</span>
           <div class="excl-card-title">Checkout Extensibility</div>
@@ -2426,6 +2442,265 @@
 
   </div>
 
+  <!-- SUB-VIEW: Custom Apps -->
+  <div id="excl-customapps" class="excl-sub">
+    <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
+
+    <div class="section a1">
+      <div class="section-label">Custom Apps on Shopify Plus</div>
+      <div class="verdict" style="border-left-color:var(--plus); margin-top:0;">
+        <strong style="color:var(--plus-light);">A custom app is software built for one business — yours — and installed only in your stores.</strong> Every Shopify plan can run a basic custom app that reads and writes data through the Admin API. <strong>Plus is where custom apps become a way to change how Shopify itself behaves:</strong> only Plus stores can install custom apps that contain <strong>Shopify Functions</strong> (your own discount, shipping, payment, validation, bundling, fulfillment and routing logic, running natively inside Shopify), add <strong>UI to the information, shipping and payment steps of checkout</strong>, install <strong>one app across every store in the organization</strong>, run <strong>unlimited custom apps with protected customer data</strong>, and call Plus-only APIs at <strong>5× the API limit</strong>.
+      </div>
+    </div>
+
+    <div class="section a1">
+      <div class="section-label">At a Glance</div>
+      <div class="stat-row">
+        <div class="stat-card plus">
+          <div class="s-label">Function APIs</div>
+          <div class="s-value" style="color:var(--plus-light);">9</div>
+          <div class="s-sub">Discount, delivery, payment, validation, cart transform, fulfillment, routing &amp; pickup — in custom apps on Plus only</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">Org-wide Install</div>
+          <div class="s-value" style="color:var(--accent2);">1 app</div>
+          <div class="s-sub">Installed across every store in your Plus organization</div>
+        </div>
+        <div class="stat-card plus">
+          <div class="s-label">API Throughput</div>
+          <div class="s-value" style="color:var(--plus-light);">5×</div>
+          <div class="s-sub">1,000 vs 200 GraphQL Admin points/sec</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="s-label">App Subscription</div>
+          <div class="s-value" style="color:var(--accent2);">$0</div>
+          <div class="s-sub">Custom apps can't bill through Shopify — you own the code instead of renting it</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">What a Custom App Can Do — Advanced vs Plus</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Capability</th><th class="adv-col">Advanced</th><th class="plus-col">Plus</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Custom app using the Admin API (read &amp; write store data)</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Admin UI extensions (blocks &amp; actions inside the Shopify admin)</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>POS UI extensions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Theme app extensions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Customer account UI extensions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>Thank you &amp; Order status page extensions</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td><strong>Custom app containing Shopify Functions</strong></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td><strong>Checkout UI extensions in information, shipping &amp; payment steps</strong></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td><strong>Cart Transform <code>lineUpdate</code></strong> (override line price, title &amp; image)</td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td><strong>One custom app installed across multiple stores in the organization</strong></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td><strong>Unlimited custom apps with Level 2 protected customer data</strong></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td><strong>GiftCard API, User API, publishablePublish / Unpublish</strong></td><td class="center"><span class="cross">✕</span></td><td class="center"><span class="check">✓</span></td></tr>
+            <tr><td>GraphQL Admin API rate limit</td><td class="center"><span style="color:var(--adv);font-weight:700;">200 pts/sec</span></td><td class="center"><span style="color:var(--plus-light);font-weight:700;">1,000 pts/sec</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>The honest version:</strong> Advanced can build custom apps that sync data and add screens to the admin, POS and customer accounts. What it can't do is put <em>your</em> logic inside cart and checkout, or your UI inside the checkout steps. That's the line Plus moves.
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">The 9 Shopify Function APIs a Custom App Can Use on Plus</div>
+      <p class="ca-intro">Functions are small pieces of your code that Shopify runs inside its own cart and checkout — no servers of yours in the path at checkout time. App Store apps with Functions work on every plan; <strong>a custom app with Functions — logic built only for you — needs Plus.</strong> (Two of these, the pickup option generators, are newer APIs Shopify still labels as unstable.)</p>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">💸</span>
+          <div class="impl-title">Discount <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Your own product, order and shipping discount logic — mix-and-match volume breaks, contract-tier pricing, account rebates, early-order programs, tiered gifts, stacking caps.</div>
+          <div class="impl-implication"><strong>Example:</strong> Promotions that follow your commercial agreements exactly.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🧩</span>
+          <div class="impl-title">Cart Transform <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Expand a line into components, merge lines into a bundle, or — Plus-only — <strong><code>lineUpdate</code></strong> a line's price, title and image. Price by length or weight, configure-to-order kits, imprint and setup fees, small-order fees.</div>
+          <div class="impl-implication"><strong>Example:</strong> Configured and measured products priced as one clean line.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🚚</span>
+          <div class="impl-title">Delivery Customization <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Hide, rename or reorder delivery options — no parcel on freight, no air on hazmat, no same-day after cutoff, only the carrier an account mandates.</div>
+          <div class="impl-implication"><strong>Example:</strong> Buyers only see rates you can honor.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">💳</span>
+          <div class="impl-title">Payment Customization <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Hide, rename or reorder payment methods — no cards for net-terms accounts, ACH only above a threshold, card-only until an account is approved, COD only on approved routes.</div>
+          <div class="impl-implication"><strong>Example:</strong> The right payment options for each buyer, every time.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">✔️</span>
+          <div class="impl-title">Cart &amp; Checkout Validation <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Block checkout with a clear message when rules aren't met — credit limits synced from ERP, case packs, customer-specific minimums, license requirements, regional SKU restrictions.</div>
+          <div class="impl-implication"><strong>Example:</strong> Invalid orders stopped before they're placed, not after.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📦</span>
+          <div class="impl-title">Fulfillment Constraints <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Control how orders split across locations — freight from one DC, cold-chain only from refrigerated sites, ship-complete accounts from a single location.</div>
+          <div class="impl-implication"><strong>Example:</strong> Orders leave from the right place the first time.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🧭</span>
+          <div class="impl-title">Order Routing (Location Rules) <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Rank locations with your own rules — each account's home branch, vendor-direct items to the vendor's location, nearest stocked warehouse.</div>
+          <div class="impl-implication"><strong>Example:</strong> Routing that matches your network, not a generic default.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📍</span>
+          <div class="impl-title">Pickup Point Delivery Options <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Generate pickup-point options from your own network or partner lockers.</div>
+          <div class="impl-implication"><strong>Example:</strong> Pickup that reflects where your buyers actually collect.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🏬</span>
+          <div class="impl-title">Local Pickup Delivery Options <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Generate local pickup options with your own rules — only the account's branch, hide pickup for freight items, custom pickup windows.</div>
+          <div class="impl-implication"><strong>Example:</strong> Will-call and branch pickup handled natively.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Where a Plus Custom App Can Show Up</div>
+      <p class="ca-intro">Plus doesn't only add new places for your app — it combines them. A single custom app can capture a job number in checkout, validate it with a Function, show it to staff in the admin, and expose it on the buyer's order history.</p>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🛒</span>
+          <div class="impl-title">Inside the Checkout Steps <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><strong>Information, shipping and payment step extensions</strong> — custom fields, PO and cost codes, license capture, delivery appointments, carrier account numbers, tax-exempt certificates, upsells, consent UI. Plus-only.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">🧾</span>
+          <div class="impl-title">Thank You &amp; Order Status <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Post-purchase surveys, loyalty sign-up, reorder buttons and tracking content on the pages after checkout. All plans.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">👤</span>
+          <div class="impl-title">Customer Accounts <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Full-page and block extensions in customer accounts — quotes, invoices, warranty registration, reorder lists, account documents. All plans.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">🧑‍💼</span>
+          <div class="impl-title">Shopify Admin <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Blocks, actions and links inside orders, products and customers — ERP status, credit limits, approval buttons, internal notes. All plans.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">🏪</span>
+          <div class="impl-title">Point of Sale <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Tiles and screens inside Shopify POS for clienteling, appointments, store-specific workflows. All plans.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">🎨</span>
+          <div class="impl-title">Online Store Theme <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">App blocks and embeds in the theme — configurators, calculators, dealer locators, B2B quick order. All plans.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Custom App Use Cases by Team</div>
+      <p class="ca-intro">Every row below is something a Plus merchant can build once and own. See the <a href="#" onclick="goCases();return false;" style="color:var(--plus-light);font-weight:700;">Business Cases for Plus</a> tab for 50 merchant scenarios mapped to these capabilities.</p>
+      <div class="impl-grid">
+        <div class="impl-card plus">
+          <span class="impl-icon">🤝</span>
+          <div class="impl-title">B2B &amp; Sales <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><ul class="ca-list"><li>Contract pricing and rebate logic as Discount Functions</li><li>Credit-limit and account-hold checks at checkout, synced from ERP</li><li>PO, cost center and GL code capture in checkout</li><li>Quote-to-order: approved quotes become priced carts</li><li>Rep tools in the admin: account health, open orders, credit available</li></ul></div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">📦</span>
+          <div class="impl-title">Operations &amp; Fulfillment <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><ul class="ca-list"><li>Freight, hazmat and cutoff-time delivery rules</li><li>Ship-complete and cold-chain fulfillment constraints</li><li>Home-branch and drop-ship order routing</li><li>Delivery appointment, dock hours and liftgate capture</li><li>3PL and WMS sync at 5× the API rate</li></ul></div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">💰</span>
+          <div class="impl-title">Finance <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><ul class="ca-list"><li>Payment method rules by account type, order value or approval status</li><li>Store credit and gift card issuance from ERP or returns systems (GiftCard API)</li><li>Small-order and handling fees via Cart Transform</li><li>Tax-exempt and resale certificate capture at checkout</li><li>Automated reconciliation exports to ERP</li></ul></div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🎯</span>
+          <div class="impl-title">Marketing &amp; Loyalty <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><ul class="ca-list"><li>Loyalty points earned and redeemed inside checkout</li><li>Tiered gift-with-purchase and bundle pricing</li><li>Early-order and pre-book incentive programs</li><li>Segment-specific offers in the checkout steps</li><li>Automated product drops via publishablePublish / Unpublish</li></ul></div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🛡️</span>
+          <div class="impl-title">Compliance &amp; Risk <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><ul class="ca-list"><li>License verification (DEA, FFL, liquor, medical) before checkout</li><li>Regional and export SKU restrictions</li><li>Age verification and regulatory consent in checkout</li><li>Purchase limits on high-demand items</li><li>Audit trails of captured checkout data on order metafields</li></ul></div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">🧑‍💻</span>
+          <div class="impl-title">IT &amp; Data <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body"><ul class="ca-list"><li>One custom app deployed across every store in the organization</li><li>Unlimited custom apps with Level 2 customer data for CRM, ERP and CDP sync</li><li>Staff provisioning and audits via the User API</li><li>High-volume catalog and price sync at 1,000 points/sec</li><li>Customer SSO through your own identity provider</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">Custom App vs App Store App</div>
+      <div class="table-wrap">
+        <table class="rate-table">
+          <thead>
+            <tr><th>Consideration</th><th class="adv-col">App Store app</th><th class="plus-col">Your custom app (Plus)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Who it's built for</td><td class="center">Every merchant who installs it</td><td class="center">Your business only</td></tr>
+            <tr><td>Business logic</td><td class="center">The vendor's settings and roadmap</td><td class="center">Exactly your rules, changed on your schedule</td></tr>
+            <tr><td>Cost model</td><td class="center">Ongoing subscription, often priced by order volume</td><td class="center">Build and maintain — no app subscription</td></tr>
+            <tr><td>Shopify Functions</td><td class="center">Any plan</td><td class="center">Plus only</td></tr>
+            <tr><td>Checkout step extensions</td><td class="center">Plus only</td><td class="center">Plus only</td></tr>
+            <tr><td>Shopify App Store review</td><td class="center">Required</td><td class="center">Not required</td></tr>
+            <tr><td>Installed on</td><td class="center">Any store</td><td class="center">Your store, or every store in your Plus organization</td></tr>
+            <tr><td>Who sees your data</td><td class="center">The vendor processes it</td><td class="center">Only the systems you choose</td></tr>
+            <tr><td>Competitive advantage</td><td class="center">Your competitors can install the same app</td><td class="center">Proprietary to you</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict" style="margin-top:16px;">
+        <strong>Most Plus merchants use both:</strong> App Store apps for common needs, and custom apps for the logic that makes their business different. Plus is what makes the second category possible inside cart and checkout.
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="section-label">How Custom Apps Are Built Today</div>
+      <div class="impl-grid">
+        <div class="impl-card both">
+          <span class="impl-icon">🛠️</span>
+          <div class="impl-title">Built in the Dev Dashboard or Shopify CLI <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Since <strong>January 1, 2026</strong>, new custom apps are created in the <strong>Dev Dashboard</strong> or with <strong>Shopify CLI</strong> rather than in the store admin. Existing admin-created apps keep working.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">👩‍💻</span>
+          <div class="impl-title">Your Team or a Shopify Partner <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Custom apps are built by your developers or an agency. Plus merchants also get access to the <strong>Plus Partner Program</strong> and Plus Certified App Partners.</div>
+        </div>
+        <div class="impl-card plus">
+          <span class="impl-icon">⚡</span>
+          <div class="impl-title">Functions Run on Shopify <span class="impl-plan-tag plus">Plus</span></div>
+          <div class="impl-body">Function code is deployed to and executed by Shopify inside cart and checkout, so your logic scales with Shopify on your biggest days.</div>
+        </div>
+        <div class="impl-card both">
+          <span class="impl-icon">🔒</span>
+          <div class="impl-title">No App Store Review, No Shopify Billing <span class="impl-plan-tag both">Both Plans</span></div>
+          <div class="impl-body">Custom-distribution apps don't need App Store approval and can't charge through Shopify's billing — there's no app subscription. The distribution method is chosen once and can't be changed.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section a3">
+      <div class="verdict" style="border-left-color:var(--plus);">
+        <strong>Bottom line:</strong> On Advanced, a custom app can move data around Shopify. <strong>On Plus, a custom app can change how Shopify behaves</strong> — what buyers pay, what they can choose, what checkout asks for, and where orders ship from — using logic only your business has.
+      </div>
+    </div>
+  </div>
+
   <!-- SUB-VIEW: Functions & Custom Apps -->
   <div id="excl-functions" class="excl-sub">
     <button class="excl-back" onclick="closeExcl()">← Back to Plus Exclusives</button>
@@ -3021,6 +3296,7 @@ const features = [
   { cat:'Developer & APIs',  name:'publishablePublish / publishableUnpublish (GraphQL)',     adv:'no',  plus:'yes' },
   { cat:'Developer & APIs',  name:'Public App Store apps that contain Functions',            adv:'yes', plus:'yes' },
   { cat:'Developer & APIs',  name:'Custom apps that contain Shopify Functions',              adv:'no',  plus:'yes' },
+  { cat:'Developer & APIs',  name:'Install one custom app across multiple stores in the organization', adv:'no', plus:'yes' },
   { cat:'Developer & APIs',  name:'Cart Transform API — lineUpdate operation',               adv:'no',  plus:'yes' },
   { cat:'Developer & APIs',  name:'Unlimited custom apps with Level 2 (protected) customer data', adv:'no', plus:'yes' },
   { cat:'Developer & APIs',  name:'Exempt from 10,000/day variant-creation cap (500K+ variants)', adv:'no', plus:'yes' },
@@ -3758,8 +4034,12 @@ const businessCases = [
   ]
  }
 ];
-const capView = {"Unlimited catalogs": "catalogs", "Direct catalog assignment": "catalogs", "Checkout UI extension": "checkout", "Delivery Function": "checkout", "Discount Function": "functions", "Payment Function": "checkout", "Deposits & partial payments": "payments", "Validation Function": "functions", "Cart Transform": "functions", "Launchpad": "launchpad", "Fulfillment Function": "functions", "API limits": "devplatform", "Identity provider": "devplatform", "Expansion stores": "expansion", "Unlimited staff": "usergroups"};
+const capView = {"Unlimited catalogs": "catalogs", "Direct catalog assignment": "catalogs", "Checkout UI extension": "checkout", "Delivery Function": "customapps", "Discount Function": "customapps", "Payment Function": "customapps", "Deposits & partial payments": "payments", "Validation Function": "customapps", "Cart Transform": "customapps", "Launchpad": "launchpad", "Fulfillment Function": "customapps", "API limits": "devplatform", "Identity provider": "devplatform", "Expansion stores": "expansion", "Unlimited staff": "usergroups"};
 let bcCat = 'all', bcCap = 'all';
+function goCases() {
+  switchTab('cases', document.getElementById('tab-cases'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 function goExcl(view) {
   switchTab('exclusives', document.getElementById('tab-exclusives'));
   openExcl(view);
