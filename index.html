@@ -255,6 +255,9 @@
   .ca-intro strong { color: var(--text); }
   .ca-list { margin: 4px 0 0 18px; display: flex; flex-direction: column; gap: 6px; }
   .ca-list li { line-height: 1.45; }
+  .ca-k { display: block; font-size: .64rem; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; color: var(--plus-light); margin: 10px 0 4px; }
+  .ca-k:first-child { margin-top: 0; }
+  .ca-built { display: block; font-size: .78rem; font-weight: 600; color: var(--text); }
   /* ── IMPLICATION CARDS ── */
   .impl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 16px; align-items: start; }
   .impl-card {
@@ -862,6 +865,73 @@
       </div>
       <div class="verdict" style="margin-top:16px;">
         <strong>The short version:</strong> on Plus, your custom app can put <em>your</em> logic inside cart and checkout, your UI inside the checkout steps, and the same app in every store you run.
+      </div>
+    </div>
+
+    <div class="section a2">
+      <div class="section-label">Business Problems Custom Apps Solve</div>
+      <p class="ca-intro">Real operational problems, and how a Plus custom app solves each one. These are illustrative examples: each combines several Plus capabilities into a single app that only your business runs.</p>
+      <div class="impl-grid">
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🏷️</span>
+          <div class="impl-title">Contract prices re-keyed by hand</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Every account has negotiated pricing and rebates in the ERP, so reps rebuild orders as draft orders to get the price right — slow for buyers and an open door to pricing errors.<span class="ca-k">The custom app</span><ul class="ca-list"><li>ERP pushes each company's contract tier and rebate terms to Shopify nightly</li><li>A Discount Function applies the right rebate and stacking rules in cart and checkout</li><li>An admin block shows reps which contract was applied to every order</li></ul><span class="ca-k">Built with</span><span class="ca-built">Discount Function · Admin UI extension · 1,000 points/sec API</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Buyers self-serve at their contract price, reps stop re-keying orders, and pricing matches the ERP on every order.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🧾</span>
+          <div class="impl-title">Orders placed over the credit limit</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Accounts on net terms can order past their credit limit or while on hold. Finance finds out after the order lands, and credit and sales argue over what to release.<span class="ca-k">The custom app</span><ul class="ca-list"><li>ERP syncs each account's credit limit, available credit and hold status</li><li>Checkout shows the buyer their available credit</li><li>A Validation Function blocks orders over the limit, and a Payment Customization Function hides net terms for accounts on hold</li></ul><span class="ca-k">Built with</span><span class="ca-built">Cart &amp; Checkout Validation · Payment Customization · Checkout UI extension</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Credit exposure is controlled at checkout instead of after the order, and buyers know where they stand before they submit.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🚧</span>
+          <div class="impl-title">Failed job-site deliveries</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Trucks arrive with no liftgate, outside dock hours, or with nobody on site, because delivery details are collected by phone after the order — if at all.<span class="ca-k">The custom app</span><ul class="ca-list"><li>The shipping step asks for delivery date and window, liftgate, dock hours and site contact</li><li>A Delivery Customization Function hides parcel rates on freight carts</li><li>Details land on the order for dispatch and appear on the buyer's order page</li></ul><span class="ca-k">Built with</span><span class="ca-built">Checkout UI extension (shipping step) · Delivery Customization · Customer account extension</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Fewer failed deliveries and redelivery fees, and no follow-up calls to collect what checkout could have asked.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">📏</span>
+          <div class="impl-title">Products sold by length, area or weight</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Cable, metal, lumber and fabric are priced by the foot, square foot or pound. Fixed variants can't cover every size, so these orders become quotes.<span class="ca-k">The custom app</span><ul class="ca-list"><li>A product-page block lets the buyer enter length, area or weight</li><li>Cart Transform <code>lineUpdate</code> prices and retitles the line — for example, "Copper cable, 125 ft"</li><li>A Validation Function enforces minimum and maximum cut sizes</li></ul><span class="ca-k">Built with</span><span class="ca-built">Theme app extension · Cart Transform lineUpdate · Cart &amp; Checkout Validation</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Measured products sell online at the right price, without quote back-and-forth or a variant for every size.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🧰</span>
+          <div class="impl-title">Kits that break apart in the warehouse</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Configure-to-order kits need to be one price for the buyer but individual SKUs for inventory, and they ship incomplete when components split across locations.<span class="ca-k">The custom app</span><ul class="ca-list"><li>The buyer configures a kit on the product page</li><li>Cart Transform expands it into component SKUs for inventory and shows it as one priced line</li><li>A Fulfillment Constraint Function keeps every component shipping together</li></ul><span class="ca-k">Built with</span><span class="ca-built">Cart Transform · Fulfillment Constraints · Theme app extension</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Kits sell as one clean line, inventory stays accurate by component, and kits arrive complete.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🪪</span>
+          <div class="impl-title">Regulated products sold without verification</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Medical, firearms and alcohol products need a valid license before they ship. Checking by hand after the order delays fulfillment and risks a compliance miss.<span class="ca-k">The custom app</span><ul class="ca-list"><li>The information step collects the buyer's DEA, FFL or liquor license number and expiry</li><li>A Validation Function blocks restricted SKUs without a valid license or to restricted states</li><li>Verified licenses are saved to the customer, and compliance reviews them from an admin block</li></ul><span class="ca-k">Built with</span><span class="ca-built">Checkout UI extension (information step) · Cart &amp; Checkout Validation · Admin UI extension</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Compliance is enforced before the order is placed, repeat buyers aren't asked twice, and there's an audit trail on every order.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">📦</span>
+          <div class="impl-title">Big accounts that ship on their own carrier</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Large accounts want to ship on their own UPS or FedEx account. Today they email the number, choose a rate they won't pay, and wait for customer service to fix the order.<span class="ca-k">The custom app</span><ul class="ca-list"><li>The shipping step collects the buyer's carrier account number</li><li>A Delivery Customization Function shows only the "ship on my account" rate for those buyers</li><li>The account number flows to the 3PL with the order</li></ul><span class="ca-k">Built with</span><span class="ca-built">Checkout UI extension (shipping step) · Delivery Customization</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Key accounts check out in one pass, and shipping charges are right without manual correction.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🧭</span>
+          <div class="impl-title">Orders shipping from the wrong warehouse</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Orders split across distant locations, refrigerated items leave from sites that can't keep them cold, and drop-ship lines get picked in-house — then the warehouse fixes it by hand.<span class="ca-k">The custom app</span><ul class="ca-list"><li>An Order Routing Function sends each account's orders to its home branch first</li><li>Fulfillment Constraints keep refrigerated items at temperature-controlled sites and vendor-direct items with the vendor</li><li>Pickup is offered only at the buyer's own branch</li></ul><span class="ca-k">Built with</span><span class="ca-built">Order Routing location rules · Fulfillment Constraints · Local Pickup Delivery Options</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Orders leave from the right place the first time, with fewer split shipments and lower freight cost.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🎁</span>
+          <div class="impl-title">Store credit issued by hand</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>Returns are approved in one system and store credit is issued manually in another, so customers wait and balances drift between the ERP, POS and online store.<span class="ca-k">The custom app</span><ul class="ca-list"><li>Approved returns issue store credit automatically through the GiftCard API</li><li>Balances stay in sync with POS and the ERP</li><li>Buyers see their credit balance in their customer account</li></ul><span class="ca-k">Built with</span><span class="ca-built">GiftCard API · Customer account extension · POS UI extension</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Credit is issued the moment a return is approved, and one balance is right everywhere the customer shops.</div>
+        </div>
+        <div class="impl-card plus no-collapse">
+          <span class="impl-icon">🏢</span>
+          <div class="impl-title">The same workflow rebuilt in every store</div>
+          <div class="impl-body"><span class="ca-k">The problem</span>B2B, D2C and regional stores each need the same checkout fields, rules and ERP sync — and every change has to be made, tested and maintained store by store.<span class="ca-k">The custom app</span><ul class="ca-list"><li>One custom app installed on every store in the Plus organization</li><li>The same checkout fields, validation rules and ERP sync run everywhere</li><li>Updates ship once and reach every store</li></ul><span class="ca-k">Built with</span><span class="ca-built">Org-wide custom app install · Shopify Functions · Checkout UI extensions</span></div>
+          <div class="impl-implication"><strong>The result:</strong> Build once, run everywhere: consistent operations across stores and a fraction of the maintenance.</div>
+        </div>
       </div>
     </div>
 
@@ -3491,7 +3561,7 @@ function attachExpandBtn(card) {
 }
 
 function initExpandBtns() {
-  document.querySelectorAll('.impl-card').forEach(card => {
+  document.querySelectorAll('.impl-card:not(.no-collapse)').forEach(card => {
     // Wrap body+implication if not already wrapped
     if (!card.querySelector('.impl-content-wrap')) {
       const body = card.querySelector('.impl-body');
